@@ -135,6 +135,40 @@ for (const p of pages.values()) {
   }
 }
 
+// --- word counts ------------------------------------------------------------
+// Minimum body copy per page type. A page that is too thin to be useful should
+// not be published, and "too thin" needs to be measured, not eyeballed.
+const MIN_WORDS = { service: 800, location: 500, property: 300 };
+
+const bodyWords = (html) => {
+  const main = (html.match(/<main[^>]*>([\s\S]*?)<\/main>/) ?? [])[1] ?? '';
+  return main
+    .replace(/<script[\s\S]*?<\/script>/g, ' ')
+    .replace(/<style[\s\S]*?<\/style>/g, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&[a-z]+;|&#\d+;/gi, ' ')
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean).length;
+};
+
+const pageKind = (route) => {
+  const seg = route.split('/').filter(Boolean);
+  // /cleaning/{service}/       -> 2 segments -> service page
+  // /cleaning/{service}/{town}/-> 3 segments -> location page
+  if (seg[0] === 'cleaning') return seg.length === 2 ? 'service' : 'location';
+  if (seg[0] === 'property') return 'property';
+  return null;
+};
+
+for (const p of pages.values()) {
+  const kind = pageKind(p.route);
+  if (!kind) continue;
+  const n = bodyWords(p.html);
+  const min = MIN_WORDS[kind];
+  if (n < min) err(`${p.route}: ${kind} page has ${n} words of body copy (min ${min})`);
+}
+
 // --- internal links ---------------------------------------------------------
 const linkedTo = new Set();
 for (const p of pages.values()) {

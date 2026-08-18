@@ -7,7 +7,10 @@
  */
 import type { GetStaticPaths } from 'astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { propertyTypes, publishedServices } from '../../lib/data';
+import Section from '../../components/Section.astro';
+import CtaBand from '../../components/CtaBand.astro';
+
+import { propertyTypes, publishedServices, locations, company } from '../../lib/data';
 import { urls } from '../../lib/urls';
 import { meta, fit } from '../../lib/seo';
 import type { PropertyType } from '../../types';
@@ -27,13 +30,28 @@ const { propertyType: pt } = Astro.props;
 const path = urls.propertyType(pt.slug);
 const services = publishedServices();
 
+// Towns where this size is a dominant flat type. Data-driven, so a page for a
+// size nobody lives in simply shows nothing rather than inventing relevance.
+const townsWithThisType = locations.filter((l) => l.dominantPropertyTypes.includes(pt.slug));
+
 const { title, description } = meta(
   fit(`${pt.name} Cleaning Singapore | Hours & Cost`, 60),
   fit(
-    `What cleaning a ${pt.name} in Singapore involves: typical floor area ${pt.floorAreaSqft.min}-${pt.floorAreaSqft.max} sqft, hours required, and what a deep clean costs.`,
+    `Cleaning a ${pt.name} in Singapore: ${pt.floorAreaSqft.min}-${pt.floorAreaSqft.max} sqft, how many hours it takes, and what a deep clean costs in S$.`,
     155,
   ),
 );
+
+const stats = [
+  { label: 'Floor area', value: `${pt.floorAreaSqm.min}–${pt.floorAreaSqm.max} sqm`, sub: `${pt.floorAreaSqft.min}–${pt.floorAreaSqft.max} sqft` },
+  { label: 'Routine clean', value: `${pt.regularCleanHours.min}–${pt.regularCleanHours.max} hours`, sub: 'billed hourly' },
+  { label: 'Deep clean time', value: `${pt.deepCleanHours.min}–${pt.deepCleanHours.max} hours`, sub: 'one visit' },
+  {
+    label: 'Deep clean cost',
+    value: pt.deepCleanFlatRateSGD ? `S$${pt.deepCleanFlatRateSGD.min}–${pt.deepCleanFlatRateSGD.max}` : 'Site visit',
+    sub: pt.deepCleanFlatRateSGD ? `flat rate, before GST` : 'quoted after inspection',
+  },
+];
 ---
 
 <BaseLayout
@@ -42,32 +60,112 @@ const { title, description } = meta(
   path={path}
   batch={pt.batch}
   crumbs={[{ name: pt.name, path }]}
+  whatsapp={{ propertyType: pt.name }}
 >
-  <h1>Cleaning a {pt.name} in Singapore</h1>
-  <p>{pt.notes}</p>
+  {/* ------------------------------------------------------------------ hero */}
+  <section class="border-b border-line bg-surface">
+    <div class="wrap py-12 sm:py-16">
+      <h1 class="max-w-3xl text-3xl font-semibold sm:text-4xl lg:text-5xl">
+        Cleaning a {pt.name} in Singapore
+      </h1>
+      <p class="mt-5 max-w-2xl text-lg leading-relaxed text-ink-muted">{pt.notes}</p>
 
-  <h2>Size and time</h2>
-  <ul>
-    <li>Typical floor area: {pt.floorAreaSqm.min}–{pt.floorAreaSqm.max} sqm ({pt.floorAreaSqft.min}–{pt.floorAreaSqft.max} sqft)</li>
-    <li>Routine clean: {pt.regularCleanHours.min}–{pt.regularCleanHours.max} hours</li>
-    <li>Deep clean: {pt.deepCleanHours.min}–{pt.deepCleanHours.max} hours</li>
-    {pt.deepCleanFlatRateSGD !== null && (
-      <li>Deep clean flat rate: S${pt.deepCleanFlatRateSGD.min}–S${pt.deepCleanFlatRateSGD.max} before GST</li>
-    )}
-  </ul>
+      <dl class="mt-10 grid gap-px overflow-hidden rounded-card bg-line sm:grid-cols-2 lg:grid-cols-4">
+        {stats.map((s) => (
+          <div class="bg-canvas p-5">
+            <dt class="text-2xs font-semibold uppercase tracking-wider text-ink-faint">{s.label}</dt>
+            <dd class="mt-1.5 text-xl font-semibold text-ink">{s.value}</dd>
+            <dd class="text-2xs text-ink-faint">{s.sub}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
 
-  <h2>Time needed by service</h2>
-  <table>
-    <thead>
-      <tr><th>Service</th><th>Typical duration</th></tr>
-    </thead>
-    <tbody>
-      {services.map((s) => (
-        <tr>
-          <td><a href={urls.service(s.slug)}>{s.name}</a></td>
-          <td>{s.typicalDurationByProperty[pt.slug]}</td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
+  {/* --------------------------------------------------- what changes at size */}
+  <Section tone="canvas">
+    <div class="grid gap-10 lg:grid-cols-[1fr_1fr]">
+      <div>
+        <h2 class="text-2xl font-semibold sm:text-3xl">What changes at this size</h2>
+        <div class="prose-ht mt-4 text-ink-muted">
+          <p>
+            Bathroom count drives cleaning cost more reliably than floor area does. A
+            second bathroom adds descaling, grout and sanitaryware work that a larger
+            living area simply does not, which is why two homes of similar size can
+            quote differently.
+          </p>
+          <p>
+            {pt.category === 'hdb' &&
+              'HDB layouts are consistent enough that a vendor can quote a flat type sight unseen with reasonable accuracy. What they cannot see is the age of the finishes, and that is the variable that decides whether a deep clean runs to the low or the high end of the range.'}
+            {pt.category === 'condo' &&
+              'Condominiums carry more glass, more built-in joinery and usually a balcony, all of which take time that floor area alone does not predict. Management offices also frequently require vendors to register in advance and show insurance before they are allowed up, so booking lead time is longer than for an HDB flat.'}
+            {pt.category === 'landed' &&
+              'Landed homes are quoted after a site visit, not from a price list, and anyone offering a firm figure over the phone is guessing. Storeys, staircases, bathroom count, glazing and external areas all move the number independently of internal floor area.'}
+          </p>
+          <p>
+            Where the home sits in its life also matters. A newly handed-over unit needs
+            move-in or post-renovation cleaning rather than a deep clean, and paying a
+            flat deep-clean rate for a home with no accumulated build-up is poor value.
+          </p>
+        </div>
+      </div>
+
+      <div class="rounded-card border border-line bg-surface p-6">
+        <h3 class="font-semibold">How long each service takes in a {pt.name}</h3>
+        <dl class="mt-5 divide-y divide-line border-t border-line">
+          {services.map((s) => (
+            <div class="grid grid-cols-[1fr_auto] gap-4 py-3">
+              <dt class="text-sm font-medium">
+                <a href={urls.service(s.slug)} class="text-brand no-underline hover:underline">
+                  {s.name}
+                </a>
+                <span class="block text-2xs font-normal text-ink-faint">
+                  {s.priceRangeSGD.unit}
+                </span>
+              </dt>
+              <dd class="text-right text-sm text-ink-muted">
+                {s.typicalDurationByProperty[pt.slug]}
+              </dd>
+            </div>
+          ))}
+        </dl>
+        <p class="mt-5 text-2xs text-ink-faint">
+          Indicative only, before GST at {company.gstRatePercent}%. Condition and finish
+          age move these more than layout does.
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  {/* --------------------------------------------------------- where they are */}
+  {townsWithThisType.length > 0 && (
+    <Section tone="sunk">
+      <div class="max-w-2xl">
+        <h2 class="text-2xl font-semibold sm:text-3xl">
+          Where {pt.name.toLowerCase()} homes are common
+        </h2>
+        <p class="mt-4 text-ink-muted">
+          Towns where this is one of the dominant property types.
+        </p>
+      </div>
+      <ul class="mt-6 flex flex-wrap gap-2">
+        {townsWithThisType.map((t) => (
+          <li class="rounded-full bg-surface px-4 py-2 text-sm text-ink-muted ring-1 ring-line">
+            {t.name}
+          </li>
+        ))}
+      </ul>
+      <p class="mt-8 text-sm">
+        <a href={urls.areas()} class="font-semibold text-brand no-underline hover:underline">
+          All areas we cover &rarr;
+        </a>
+      </p>
+    </Section>
+  )}
+
+  <CtaBand
+    heading={`Get cleaning quotes for your ${pt.name}.`}
+    body="Tell us the service and your town, and we will match you with vetted, insured vendors."
+    context={{ propertyType: pt.name }}
+  />
 </BaseLayout>

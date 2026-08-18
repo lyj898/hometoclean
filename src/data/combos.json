@@ -3,486 +3,567 @@
     "serviceSlug": "part-time-cleaning",
     "townSlug": "ang-mo-kio",
     "batch": 2,
-    "published": false
+    "published": false,
+    "localAngle": "Flats in the older parts of Ang Mo Kio are compact by current standards, so a three-hour session usually covers the whole home rather than being rationed room by room. What consumes the time here is age rather than floor area: original tiling and kitchen surfaces from the 1970s hold soiling in a way newer finishes do not, and the grilles on older blocks need more attention than in a 1990s estate. Fortnightly is the more common pattern locally, with weekly concentrated in the newer Kebun Baru and Cheng San blocks."
   },
   {
     "serviceSlug": "part-time-cleaning",
     "townSlug": "bedok",
     "batch": 2,
-    "published": false
+    "published": false,
+    "localAngle": "Bedok covers a wide range of flat ages, and the practical effect on a recurring booking is where you sit within it. A Chai Chee 3-room and a Bedok Reservoir 5-room need different session lengths, and quoting the town as a single rate does not survive contact with either. The coastal position matters more than people expect: window grilles, sliding tracks and aircon casings pick up salt-laden grime faster than inland estates, so track cleaning belongs in the routine here rather than being left for an annual deep clean."
   },
   {
     "serviceSlug": "part-time-cleaning",
     "townSlug": "bishan",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "part-time-cleaning",
     "townSlug": "bukit-batok",
     "batch": 2,
-    "published": false
+    "published": false,
+    "localAngle": "Bukit Batok is weighted towards 4-room, 5-room and executive flats, so the three-hour minimum that suits a compact flat elsewhere is genuinely tight here and four hours is the more realistic booking. The town’s 1980s stock is at the stage where original kitchen and bathroom finishes are visibly at end of life, which changes what routine cleaning can achieve: a cleaner can keep a worn surface clean but cannot make it look new. Hillier blocks also mean some walk-up access, which is worth flagging when booking."
   },
   {
     "serviceSlug": "part-time-cleaning",
     "townSlug": "bukit-merah",
     "batch": 2,
-    "published": false
+    "published": false,
+    "localAngle": "Bukit Merah holds an unusual mix for recurring work. Small 2-room and 3-room flats around Redhill and Telok Blangah are quick, and often occupied by older residents where consistency of cleaner matters more than speed. The Tiong Bahru conservation flats are a different proposition: original terrazzo, timber and curved plaster detailing that will not tolerate the aggressive chemicals or abrasive pads a general cleaner might reach for by default. If your flat is a conservation unit, say so when booking rather than on the day."
   },
   {
     "serviceSlug": "part-time-cleaning",
     "townSlug": "bukit-panjang",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "part-time-cleaning",
     "townSlug": "bukit-timah",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "part-time-cleaning",
     "townSlug": "central-area",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "part-time-cleaning",
     "townSlug": "choa-chu-kang",
     "batch": 2,
-    "published": false
+    "published": false,
+    "localAngle": "Choa Chu Kang runs to larger flat types, so a routine session here more often needs four hours than three, and households booking the minimum tend to find the scope quietly shrinking to keep within it. Teck Whye is the exception within the town: those blocks are 1980s rather than 1990s and are noticeably more worn, which shows up as more time on kitchen and bathroom surfaces. Distance from the centre also thins vendor availability, so a fixed recurring slot is worth more here than flexibility."
   },
   {
     "serviceSlug": "part-time-cleaning",
     "townSlug": "clementi",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "part-time-cleaning",
     "townSlug": "geylang",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "part-time-cleaning",
     "townSlug": "hougang",
     "batch": 2,
-    "published": false
+    "published": false,
+    "localAngle": "Hougang has one of the larger average unit sizes in the north-east, and executive maisonettes are common. A maisonette is a two-storey home with an internal staircase and a second bathroom, and neither fits inside a three-hour session. Households here who book the minimum on the assumption that it is a flat like any other generally end up adding hours after the first month. Four to six hours is the realistic range, and stair balustrades are the item most often quietly dropped when time runs short."
   },
   {
     "serviceSlug": "part-time-cleaning",
     "townSlug": "jurong-east",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "part-time-cleaning",
     "townSlug": "jurong-west",
     "batch": 2,
-    "published": false
+    "published": false,
+    "localAngle": "Jurong West is large enough that its size is a practical booking problem. Travel between Boon Lay, Pioneer, Taman Jurong and the Jurong West streets is significant, and a vendor advertising a flat rate for the whole town is usually pricing from whichever precinct they are already working in. Ask where your cleaner is coming from before agreeing a recurring slot. Proximity to the western industrial belt also means more airborne particulate than central estates, so surfaces and window tracks dust up faster between visits."
   },
   {
     "serviceSlug": "part-time-cleaning",
     "townSlug": "kallang",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "part-time-cleaning",
     "townSlug": "marine-parade",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "part-time-cleaning",
     "townSlug": "pasir-ris",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "part-time-cleaning",
     "townSlug": "punggol",
     "batch": 2,
-    "published": false
+    "published": false,
+    "localAngle": "Punggol is a young town of young households, and recurring cleaning here is genuinely maintenance rather than recovery. The homes are almost all 4-room and 5-room flats built from 2007 onward, so there is no aged grout, no worn terrazzo and no decades-old kitchen residue for a cleaner to work against. That makes a three to four hour session go further than it would in a mature estate. What does take time is the volume of built-in carpentry that renovation-heavy new flats tend to have."
   },
   {
     "serviceSlug": "part-time-cleaning",
     "townSlug": "queenstown",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "part-time-cleaning",
     "townSlug": "sembawang",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "part-time-cleaning",
     "townSlug": "sengkang",
     "batch": 2,
-    "published": false
+    "published": false,
+    "localAngle": "Sengkang is dominated by 4-room and 5-room flats holding young families, which is the profile where recurring weekly cleaning is most common rather than fortnightly. The town is younger than the mature estates, so sessions are not fighting decades of build-up and three to four hours genuinely covers a 4-room. Rivervale is the exception worth knowing: those flats date to the late 1990s and are now old enough that original kitchen and bathroom surfaces need noticeably more time than the rest of the town."
   },
   {
     "serviceSlug": "part-time-cleaning",
     "townSlug": "serangoon",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "part-time-cleaning",
     "townSlug": "tampines",
     "batch": 2,
-    "published": false
+    "published": false,
+    "localAngle": "Tampines is large enough that a vendor based in one part of it will sometimes decline a job at the other end, so ask where your cleaner is travelling from before fixing a recurring slot. The mature core along Tampines Streets 11 to 91 runs to 4-room, 5-room and executive flats, which puts a realistic routine session at four hours rather than three. Tampines North is newer and lighter work, and households there often find three hours genuinely sufficient."
   },
   {
     "serviceSlug": "part-time-cleaning",
     "townSlug": "tengah",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "part-time-cleaning",
     "townSlug": "toa-payoh",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "part-time-cleaning",
     "townSlug": "woodlands",
     "batch": 2,
-    "published": false
+    "published": false,
+    "localAngle": "Woodlands is weighted to 4-room, 5-room and executive flats, so four hours is the realistic session length and the three-hour minimum tends to mean something gets skipped. The bigger practical issue is travel. The town is far from the centre and Causeway traffic makes the trip unpredictable at peak times, which narrows the pool of cleaners willing to take short recurring sessions here. A fixed weekly or fortnightly slot with the same cleaner is worth more in Woodlands than almost anywhere else."
   },
   {
     "serviceSlug": "part-time-cleaning",
     "townSlug": "yishun",
     "batch": 2,
-    "published": false
+    "published": false,
+    "localAngle": "Yishun’s 3-room and 4-room flats are compact enough that a three-hour session covers the whole home, which is not true across much of the north. The Home Improvement Programme has been extensive here, and it changes what routine cleaning should prioritise: many bathrooms are newer than the flats containing them and need relatively little attention, while original kitchen surfaces, window tracks and floor tiling need more. Improved connectivity at Khatib and Canberra has widened the pool of cleaners willing to travel here."
   },
   {
     "serviceSlug": "deep-cleaning",
     "townSlug": "ang-mo-kio",
     "batch": 2,
-    "published": false
+    "published": false,
+    "localAngle": "The estate’s age is the whole argument for a deep clean in Ang Mo Kio. Flats from the 1970s carry original grout, mosaic and terrazzo, and kitchens that have absorbed decades of cooking oil. The complication is the Home Improvement Programme: many bathrooms have been replaced, so the newest part of the flat needs the least work while the kitchen and floors need the most. A vendor quoting a flat 4-room rate without asking whether your block has been through HIP is guessing at the scope."
   },
   {
     "serviceSlug": "deep-cleaning",
     "townSlug": "bedok",
     "batch": 2,
-    "published": false
+    "published": false,
+    "localAngle": "Two different deep cleans exist in Bedok. In Chai Chee and Bedok South the job is age-driven: 1970s grout, original flooring and long-settled kitchen grease. Around Bedok Reservoir the stock is younger and the work shifts towards glass, balconies and built-in joinery. Both share the coastal problem. Salt air corrodes and soils metal fittings, window grilles and sliding door tracks faster than anywhere inland, and track and grille work is usually the largest single time item in a Bedok deep clean."
   },
   {
     "serviceSlug": "deep-cleaning",
     "townSlug": "bishan",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "deep-cleaning",
     "townSlug": "bukit-batok",
     "batch": 2,
-    "published": false
+    "published": false,
+    "localAngle": "Most of Bukit Batok’s housing stock is now around forty years old and sitting in the window where households either renovate or commission a proper reset instead. That makes deep cleaning here largely a question of original finishes: 1980s grout, kitchen cabinetry and bathroom surfaces that regular cleaning has stopped improving. Larger flat types are the norm, so sessions run longer than the national average and executive units frequently need a two-person team to finish inside a single day."
   },
   {
     "serviceSlug": "deep-cleaning",
     "townSlug": "bukit-merah",
     "batch": 2,
-    "published": false
+    "published": false,
+    "localAngle": "A deep clean in Bukit Merah depends entirely on which part of it you live in. The Dawson precinct flats are large and modern, and the work is conventional. The pre-war SIT blocks at Tiong Bahru are not: terrazzo, original timber and curved detailing need pH-neutral products and hand methods, and a vendor who arrives with a general kit and a scrubbing machine can cause damage that cleaning cannot undo. This is the clearest case on our books for matching to a vendor briefed on heritage finishes."
   },
   {
     "serviceSlug": "deep-cleaning",
     "townSlug": "bukit-panjang",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "deep-cleaning",
     "townSlug": "bukit-timah",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "deep-cleaning",
     "townSlug": "central-area",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "deep-cleaning",
     "townSlug": "choa-chu-kang",
     "batch": 2,
-    "published": false
+    "published": false,
+    "localAngle": "Most of Choa Chu Kang was built in the 1990s, which puts the bulk of the town past the twenty-five year mark where original bathroom and kitchen finishes start losing the argument with regular cleaning. Executive flats and maisonettes are well represented, and a maisonette carries an internal staircase and a second-storey bathroom that are routinely left out of a quote given by flat type over the phone. Teck Whye, being a decade older, generally quotes at the upper end for its size."
   },
   {
     "serviceSlug": "deep-cleaning",
     "townSlug": "clementi",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "deep-cleaning",
     "townSlug": "geylang",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "deep-cleaning",
     "townSlug": "hougang",
     "batch": 2,
-    "published": false
+    "published": false,
+    "localAngle": "Quoting a deep clean in Hougang by flat type alone is unreliable, because the town’s executive maisonettes carry an internal staircase, stair balustrades and a second-storey bathroom that a single floor-area figure does not capture. Bathroom count is the better predictor of cost here than square footage. The 1980s and 1990s stock is also into its second or third renovation cycle, so what a deep clean is actually working on varies enormously depending on when the current owner last renovated."
   },
   {
     "serviceSlug": "deep-cleaning",
     "townSlug": "jurong-east",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "deep-cleaning",
     "townSlug": "jurong-west",
     "batch": 2,
-    "published": false
+    "published": false,
+    "localAngle": "The stock here is weighted to 4-room, 5-room and executive flats, so deep cleans quote at the upper end of published ranges rather than the middle. Taman Jurong is the outlier: those blocks date to the 1970s and carry original finishes a decade older than most of the town, which reliably adds hours. The western industrial belt contributes a heavier particulate load than central Singapore, and it shows up specifically in window tracks, grilles and the tops of high surfaces."
   },
   {
     "serviceSlug": "deep-cleaning",
     "townSlug": "kallang",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "deep-cleaning",
     "townSlug": "marine-parade",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "deep-cleaning",
     "townSlug": "pasir-ris",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "deep-cleaning",
     "townSlug": "punggol",
     "batch": 2,
-    "published": false
+    "published": false,
+    "localAngle": "Punggol is the town where a full deep clean is least often the right booking. Nothing here is old enough to have the accumulated grout staining, limescale and kitchen carbon that justify a whole-home flat-rate reset, and households sometimes pay deep-clean rates for what is really an enhanced routine session. The genuine cases are homes several years past a renovation, or units that have been tenanted. If your flat is newly handed over or newly renovated, move-in or post-renovation cleaning is the service you actually want."
   },
   {
     "serviceSlug": "deep-cleaning",
     "townSlug": "queenstown",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "deep-cleaning",
     "townSlug": "sembawang",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "deep-cleaning",
     "townSlug": "sengkang",
     "batch": 2,
-    "published": false
+    "published": false,
+    "localAngle": "Sengkang is only now entering the phase where deep cleaning is widely justified, and it is doing so unevenly. Rivervale, the oldest precinct, is at the twenty-five to thirty year mark where first major renovations cluster and original finishes are visibly tiring. Compassvale, Anchorvale and Fernvale are younger and generally do not need the full flat-rate treatment yet. This is the practical difference between Sengkang and Punggol next door: the demand profile here is genuinely shifting from move-in work towards deep cleaning, and Punggol’s has not."
   },
   {
     "serviceSlug": "deep-cleaning",
     "townSlug": "serangoon",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "deep-cleaning",
     "townSlug": "tampines",
     "batch": 2,
-    "published": false
+    "published": false,
+    "localAngle": "The mature Tampines core is prime deep-cleaning territory: 1980s flats, mostly large, deep into their renovation cycles, with original grout and kitchen surfaces that routine cleaning has stopped improving. Executive units here regularly need a two-person team to finish within a day. Tampines North is a different case entirely, with recently handed-over flats where a full flat-rate deep clean is usually premature. Which half of the town you are in is the single biggest factor in whether this is the right booking."
   },
   {
     "serviceSlug": "deep-cleaning",
     "townSlug": "tengah",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "deep-cleaning",
     "townSlug": "toa-payoh",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "deep-cleaning",
     "townSlug": "woodlands",
     "batch": 2,
-    "published": false
+    "published": false,
+    "localAngle": "Most of Woodlands was built through the 1990s and is now past the twenty-five year mark, which is where original bathroom and kitchen finishes start needing more than routine cleaning. Marsiling is older still, dating to the 1980s, and quotes accordingly for its size. Flats here are large, so deep cleans run long and executive units generally need a two-person team. Vendor travel time also affects pricing more than in central towns, and some quote a call-out on top for the north."
   },
   {
     "serviceSlug": "deep-cleaning",
     "townSlug": "yishun",
     "batch": 2,
-    "published": false
+    "published": false,
+    "localAngle": "The Home Improvement Programme is the fact that shapes deep cleaning in Yishun. Bathroom condition is a poor proxy for flat age here, because upgraded sanitaryware frequently sits inside an otherwise original 1980s flat. A vendor who inspects the bathroom, assumes the flat is newer than it is and quotes accordingly will under-scope the kitchen, the window tracks and the original floor tiling, which is where the actual work is. Say whether your block has been through HIP when requesting a quote."
   },
   {
     "serviceSlug": "post-renovation-cleaning",
     "townSlug": "ang-mo-kio",
     "batch": 2,
-    "published": false
+    "published": false,
+    "localAngle": "Ang Mo Kio flats are deep into second and third renovation cycles, and hacking work in a forty-year-old flat generates considerably more dust than a cosmetic refresh in a newer one. Older blocks here also have smaller service lifts and tighter renovation hours, which constrains when a crew can get equipment up and how long they can run it. Book after the contractor’s final touch-up visit rather than after the main works, because the last trade through the door usually undoes the first clean."
   },
   {
     "serviceSlug": "post-renovation-cleaning",
     "townSlug": "bedok",
     "batch": 2,
-    "published": false
+    "published": false,
+    "localAngle": "Renovation in Bedok’s older blocks means hacking through 1970s construction, which produces heavier and coarser debris than work in a newer flat. Sea air adds a specific complication afterwards: fine cement dust that settles into window tracks and grille channels combines with salt residue and sets harder than it would inland, so tracks need to be cleared properly rather than wiped. Blocks facing the coast also cannot simply be aired out during the settling stage without drawing more salt-laden air back in."
   },
   {
     "serviceSlug": "post-renovation-cleaning",
     "townSlug": "bishan",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "post-renovation-cleaning",
     "townSlug": "bukit-batok",
     "batch": 2,
-    "published": false
+    "published": false,
+    "localAngle": "Bukit Batok has two separate sources of post-renovation demand. The 1980s core is renovating at scale as original fittings reach end of life, and the newer blocks along Bukit Batok West Avenues 8 and 9 are handing over to first-time owners who renovate before moving in. The second group has an additional problem: the Tengah build-out next door is an active construction site, so west-facing units keep taking in ambient dust after the internal works finish, and a second lighter pass is more often justified here."
   },
   {
     "serviceSlug": "post-renovation-cleaning",
     "townSlug": "bukit-merah",
     "batch": 2,
-    "published": false
+    "published": false,
+    "localAngle": "Renovation in Bukit Merah spans two extremes. Work in the Dawson blocks is standard modern post-renovation cleaning. Work in the conservation flats at Tiong Bahru is constrained by what the building is: original surfaces cannot be aggressively cleaned to remove cement haze, and heritage guidelines limit what can be altered in the first place. Older blocks throughout the estate also have narrow stairwells and small or absent service lifts, which genuinely limits the equipment a crew can bring to the unit."
   },
   {
     "serviceSlug": "post-renovation-cleaning",
     "townSlug": "bukit-panjang",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "post-renovation-cleaning",
     "townSlug": "bukit-timah",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "post-renovation-cleaning",
     "townSlug": "central-area",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "post-renovation-cleaning",
     "townSlug": "choa-chu-kang",
     "batch": 2,
-    "published": false
+    "published": false,
+    "localAngle": "Choa Chu Kang sits directly on the Tengah boundary, and that is the fact worth knowing here. Beyond your own renovation, west-facing blocks take in construction dust from the adjacent build-out, so a unit can look hazy again within days of a clean through no fault of the vendor. Where that applies, it is worth scheduling the final detail pass later than usual and keeping windows shut through the settling stage. The estate’s larger flats and maisonettes also push sessions past a single day more often than elsewhere."
   },
   {
     "serviceSlug": "post-renovation-cleaning",
     "townSlug": "clementi",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "post-renovation-cleaning",
     "townSlug": "geylang",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "post-renovation-cleaning",
     "townSlug": "hougang",
     "batch": 2,
-    "published": false
+    "published": false,
+    "localAngle": "Renovation in a Hougang maisonette is a bigger post-renovation job than the floor area suggests, because dust settles across two storeys and a staircase acts as a chimney distributing it upward through the whole unit. Stair treads, balustrades and the upper landing hold fine dust that a ground-floor-focused clean misses entirely. The town is also well into its second and third renovation cycles, so hacking works through older construction are common and produce heavier debris than a cosmetic refresh would."
   },
   {
     "serviceSlug": "post-renovation-cleaning",
     "townSlug": "jurong-east",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "post-renovation-cleaning",
     "townSlug": "jurong-west",
     "batch": 2,
-    "published": false
+    "published": false,
+    "localAngle": "Two things shape post-renovation work in Jurong West. First, scale: the flats are large, so a full renovation clean here is a longer job than the same works in a compact central flat, and executive units routinely run across two days. Second, distance. Vendors who cover the west properly are worth booking early, because the town is far enough from central Singapore that crews will not take short-notice work at the far end of it, particularly around Boon Lay and Pioneer."
   },
   {
     "serviceSlug": "post-renovation-cleaning",
     "townSlug": "kallang",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "post-renovation-cleaning",
     "townSlug": "marine-parade",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "post-renovation-cleaning",
     "townSlug": "pasir-ris",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "post-renovation-cleaning",
     "townSlug": "punggol",
     "batch": 2,
-    "published": false
+    "published": false,
+    "localAngle": "This is the service Punggol actually needs. The town has been handing over in continuous waves rather than a single burst since 2007, so there is a permanent pipeline of newly renovated flats here rather than a seasonal spike. Almost every household renovates before moving in, which means post-renovation cleaning followed by move-in cleaning is the normal sequence locally, not an unusual one. Vendors who work Punggol regularly tend to quote the two together, and that is usually the cheaper way to buy it."
   },
   {
     "serviceSlug": "post-renovation-cleaning",
     "townSlug": "queenstown",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "post-renovation-cleaning",
     "townSlug": "sembawang",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "post-renovation-cleaning",
     "townSlug": "sengkang",
     "batch": 2,
-    "published": false
+    "published": false,
+    "localAngle": "Post-renovation demand in Sengkang now comes from two directions. Rivervale flats are hitting the age where owners commission full renovations with hacking works, which produce the heaviest dust load. The rest of the town generates lighter post-renovation work from resale purchases and cosmetic updates. The LRT-served layout also matters practically: several precincts are a walk from the nearest MRT, and crews carrying industrial vacuums and equipment factor that into whether they take the job."
   },
   {
     "serviceSlug": "post-renovation-cleaning",
     "townSlug": "serangoon",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "post-renovation-cleaning",
     "townSlug": "tampines",
     "batch": 2,
-    "published": false
+    "published": false,
+    "localAngle": "Tampines runs both post-renovation streams at once. In the mature core, owners of 1980s flats are hacking out original kitchens and bathrooms, which is the heaviest and dustiest category of the work. In Tampines North, newly handed-over flats are being renovated before first occupation, which is cleaner work but almost universal. The two need different scheduling: hacking works in an old flat justify a settling period and a second pass far more often than a fit-out in a new one."
   },
   {
     "serviceSlug": "post-renovation-cleaning",
     "townSlug": "tengah",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "post-renovation-cleaning",
     "townSlug": "toa-payoh",
     "batch": 3,
-    "published": false
+    "published": false,
+    "localAngle": null
   },
   {
     "serviceSlug": "post-renovation-cleaning",
     "townSlug": "woodlands",
     "batch": 2,
-    "published": false
+    "published": false,
+    "localAngle": "Woodlands is renovating at scale, because the bulk of the town crossed the twenty-five year mark at roughly the same time and original fittings are reaching end of life together. That means genuine hacking works rather than cosmetic refreshes, and correspondingly heavy cement and gypsum dust. The constraint here is logistics rather than technique: crews bringing industrial equipment this far north will not do it at short notice, and booking two weeks out is realistic rather than cautious."
   },
   {
     "serviceSlug": "post-renovation-cleaning",
     "townSlug": "yishun",
     "batch": 2,
-    "published": false
+    "published": false,
+    "localAngle": "Renovation in Yishun frequently means working around what the Home Improvement Programme already replaced, so the works are more often partial than a full gut: a kitchen hacked out while an upgraded bathroom stays. Partial renovations are deceptively messy for cleaning, because dust travels through the whole flat while only part of it is stripped, and the finished areas that were never touched still need the full treatment. Newer development towards Miltonia and Canberra generates more conventional whole-unit post-renovation work."
   }
 ]

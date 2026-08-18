@@ -1,0 +1,38 @@
+---
+/** Closing CTA used on every content page. Carries page context into WhatsApp. */
+import { urls } from '../lib/urls';
+import { whatsappHref, type WhatsAppContext } from '../lib/contact';
+
+interface Props {
+  heading: string;
+  body?: string;
+  context?: WhatsAppContext;
+}
+
+const { heading, body, context = {} } = Astro.props;
+const wa = whatsappHref(context);
+---
+
+<section class="bg-brand text-white">
+  <div class="wrap py-14 text-center sm:py-16">
+    <h2 class="mx-auto max-w-2xl text-2xl font-semibold sm:text-3xl">{heading}</h2>
+    {body && <p class="mx-auto mt-4 max-w-xl text-white/80">{body}</p>}
+    <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+      <a
+        href={urls.contact()}
+        class="inline-flex items-center justify-center rounded-lg bg-white px-7 py-3.5 text-base font-semibold text-brand no-underline transition-colors hover:bg-brand-light"
+      >
+        Get a quote
+      </a>
+      <a
+        href={wa ?? urls.contact()}
+        data-analytics="whatsapp_click"
+        rel={wa ? 'noopener' : undefined}
+        target={wa ? '_blank' : undefined}
+        class="inline-flex items-center justify-center rounded-lg px-7 py-3.5 text-base font-semibold text-white no-underline ring-1 ring-white/35 transition-colors hover:bg-white/10"
+      >
+        Ask on WhatsApp
+      </a>
+    </div>
+  </div>
+</section>

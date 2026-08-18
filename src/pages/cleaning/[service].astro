@@ -2,12 +2,24 @@
 /**
  * /cleaning/{service}/
  *
- * Routes are derived from services.json. There is no hardcoded page list here,
- * so adding a service to the data generates this page with no template edit.
+ * Routes derive from services.json. No hardcoded page list, so adding a service
+ * to the data generates this page with no template edit.
  */
 import type { GetStaticPaths } from 'astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { services, publishedTownsForService, relatedServices } from '../../lib/data';
+import Section from '../../components/Section.astro';
+import FaqList from '../../components/FaqList.astro';
+import PriceBlock from '../../components/PriceBlock.astro';
+import IncludedList from '../../components/IncludedList.astro';
+import CtaBand from '../../components/CtaBand.astro';
+
+import {
+  services,
+  publishedTownsForService,
+  relatedServices,
+  publishedPropertyTypes,
+  getService,
+} from '../../lib/data';
 import { urls } from '../../lib/urls';
 import { meta, fit } from '../../lib/seo';
 import { serviceNode } from '../../lib/schema';
@@ -28,6 +40,7 @@ const { service } = Astro.props;
 const path = urls.service(service.slug);
 const towns = publishedTownsForService(service.slug);
 const related = relatedServices(service);
+const propertyTypes = publishedPropertyTypes();
 
 const { title, description } = meta(
   fit(`${service.name} Singapore | Prices & What's Included`, 60),
@@ -45,63 +58,192 @@ const { title, description } = meta(
   batch={service.batch}
   crumbs={[{ name: service.name, path }]}
   schemaNodes={[serviceNode(service, path)]}
+  whatsapp={{ service: service.name }}
 >
-  <h1>{service.h1Default}</h1>
-  <p>{service.shortDescription}</p>
-  <p>{service.longDescription}</p>
+  {/* ------------------------------------------------------------------ hero */}
+  <section class="border-b border-line bg-surface">
+    <div class="wrap py-12 sm:py-16">
+      <div class="grid gap-10 lg:grid-cols-[1.3fr_1fr] lg:items-start">
+        <div>
+          <h1 class="text-3xl font-semibold sm:text-4xl lg:text-5xl">{service.h1Default}</h1>
+          <p class="mt-5 text-lg leading-relaxed text-ink-muted">{service.shortDescription}</p>
+          <p class="mt-4 leading-relaxed text-ink-muted">{service.longDescription}</p>
+        </div>
+        <PriceBlock service={service} />
+      </div>
+    </div>
+  </section>
 
-  <h2>What's included</h2>
-  <ul>{service.inclusions.map((i) => <li>{i}</li>)}</ul>
+  {/* ------------------------------------------------- included / excluded */}
+  <Section tone="canvas">
+    <h2 class="text-2xl font-semibold sm:text-3xl">What a {service.name.toLowerCase()} covers</h2>
+    <div class="mt-8">
+      <IncludedList inclusions={service.inclusions} exclusions={service.exclusions} />
+    </div>
+  </Section>
 
-  <h2>What's not included</h2>
-  <ul>{service.exclusions.map((e) => <li>{e}</li>)}</ul>
+  {/* -------------------------------------------------- is this the right one */}
+  <Section tone="sunk">
+    <div class="max-w-2xl">
+      <h2 class="text-2xl font-semibold sm:text-3xl">Is this the service you actually need?</h2>
+      <p class="mt-4 text-ink-muted">
+        Booking the wrong one is the most expensive mistake in this market, and it is
+        usually made in good faith. Here is how to tell.
+      </p>
+    </div>
 
-  <h2>How pricing works</h2>
-  <p>
-    Billed <strong>{service.priceRangeSGD.unit}</strong>.
-    {service.priceRangeSGD.min !== null && service.priceRangeSGD.max !== null
-      ? ` Typically S$${service.priceRangeSGD.min} to S$${service.priceRangeSGD.max} ${service.priceRangeSGD.unit}.`
-      : ' Quoted on request.'}
-  </p>
-  <p>{service.priceRangeSGD.notes}</p>
+    <div class="mt-8 grid gap-8 lg:grid-cols-2">
+      <div class="rounded-card border border-brand/25 bg-brand-light/60 p-6">
+        <h3 class="font-semibold">Book {service.name.toLowerCase()} if</h3>
+        <ul class="mt-4 space-y-2.5">
+          {service.chooseThisIf.map((item) => (
+            <li class="flex gap-3 text-sm leading-relaxed text-ink-muted">
+              <svg class="mt-1 shrink-0 text-brand" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M13.5 4.5 6.5 12 2.5 8.2" />
+              </svg>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
 
-  <h2>Is this the right service?</h2>
-  <p>Choose {service.name.toLowerCase()} if:</p>
-  <ul>{service.chooseThisIf.map((c) => <li>{c}</li>)}</ul>
-  <p>Consider something else if:</p>
-  <ul>
-    {service.chooseInsteadIf.map((alt) => (
-      <li><a href={urls.service(alt.serviceSlug)}>{alt.serviceSlug}</a> — {alt.reason}</li>
-    ))}
-  </ul>
+      <div>
+        <h3 class="font-semibold">Book something else if</h3>
+        <ul class="mt-4 space-y-4">
+          {service.chooseInsteadIf.map((alt) => {
+            const other = getService(alt.serviceSlug);
+            return (
+              <li class="rounded-card border border-line bg-surface p-5">
+                <a
+                  href={urls.service(other.slug)}
+                  class="font-semibold text-brand no-underline hover:underline"
+                >
+                  {other.name} &rarr;
+                </a>
+                <p class="mt-2 text-sm leading-relaxed text-ink-muted">{alt.reason}</p>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </div>
+  </Section>
 
-  <h2>Frequently asked questions</h2>
-  <dl>
-    {service.faqs.map((f) => (
-      <>
-        <dt>{f.q}</dt>
-        <dd>{f.a}</dd>
-      </>
-    ))}
-  </dl>
+  {/* --------------------------------------------------------- time by size */}
+  <Section tone="canvas">
+    <div class="max-w-2xl">
+      <h2 class="text-2xl font-semibold sm:text-3xl">How long it takes, by home size</h2>
+      <p class="mt-4 text-ink-muted">
+        Property size drives this far more than which town you live in.
+      </p>
+    </div>
 
-  {towns.length > 0 && (
-    <>
-      <h2>{service.name} by town</h2>
-      <ul>
-        {towns.map((t) => (
-          <li><a href={urls.location(service.slug, t.slug)}>{service.name} in {t.name}</a></li>
-        ))}
-      </ul>
-    </>
+    <div class="mt-8 overflow-x-auto">
+      <table class="w-full min-w-[34rem] border-collapse text-left text-sm">
+        <thead>
+          <tr class="border-b border-line-strong">
+            <th scope="col" class="py-3 pr-4 font-semibold">Property type</th>
+            <th scope="col" class="py-3 pr-4 font-semibold">Floor area</th>
+            <th scope="col" class="py-3 font-semibold">Typical duration</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-line">
+          {propertyTypes.map((p) => (
+            <tr>
+              <th scope="row" class="py-3.5 pr-4 font-medium">
+                <a href={urls.propertyType(p.slug)} class="text-brand no-underline hover:underline">
+                  {p.name}
+                </a>
+              </th>
+              <td class="py-3.5 pr-4 text-ink-muted">
+                {p.floorAreaSqft.min}&ndash;{p.floorAreaSqft.max} sqft
+              </td>
+              <td class="py-3.5 text-ink-muted">{service.typicalDurationByProperty[p.slug]}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </Section>
+
+  {/* --------------------------------------------------------------- process */}
+  <Section tone="surface">
+    <div class="max-w-2xl">
+      <h2 class="text-2xl font-semibold sm:text-3xl">How it works, step by step</h2>
+    </div>
+
+    <ol class="mt-8 space-y-6">
+      {service.process.map((step, i) => (
+        <li class="grid gap-4 border-t border-line pt-5 sm:grid-cols-[3rem_1fr]">
+          <span class="text-lg font-semibold tabular-nums text-brand">
+            {String(i + 1).padStart(2, '0')}
+          </span>
+          <div>
+            <h3 class="font-semibold">{step.title}</h3>
+            <p class="mt-1.5 text-sm leading-relaxed text-ink-muted">{step.body}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </Section>
+
+  {/* ------------------------------------------------------------------ faqs */}
+  <Section tone="canvas" narrow>
+    <h2 class="text-2xl font-semibold sm:text-3xl">
+      {service.name} questions
+    </h2>
+    <div class="mt-8">
+      <FaqList faqs={service.faqs} />
+    </div>
+  </Section>
+
+  {/* --------------------------------------------------------- towns, related */}
+  {(towns.length > 0 || related.length > 0) && (
+    <Section tone="sunk">
+      {towns.length > 0 && (
+        <div>
+          <h2 class="text-2xl font-semibold sm:text-3xl">{service.name} by town</h2>
+          <ul class="mt-6 flex flex-wrap gap-2">
+            {towns.map((t) => (
+              <li>
+                <a
+                  href={urls.location(service.slug, t.slug)}
+                  class="inline-block rounded-full bg-surface px-4 py-2 text-sm text-ink no-underline ring-1 ring-line transition-colors hover:bg-brand-light hover:ring-brand/30"
+                >
+                  {t.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {related.length > 0 && (
+        <div class={towns.length > 0 ? 'mt-12' : ''}>
+          <h2 class="text-2xl font-semibold sm:text-3xl">Related services</h2>
+          <ul class="mt-6 grid gap-4 sm:grid-cols-3">
+            {related.map((r) => (
+              <li>
+                <a
+                  href={urls.service(r.slug)}
+                  class="flex h-full flex-col rounded-card bg-surface p-5 no-underline ring-1 ring-line transition-colors hover:bg-brand-light hover:ring-brand/30"
+                >
+                  <span class="font-semibold text-ink">{r.name}</span>
+                  <span class="mt-1.5 text-sm leading-relaxed text-ink-muted">
+                    {r.shortDescription}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </Section>
   )}
 
-  {related.length > 0 && (
-    <>
-      <h2>Related services</h2>
-      <ul>
-        {related.map((r) => <li><a href={urls.service(r.slug)}>{r.name}</a></li>)}
-      </ul>
-    </>
-  )}
+  <CtaBand
+    heading={`Need ${service.name.toLowerCase()}? We will match you to a vendor who does it properly.`}
+    body="No charge to you, no obligation, and your details go only to the vendors matched to your request."
+    context={{ service: service.name }}
+  />
 </BaseLayout>

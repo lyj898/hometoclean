@@ -1,0 +1,64 @@
+---
+/**
+ * The pricing panel used on service and location pages.
+ *
+ * The headline is the billing basis, not the number. Conflating hourly with
+ * flat-rate work is the most common way Singapore households overpay, so the
+ * basis is stated before the figure, every time.
+ */
+import { company } from '../lib/data';
+import type { Service } from '../types';
+
+interface Props {
+  service: Service;
+}
+
+const { service } = Astro.props;
+const { priceRangeSGD: price } = service;
+const hasRange = price.min !== null && price.max !== null;
+
+/** Thousands separators: "S$1200" is harder to read at a glance than "S$1,200". */
+const sgd = (n: number): string => n.toLocaleString('en-SG');
+
+const basisLabel =
+  service.pricingModel === 'hourly'
+    ? 'Billed by the hour'
+    : service.pricingModel === 'per_item'
+      ? 'Billed per item'
+      : 'Flat rate for the whole job';
+
+const basisNote =
+  service.pricingModel === 'hourly'
+    ? `You pay for time on site, subject to a ${price.minimumHours ?? 3}-hour minimum per session.`
+    : service.pricingModel === 'per_item'
+      ? 'You pay per piece, so the total is known before the vendor arrives.'
+      : 'You agree a total for the job in advance. If it overruns, that is the vendor’s risk, not yours.';
+---
+
+<div class="rounded-card border border-line bg-surface p-6 sm:p-8">
+  <p class="text-sm font-semibold uppercase tracking-wider text-brand">{basisLabel}</p>
+
+  {/* Unit sits on its own line: several of these run long enough that inline
+      placement wraps badly beside a 36px figure. */}
+  {hasRange ? (
+    <>
+      <p class="mt-3 text-3xl font-semibold sm:text-4xl">
+        S${sgd(price.min!)}&ndash;{sgd(price.max!)}
+      </p>
+      <p class="mt-1 text-sm text-ink-muted">{price.unit}</p>
+    </>
+  ) : (
+    <p class="mt-3 text-2xl font-semibold">Quoted on request</p>
+  )}
+
+  <p class="mt-3 text-sm text-ink-muted">{basisNote}</p>
+
+  <hr class="my-6 border-line" />
+
+  <p class="text-sm leading-relaxed text-ink-muted">{price.notes}</p>
+
+  <p class="mt-4 text-2xs text-ink-faint">
+    Indicative market ranges in Singapore dollars, before GST at {company.gstRatePercent}%.
+    These are not quotations. Your quote comes from the vendor you are matched with.
+  </p>
+</div>

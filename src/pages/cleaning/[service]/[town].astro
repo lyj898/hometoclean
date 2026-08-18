@@ -2,24 +2,40 @@
 /**
  * /cleaning/{service}/{town}/
  *
- * Generated from combos.json. A combo only produces a page when it is flagged
+ * Generated from combos.json. A combo produces a page only when it is flagged
  * published AND its batch is live, so this route is the batch control point.
  *
- * Note: no LocalBusiness schema here. We have no premises in these towns.
+ * The swap test: if you replaced the town name, would this page still be
+ * accurate? It must not be. Three things carry that weight, and none of them
+ * are template boilerplate:
+ *   - housingProfile, written per town
+ *   - localAngle, written per service AND town
+ *   - the pricing table, driven by that town's dominant property types
+ *
+ * validate-data.mjs refuses to publish a combo without a localAngle, so a thin
+ * page cannot be shipped by flipping a flag.
+ *
+ * No LocalBusiness schema here. We have no premises in these towns.
  */
 import type { GetStaticPaths } from 'astro';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Section from '../../../components/Section.astro';
+import FaqList from '../../../components/FaqList.astro';
+import PriceBlock from '../../../components/PriceBlock.astro';
+import CtaBand from '../../../components/CtaBand.astro';
+
 import {
   publishedCombos,
   getService,
   getLocation,
   dominantPropertyTypes,
   linkableAdjacentTowns,
+  publishedServicesForTown,
 } from '../../../lib/data';
 import { urls } from '../../../lib/urls';
 import { meta, fit } from '../../../lib/seo';
 import { serviceNode } from '../../../lib/schema';
-import type { Location, Service } from '../../../types';
+import type { Combo, Location, Service } from '../../../types';
 
 export const getStaticPaths = (() =>
   publishedCombos().map((combo) => {
@@ -27,24 +43,26 @@ export const getStaticPaths = (() =>
     const town = getLocation(combo.townSlug);
     return {
       params: { service: service.slug, town: town.slug },
-      props: { service, town },
+      props: { service, town, combo },
     };
   })) satisfies GetStaticPaths;
 
 interface Props {
   service: Service;
   town: Location;
+  combo: Combo;
 }
 
-const { service, town } = Astro.props;
+const { service, town, combo } = Astro.props;
 
 const path = urls.location(service.slug, town.slug);
 const h1 = service.h1Template.replace('{town}', town.name);
 const propertyTypes = dominantPropertyTypes(town);
 const adjacent = linkableAdjacentTowns(town.slug, service.slug);
+const otherServicesHere = publishedServicesForTown(town.slug).filter((s) => s.slug !== service.slug);
 
-// Purpose-written rather than assembled from longDescription, so it reads as a
-// sentence instead of a truncation. fit() stays as a backstop for long names.
+const isHourly = service.pricingModel === 'hourly';
+
 const { title, description } = meta(
   fit(`${service.name} in ${town.name} | Prices & Vetted Vendors`, 60),
   fit(
@@ -64,49 +82,156 @@ const { title, description } = meta(
     { name: town.name, path },
   ]}
   schemaNodes={[serviceNode(service, path, town)]}
+  whatsapp={{ service: service.name, town: town.name }}
 >
-  <h1>{h1}</h1>
-  <p>{service.shortDescription}</p>
+  {/* ------------------------------------------------------------------ hero */}
+  <section class="border-b border-line bg-surface">
+    <div class="wrap py-12 sm:py-16">
+      <div class="grid gap-10 lg:grid-cols-[1.3fr_1fr] lg:items-start">
+        <div>
+          <h1 class="text-3xl font-semibold sm:text-4xl lg:text-5xl">{h1}</h1>
+          <p class="mt-5 text-lg leading-relaxed text-ink-muted">{service.shortDescription}</p>
+          {combo.localAngle && (
+            <p class="mt-4 leading-relaxed text-ink-muted">{combo.localAngle}</p>
+          )}
+        </div>
+        <PriceBlock service={service} />
+      </div>
+    </div>
+  </section>
 
-  <h2>Housing in {town.name}</h2>
-  <p>{town.housingProfile}</p>
+  {/* ------------------------------------------------------- town relevance */}
+  <Section tone="canvas">
+    <div class="grid gap-10 lg:grid-cols-[1fr_1fr]">
+      <div>
+        <h2 class="text-2xl font-semibold sm:text-3xl">Housing in {town.name}</h2>
+        <p class="mt-4 leading-relaxed text-ink-muted">{town.housingProfile}</p>
+      </div>
 
-  <h2>{service.name} pricing for {town.name} homes</h2>
-  <p>{service.priceRangeSGD.notes}</p>
-  <table>
-    <thead>
-      <tr><th>Property type</th><th>Typical duration</th></tr>
-    </thead>
-    <tbody>
-      {propertyTypes.map((p) => (
-        <tr>
-          <td><a href={urls.propertyType(p.slug)}>{p.name}</a></td>
-          <td>{service.typicalDurationByProperty[p.slug]}</td>
-        </tr>
+      <div class="rounded-card border border-line bg-surface p-6">
+        <h3 class="font-semibold">
+          What {town.name} homes typically need
+        </h3>
+        <p class="mt-2 text-sm text-ink-muted">
+          The flat types most common in this town, and how long
+          {' '}{service.name.toLowerCase()} usually takes in each.
+        </p>
+        <dl class="mt-5 divide-y divide-line border-t border-line">
+          {propertyTypes.map((p) => (
+            <div class="grid grid-cols-[1fr_auto] gap-4 py-3">
+              <dt class="text-sm font-medium">
+                <a href={urls.propertyType(p.slug)} class="text-brand no-underline hover:underline">
+                  {p.name}
+                </a>
+                <span class="block text-2xs font-normal text-ink-faint">
+                  {p.floorAreaSqft.min}&ndash;{p.floorAreaSqft.max} sqft
+                </span>
+              </dt>
+              <dd class="text-right text-sm text-ink-muted">
+                {service.typicalDurationByProperty[p.slug]}
+                {!isHourly && p.deepCleanFlatRateSGD !== null && service.slug === 'deep-cleaning' && (
+                  <span class="block text-2xs text-ink-faint">
+                    S${p.deepCleanFlatRateSGD.min}&ndash;{p.deepCleanFlatRateSGD.max}
+                  </span>
+                )}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </div>
+  </Section>
+
+  {/* --------------------------------------------------------------- process */}
+  <Section tone="sunk">
+    <div class="max-w-2xl">
+      <h2 class="text-2xl font-semibold sm:text-3xl">
+        How {service.name.toLowerCase()} runs in {town.name}
+      </h2>
+      <p class="mt-4 text-ink-muted">
+        The same process everywhere, but the local constraints above are what decide
+        the timing and the quote.
+      </p>
+    </div>
+
+    <ol class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {service.process.map((step, i) => (
+        <li class="border-t-2 border-brand pt-4">
+          <p class="text-sm font-semibold tabular-nums text-brand">
+            {String(i + 1).padStart(2, '0')}
+          </p>
+          <h3 class="mt-1.5 font-semibold">{step.title}</h3>
+          <p class="mt-1.5 text-sm leading-relaxed text-ink-muted">{step.body}</p>
+        </li>
       ))}
-    </tbody>
-  </table>
+    </ol>
+  </Section>
 
-  <h2>Frequently asked questions</h2>
-  <dl>
-    {service.faqs.map((f) => (
-      <>
-        <dt>{f.q}</dt>
-        <dd>{f.a}</dd>
-      </>
-    ))}
-  </dl>
+  {/* ------------------------------------------------------------------ faqs */}
+  <Section tone="canvas" narrow>
+    <h2 class="text-2xl font-semibold sm:text-3xl">{service.name} questions</h2>
+    <div class="mt-8">
+      <FaqList faqs={service.faqs} />
+    </div>
+    <p class="mt-6 text-sm">
+      <a
+        href={urls.service(service.slug)}
+        class="font-semibold text-brand no-underline hover:underline"
+      >
+        Everything about {service.name.toLowerCase()} &rarr;
+      </a>
+    </p>
+  </Section>
 
-  {adjacent.length > 0 && (
-    <>
-      <h2>Nearby towns</h2>
-      <ul>
-        {adjacent.map((t) => (
-          <li><a href={urls.location(service.slug, t.slug)}>{service.name} in {t.name}</a></li>
-        ))}
-      </ul>
-    </>
+  {/* ---------------------------------------------------- nearby, other svcs */}
+  {(adjacent.length > 0 || otherServicesHere.length > 0) && (
+    <Section tone="surface">
+      {adjacent.length > 0 && (
+        <div>
+          <h2 class="text-2xl font-semibold sm:text-3xl">
+            {service.name} in towns near {town.name}
+          </h2>
+          <ul class="mt-6 flex flex-wrap gap-2">
+            {adjacent.map((t) => (
+              <li>
+                <a
+                  href={urls.location(service.slug, t.slug)}
+                  class="inline-block rounded-full bg-canvas px-4 py-2 text-sm text-ink no-underline ring-1 ring-line transition-colors hover:bg-brand-light hover:ring-brand/30"
+                >
+                  {t.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {otherServicesHere.length > 0 && (
+        <div class={adjacent.length > 0 ? 'mt-12' : ''}>
+          <h2 class="text-2xl font-semibold sm:text-3xl">Other cleaning in {town.name}</h2>
+          <ul class="mt-6 grid gap-4 sm:grid-cols-2">
+            {otherServicesHere.map((s) => (
+              <li>
+                <a
+                  href={urls.location(s.slug, town.slug)}
+                  class="flex h-full flex-col rounded-card bg-canvas p-5 no-underline ring-1 ring-line transition-colors hover:bg-brand-light hover:ring-brand/30"
+                >
+                  <span class="font-semibold text-ink">{s.name} in {town.name}</span>
+                  <span class="mt-1.5 text-sm leading-relaxed text-ink-muted">
+                    {s.shortDescription}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </Section>
   )}
 
-  <p><a href={urls.service(service.slug)}>All about {service.name.toLowerCase()}</a></p>
+  <CtaBand
+    heading={`Get ${service.name.toLowerCase()} quotes for your ${town.name} home.`}
+    body="Tell us your flat type and when you need it. We match you to vendors who cover this estate."
+    context={{ service: service.name, town: town.name }}
+  />
 </BaseLayout>

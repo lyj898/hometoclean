@@ -1,0 +1,40 @@
+---
+/** Two-column included / not-included lists with tick and cross markers. */
+interface Props {
+  inclusions: string[];
+  exclusions: string[];
+}
+
+const { inclusions, exclusions } = Astro.props;
+---
+
+<div class="grid gap-8 md:grid-cols-2">
+  <div class="rounded-card border border-line bg-surface p-6">
+    <h3 class="text-lg font-semibold">What is included</h3>
+    <ul class="mt-4 space-y-2.5">
+      {inclusions.map((item) => (
+        <li class="flex gap-3 text-sm leading-relaxed text-ink-muted">
+          <svg class="mt-1 shrink-0 text-brand" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M13.5 4.5 6.5 12 2.5 8.2" />
+          </svg>
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <div class="rounded-card border border-line bg-surface-sunk p-6">
+    <h3 class="text-lg font-semibold">What is not included</h3>
+    <p class="mt-1 text-2xs text-ink-faint">Usually a separate service or a different trade.</p>
+    <ul class="mt-4 space-y-2.5">
+      {exclusions.map((item) => (
+        <li class="flex gap-3 text-sm leading-relaxed text-ink-muted">
+          <svg class="mt-1 shrink-0 text-ink-faint" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M4 4l8 8M12 4l-8 8" />
+          </svg>
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>

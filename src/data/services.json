@@ -51,19 +51,62 @@
       "You are willing to commit to a recurring schedule in exchange for a lower hourly rate"
     ],
     "chooseInsteadIf": [
-      { "serviceSlug": "deep-cleaning", "reason": "The home has not had a thorough clean in a year or more, or you can see grout staining, limescale build-up or grease on kitchen surfaces. Hourly cleaning will not resolve those within a normal session." },
-      { "serviceSlug": "spring-cleaning", "reason": "You want a single intensive reset before Chinese New Year or before guests, rather than an ongoing arrangement." }
+      {
+        "serviceSlug": "deep-cleaning",
+        "reason": "The home has not had a thorough clean in a year or more, or you can see grout staining, limescale build-up or grease on kitchen surfaces. Hourly cleaning will not resolve those within a normal session."
+      },
+      {
+        "serviceSlug": "spring-cleaning",
+        "reason": "You want a single intensive reset before Chinese New Year or before guests, rather than an ongoing arrangement."
+      }
     ],
     "faqs": [
-      { "q": "Is there a minimum number of hours?", "a": "Almost always, yes. Most vendors in Singapore set a 3 or 4 hour minimum per session. The reason is travel: a cleaner who spends an hour crossing the island for a 90-minute job cannot make the day work economically. If a 2-room flat only needs two hours of actual work, you will still normally be billed for the minimum." },
-      { "q": "Are cleaning supplies and equipment included?", "a": "This varies by vendor and it is the single most common source of disagreement on the first visit. Many part-time arrangements assume the household provides cloths, detergents and a working vacuum, because the cleaner arrives by public transport. Others bring their own and price it in. Confirm which applies before the first session, and confirm it in writing." },
-      { "q": "Why is a recurring rate cheaper than a one-off?", "a": "A recurring booking gives the vendor a guaranteed slot they can plan a route around, so the travel and scheduling cost per visit falls. That saving is passed on. Expect a one-off session to price roughly 10 to 20 percent above the equivalent recurring rate." },
-      { "q": "Will I get the same cleaner every time?", "a": "With a recurring booking you normally should, and it matters more than people expect, because a cleaner who knows your home works faster. Ask what happens when your regular cleaner is on leave or unwell, and whether a replacement is provided or the session is skipped." },
-      { "q": "Can I book a part-time cleaner for just one session?", "a": "Yes, though it is priced as a one-off and still subject to the minimum hours. If you are after a single intensive session rather than routine upkeep, a deep clean or spring clean is usually better value for the money." }
+      {
+        "q": "Is there a minimum number of hours?",
+        "a": "Almost always, yes. Most vendors in Singapore set a 3 or 4 hour minimum per session. The reason is travel: a cleaner who spends an hour crossing the island for a 90-minute job cannot make the day work economically. If a 2-room flat only needs two hours of actual work, you will still normally be billed for the minimum."
+      },
+      {
+        "q": "Are cleaning supplies and equipment included?",
+        "a": "This varies by vendor and it is the single most common source of disagreement on the first visit. Many part-time arrangements assume the household provides cloths, detergents and a working vacuum, because the cleaner arrives by public transport. Others bring their own and price it in. Confirm which applies before the first session, and confirm it in writing."
+      },
+      {
+        "q": "Why is a recurring rate cheaper than a one-off?",
+        "a": "A recurring booking gives the vendor a guaranteed slot they can plan a route around, so the travel and scheduling cost per visit falls. That saving is passed on. Expect a one-off session to price roughly 10 to 20 percent above the equivalent recurring rate."
+      },
+      {
+        "q": "Will I get the same cleaner every time?",
+        "a": "With a recurring booking you normally should, and it matters more than people expect, because a cleaner who knows your home works faster. Ask what happens when your regular cleaner is on leave or unwell, and whether a replacement is provided or the session is skipped."
+      },
+      {
+        "q": "Can I book a part-time cleaner for just one session?",
+        "a": "Yes, though it is priced as a one-off and still subject to the minimum hours. If you are after a single intensive session rather than routine upkeep, a deep clean or spring clean is usually better value for the money."
+      }
     ],
-    "relatedServiceSlugs": ["deep-cleaning", "spring-cleaning", "mattress-sofa-cleaning"],
+    "relatedServiceSlugs": [
+      "deep-cleaning",
+      "spring-cleaning",
+      "mattress-sofa-cleaning"
+    ],
     "locationEnabled": true,
-    "batch": 1
+    "batch": 1,
+    "process": [
+      {
+        "title": "Walkthrough on the first visit",
+        "body": "You show the cleaner the flat and agree what the booked hours cover. This is the conversation that prevents most later disputes, because three hours cannot cover everything and it is better to decide the priorities than to discover them."
+      },
+      {
+        "title": "A settled routine",
+        "body": "From the second visit the cleaner works the same sequence each time. This is why a regular cleaner is faster than a new one every week, and why the recurring rate is lower than a one-off."
+      },
+      {
+        "title": "Supplies and access agreed in writing",
+        "body": "Who provides cloths, detergents and a vacuum, and how the cleaner gets in. Confirm both before the first session rather than at the door."
+      },
+      {
+        "title": "Review after a month",
+        "body": "Four visits is enough to know whether the hours are right. Adjust up, down, or change the scope. Vendors expect this and it is easier than quietly being unhappy."
+      }
+    ]
   },
   {
     "slug": "deep-cleaning",
@@ -117,20 +160,70 @@
       "You are moving from an occasional cleaner to a regular one and want a clean baseline first"
     ],
     "chooseInsteadIf": [
-      { "serviceSlug": "post-renovation-cleaning", "reason": "There has been renovation, painting or hacking work in the last few months. Cement dust and adhesive residue need different equipment and a multi-stage process. Booking a deep clean for this almost always results in a second visit." },
-      { "serviceSlug": "move-out-cleaning", "reason": "You are handing the property back to a landlord or a buyer. Move-out cleaning is scoped against a handover checklist rather than against liveability, and it is done in an empty unit." },
-      { "serviceSlug": "part-time-cleaning", "reason": "The home is already in good order and you want ongoing upkeep. Paying a flat deep-clean rate for a well-maintained home is poor value." }
+      {
+        "serviceSlug": "post-renovation-cleaning",
+        "reason": "There has been renovation, painting or hacking work in the last few months. Cement dust and adhesive residue need different equipment and a multi-stage process. Booking a deep clean for this almost always results in a second visit."
+      },
+      {
+        "serviceSlug": "move-out-cleaning",
+        "reason": "You are handing the property back to a landlord or a buyer. Move-out cleaning is scoped against a handover checklist rather than against liveability, and it is done in an empty unit."
+      },
+      {
+        "serviceSlug": "part-time-cleaning",
+        "reason": "The home is already in good order and you want ongoing upkeep. Paying a flat deep-clean rate for a well-maintained home is poor value."
+      }
     ],
     "faqs": [
-      { "q": "How is deep cleaning priced differently from part-time cleaning?", "a": "Part-time cleaning is billed per hour. Deep cleaning is quoted as a flat rate against the size of the property. This matters, because a deep clean quoted to you as an hourly figure is a warning sign: it transfers the risk of the job overrunning from the vendor to you, and it is the most common way households end up paying more than they expected." },
-      { "q": "How often should a home be deep cleaned?", "a": "For a household already using a regular part-time cleaner, once every twelve to eighteen months is a reasonable rhythm. Homes without regular cleaning, homes with pets, and homes near the coast or an active construction site will justify it more often." },
-      { "q": "Do I need to be at home during the session?", "a": "Someone should be present at the start to walk the vendor through priorities and at the end to inspect. A deep clean is when disagreements about scope surface, and both are far easier to settle in person than afterwards by message." },
-      { "q": "Will deep cleaning make old grout look new?", "a": "No, and any vendor promising it is overselling. Cleaning removes soiling and biofilm from grout. It does not restore grout that is cracked, eroded or permanently stained. That needs regrouting, which is a trade repair, not a cleaning service." },
-      { "q": "Should I book before or after moving furniture?", "a": "After, if you can. A deep clean is materially more effective in a home where large items have already been shifted, and vendors will not move heavy furniture themselves for liability reasons." }
+      {
+        "q": "How is deep cleaning priced differently from part-time cleaning?",
+        "a": "Part-time cleaning is billed per hour. Deep cleaning is quoted as a flat rate against the size of the property. This matters, because a deep clean quoted to you as an hourly figure is a warning sign: it transfers the risk of the job overrunning from the vendor to you, and it is the most common way households end up paying more than they expected."
+      },
+      {
+        "q": "How often should a home be deep cleaned?",
+        "a": "For a household already using a regular part-time cleaner, once every twelve to eighteen months is a reasonable rhythm. Homes without regular cleaning, homes with pets, and homes near the coast or an active construction site will justify it more often."
+      },
+      {
+        "q": "Do I need to be at home during the session?",
+        "a": "Someone should be present at the start to walk the vendor through priorities and at the end to inspect. A deep clean is when disagreements about scope surface, and both are far easier to settle in person than afterwards by message."
+      },
+      {
+        "q": "Will deep cleaning make old grout look new?",
+        "a": "No, and any vendor promising it is overselling. Cleaning removes soiling and biofilm from grout. It does not restore grout that is cracked, eroded or permanently stained. That needs regrouting, which is a trade repair, not a cleaning service."
+      },
+      {
+        "q": "Should I book before or after moving furniture?",
+        "a": "After, if you can. A deep clean is materially more effective in a home where large items have already been shifted, and vendors will not move heavy furniture themselves for liability reasons."
+      }
     ],
-    "relatedServiceSlugs": ["part-time-cleaning", "spring-cleaning", "post-renovation-cleaning"],
+    "relatedServiceSlugs": [
+      "part-time-cleaning",
+      "spring-cleaning",
+      "post-renovation-cleaning"
+    ],
     "locationEnabled": true,
-    "batch": 1
+    "batch": 1,
+    "process": [
+      {
+        "title": "Quote against property size",
+        "body": "A flat rate is set from your property type, and for larger or unusual homes from photographs or a site visit. If a vendor offers only an hourly figure for a deep clean, the overrun risk has been moved onto you."
+      },
+      {
+        "title": "You prepare the surfaces",
+        "body": "Clear worktops, put away valuables and small items, and move what you want moved. Vendors will not shift heavy furniture, and a cluttered home converts cleaning time into tidying time."
+      },
+      {
+        "title": "Top down, in sequence",
+        "body": "High surfaces, fittings and fans first, then vertical surfaces, then floors last. Working in this order is why a deep clean cannot simply be run in parallel across rooms."
+      },
+      {
+        "title": "Wet work and dwell time",
+        "body": "Descalers and degreasers have to sit before they do anything. Bathrooms and the kitchen are usually started early for this reason, then returned to."
+      },
+      {
+        "title": "Walk it before they leave",
+        "body": "Check the specific things you cared about while the team is still there. Everything is easy to put right in the moment and awkward the next day."
+      }
+    ]
   },
   {
     "slug": "move-out-cleaning",
@@ -183,19 +276,62 @@
       "A landlord or agent has given you a handover checklist to meet"
     ],
     "chooseInsteadIf": [
-      { "serviceSlug": "move-in-cleaning", "reason": "You are the one arriving rather than leaving. The scope overlaps but the priorities differ: move-in cleaning is about sanitising surfaces the previous occupant used, not about passing an inspection." },
-      { "serviceSlug": "post-renovation-cleaning", "reason": "The unit has had reinstatement or hacking works done before handover. Construction residue needs a different process." }
+      {
+        "serviceSlug": "move-in-cleaning",
+        "reason": "You are the one arriving rather than leaving. The scope overlaps but the priorities differ: move-in cleaning is about sanitising surfaces the previous occupant used, not about passing an inspection."
+      },
+      {
+        "serviceSlug": "post-renovation-cleaning",
+        "reason": "The unit has had reinstatement or hacking works done before handover. Construction residue needs a different process."
+      }
     ],
     "faqs": [
-      { "q": "Will move-out cleaning guarantee my deposit back?", "a": "No cleaner can promise that, and you should be wary of any who does. Deposits are withheld for damage, wear beyond fair use, unpaid bills and missing items as well as cleanliness. What a good move-out clean does is remove cleanliness from the list of things your landlord can raise, which is usually the easiest of those to control." },
-      { "q": "Should I book before or after the movers?", "a": "After. Always. Cleaning a unit that still has furniture in it means the areas an inspection will actually check, cabinet interiors, skirtings, floors under wardrobes, are exactly the areas that cannot be reached. Book the clean for the day after the unit is emptied." },
-      { "q": "What does a landlord or agent usually inspect first?", "a": "In practice: inside kitchen cabinets, the hob and hood, bathroom grout and sanitaryware, window tracks, aircon filters, and marks left by wall fixings. Ask your agent for the checklist and give it to the vendor before the quote rather than after the job." },
-      { "q": "Is aircon servicing part of move-out cleaning?", "a": "Usually not, and this catches people out. Many tenancy agreements separately require a documented aircon servicing record at handover. That is a different trade and a separate booking. Check your agreement before assuming the cleaner covers it." },
-      { "q": "How far in advance should I book?", "a": "Two weeks where possible. End of month and quarter-end are the busiest windows because most leases end then, and the day-after-move-out slot you actually need is the first to go." }
+      {
+        "q": "Will move-out cleaning guarantee my deposit back?",
+        "a": "No cleaner can promise that, and you should be wary of any who does. Deposits are withheld for damage, wear beyond fair use, unpaid bills and missing items as well as cleanliness. What a good move-out clean does is remove cleanliness from the list of things your landlord can raise, which is usually the easiest of those to control."
+      },
+      {
+        "q": "Should I book before or after the movers?",
+        "a": "After. Always. Cleaning a unit that still has furniture in it means the areas an inspection will actually check, cabinet interiors, skirtings, floors under wardrobes, are exactly the areas that cannot be reached. Book the clean for the day after the unit is emptied."
+      },
+      {
+        "q": "What does a landlord or agent usually inspect first?",
+        "a": "In practice: inside kitchen cabinets, the hob and hood, bathroom grout and sanitaryware, window tracks, aircon filters, and marks left by wall fixings. Ask your agent for the checklist and give it to the vendor before the quote rather than after the job."
+      },
+      {
+        "q": "Is aircon servicing part of move-out cleaning?",
+        "a": "Usually not, and this catches people out. Many tenancy agreements separately require a documented aircon servicing record at handover. That is a different trade and a separate booking. Check your agreement before assuming the cleaner covers it."
+      },
+      {
+        "q": "How far in advance should I book?",
+        "a": "Two weeks where possible. End of month and quarter-end are the busiest windows because most leases end then, and the day-after-move-out slot you actually need is the first to go."
+      }
     ],
-    "relatedServiceSlugs": ["move-in-cleaning", "deep-cleaning", "post-renovation-cleaning"],
+    "relatedServiceSlugs": [
+      "move-in-cleaning",
+      "deep-cleaning",
+      "post-renovation-cleaning"
+    ],
     "locationEnabled": false,
-    "batch": 1
+    "batch": 1,
+    "process": [
+      {
+        "title": "Get the handover checklist first",
+        "body": "Ask your landlord or agent for it before requesting a quote. The checklist, not the cleaning company scope list, is the standard the work will be judged against."
+      },
+      {
+        "title": "Book for after the unit is empty",
+        "body": "The day after the movers, not the same day. Cabinet interiors, skirtings and floors under wardrobes are exactly what gets inspected and exactly what cannot be reached around furniture."
+      },
+      {
+        "title": "Room by room against the list",
+        "body": "The vendor works the checklist rather than a generic scope, including cabinet and wardrobe interiors, hob and hood, grout and window tracks."
+      },
+      {
+        "title": "Inspect before you hand over the keys",
+        "body": "Walk the unit yourself with the checklist. If something is short, it is fixed then, not after your deposit conversation has started."
+      }
+    ]
   },
   {
     "slug": "move-in-cleaning",
@@ -248,18 +384,58 @@
       "You want bathrooms and cabinet interiors sanitised before first use"
     ],
     "chooseInsteadIf": [
-      { "serviceSlug": "post-renovation-cleaning", "reason": "You have renovated before moving in, which is the norm for a resale flat or a new BTO. Renovation residue is a different job and a move-in clean will not remove it. Book post-renovation cleaning, then move in." },
-      { "serviceSlug": "deep-cleaning", "reason": "You have already moved in and missed the empty-unit window. A deep clean is the equivalent service for an occupied home." }
+      {
+        "serviceSlug": "post-renovation-cleaning",
+        "reason": "You have renovated before moving in, which is the norm for a resale flat or a new BTO. Renovation residue is a different job and a move-in clean will not remove it. Book post-renovation cleaning, then move in."
+      },
+      {
+        "serviceSlug": "deep-cleaning",
+        "reason": "You have already moved in and missed the empty-unit window. A deep clean is the equivalent service for an occupied home."
+      }
     ],
     "faqs": [
-      { "q": "Do I need move-in cleaning for a brand-new BTO flat?", "a": "Usually yes, but a light version. A new flat has no previous occupant, but it will carry construction dust, adhesive residue from protective film, and debris in window tracks and drainage channels. That is a smaller job than a resale unit and should be priced accordingly. If you have renovated, this is not the service you need." },
-      { "q": "When exactly should I schedule it?", "a": "After any renovation is complete and signed off, and before the movers arrive. Ideally the day before the move. Booking it after your belongings are in wastes most of the value, because the accessible-empty-unit advantage is gone." },
-      { "q": "Is it different from move-out cleaning?", "a": "The work overlaps heavily but the standard differs. Move-out cleaning is measured against someone else's handover checklist. Move-in cleaning is measured against your own comfort, and tends to weight bathrooms, kitchen and storage interiors more heavily than the cosmetic points an inspection focuses on." },
-      { "q": "Should I do pest control at the same time?", "a": "Worth considering, and the sequence matters. Pest treatment is better done in an empty unit, and generally after cleaning rather than before, so residual treatment is not immediately wiped away. It is a separate trade and a separate booking." }
+      {
+        "q": "Do I need move-in cleaning for a brand-new BTO flat?",
+        "a": "Usually yes, but a light version. A new flat has no previous occupant, but it will carry construction dust, adhesive residue from protective film, and debris in window tracks and drainage channels. That is a smaller job than a resale unit and should be priced accordingly. If you have renovated, this is not the service you need."
+      },
+      {
+        "q": "When exactly should I schedule it?",
+        "a": "After any renovation is complete and signed off, and before the movers arrive. Ideally the day before the move. Booking it after your belongings are in wastes most of the value, because the accessible-empty-unit advantage is gone."
+      },
+      {
+        "q": "Is it different from move-out cleaning?",
+        "a": "The work overlaps heavily but the standard differs. Move-out cleaning is measured against someone else's handover checklist. Move-in cleaning is measured against your own comfort, and tends to weight bathrooms, kitchen and storage interiors more heavily than the cosmetic points an inspection focuses on."
+      },
+      {
+        "q": "Should I do pest control at the same time?",
+        "a": "Worth considering, and the sequence matters. Pest treatment is better done in an empty unit, and generally after cleaning rather than before, so residual treatment is not immediately wiped away. It is a separate trade and a separate booking."
+      }
     ],
-    "relatedServiceSlugs": ["move-out-cleaning", "post-renovation-cleaning", "deep-cleaning"],
+    "relatedServiceSlugs": [
+      "move-out-cleaning",
+      "post-renovation-cleaning",
+      "deep-cleaning"
+    ],
     "locationEnabled": false,
-    "batch": 1
+    "batch": 1,
+    "process": [
+      {
+        "title": "Confirm renovation is genuinely finished",
+        "body": "Including the final touch-up visit. If any trade is still returning, this is the wrong service and the wrong week."
+      },
+      {
+        "title": "Schedule before the movers",
+        "body": "Ideally the day before. The empty unit is the entire advantage, and it disappears the moment your belongings arrive."
+      },
+      {
+        "title": "Sanitise first",
+        "body": "Bathrooms, sanitaryware, kitchen surfaces and every cabinet, wardrobe and drawer interior, before anything of yours goes into them."
+      },
+      {
+        "title": "Protective film and handover labels off",
+        "body": "New fittings and appliances arrive covered in film and stickers. Removing them cleanly is easier before adhesive has had months in Singapore heat to set."
+      }
+    ]
   },
   {
     "slug": "post-renovation-cleaning",
@@ -312,19 +488,66 @@
       "New fittings still carry protective film, stickers or grout haze"
     ],
     "chooseInsteadIf": [
-      { "serviceSlug": "deep-cleaning", "reason": "The only work done was cosmetic, such as a single feature wall repaint with no sanding, and there is no fine dust. A deep clean is cheaper and sufficient." },
-      { "serviceSlug": "move-in-cleaning", "reason": "The unit was handed over clean with no renovation at all and you simply want it cleaned before moving in." }
+      {
+        "serviceSlug": "deep-cleaning",
+        "reason": "The only work done was cosmetic, such as a single feature wall repaint with no sanding, and there is no fine dust. A deep clean is cheaper and sufficient."
+      },
+      {
+        "serviceSlug": "move-in-cleaning",
+        "reason": "The unit was handed over clean with no renovation at all and you simply want it cleaned before moving in."
+      }
     ],
     "faqs": [
-      { "q": "Why can a standard deep clean not handle this?", "a": "Two reasons. Cement and gypsum dust is abrasive and far finer than household dust, so wiping it with a domestic cloth grinds it into finishes and scratches them, and a domestic vacuum without the right filtration blows it straight back into the air. Second, the process is staged rather than single-pass. Dust suspended during the first pass has to settle before a final detail wipe, and a vendor who does not build that into the schedule will leave you with a hazy unit the next morning." },
-      { "q": "How long after the contractor finishes should I book?", "a": "After every trade is genuinely off site, including the final touch-up visit. Booking while a contractor still has work outstanding is the most common cause of paying twice. If your contractor includes a clean, ask exactly what it covers. A contractor clear-out is usually debris removal, not a fine-dust clean." },
-      { "q": "Is one session enough?", "a": "For most HDB units after a full renovation, one properly staged session is enough, but expect some residual dust to appear over the following week as air movement settles the last of it. That is normal and not a defect. Extensive hacking works in a larger unit sometimes justify a second lighter visit." },
-      { "q": "How is it priced, by size or by mess?", "a": "Both, which is why quoting is harder than for other services. Size sets the baseline, and the extent of works moves it. Vendors commonly work either from a flat rate by property type or from a per-square-foot figure of roughly S$0.25 to S$0.50. Either way, send photographs before accepting a quote." },
-      { "q": "Should I service the aircon at the same time?", "a": "Yes, and it is genuinely important. Renovation dust is drawn into fan coil units and will keep re-entering the room every time the unit runs, undoing the clean. It is a separate licensed trade, so book it separately, and schedule it before the final cleaning pass rather than after." }
+      {
+        "q": "Why can a standard deep clean not handle this?",
+        "a": "Two reasons. Cement and gypsum dust is abrasive and far finer than household dust, so wiping it with a domestic cloth grinds it into finishes and scratches them, and a domestic vacuum without the right filtration blows it straight back into the air. Second, the process is staged rather than single-pass. Dust suspended during the first pass has to settle before a final detail wipe, and a vendor who does not build that into the schedule will leave you with a hazy unit the next morning."
+      },
+      {
+        "q": "How long after the contractor finishes should I book?",
+        "a": "After every trade is genuinely off site, including the final touch-up visit. Booking while a contractor still has work outstanding is the most common cause of paying twice. If your contractor includes a clean, ask exactly what it covers. A contractor clear-out is usually debris removal, not a fine-dust clean."
+      },
+      {
+        "q": "Is one session enough?",
+        "a": "For most HDB units after a full renovation, one properly staged session is enough, but expect some residual dust to appear over the following week as air movement settles the last of it. That is normal and not a defect. Extensive hacking works in a larger unit sometimes justify a second lighter visit."
+      },
+      {
+        "q": "How is it priced, by size or by mess?",
+        "a": "Both, which is why quoting is harder than for other services. Size sets the baseline, and the extent of works moves it. Vendors commonly work either from a flat rate by property type or from a per-square-foot figure of roughly S$0.25 to S$0.50. Either way, send photographs before accepting a quote."
+      },
+      {
+        "q": "Should I service the aircon at the same time?",
+        "a": "Yes, and it is genuinely important. Renovation dust is drawn into fan coil units and will keep re-entering the room every time the unit runs, undoing the clean. It is a separate licensed trade, so book it separately, and schedule it before the final cleaning pass rather than after."
+      }
     ],
-    "relatedServiceSlugs": ["move-in-cleaning", "deep-cleaning", "move-out-cleaning"],
+    "relatedServiceSlugs": [
+      "move-in-cleaning",
+      "deep-cleaning",
+      "move-out-cleaning"
+    ],
     "locationEnabled": true,
-    "batch": 1
+    "batch": 1,
+    "process": [
+      {
+        "title": "Every trade off site first",
+        "body": "This is the single most common scheduling mistake. If the contractor has one more visit, wait for it. Cleaning around outstanding work means paying twice."
+      },
+      {
+        "title": "Coarse debris and industrial vacuuming",
+        "body": "Offcuts and heavy debris out, then vacuuming with filtration built for construction dust. A domestic vacuum recirculates fine gypsum and cement dust rather than capturing it."
+      },
+      {
+        "title": "Residue removal",
+        "body": "Paint splatter, silicone smear, adhesive and grout haze come off with specific methods per surface. This is the stage that separates the service from a deep clean."
+      },
+      {
+        "title": "Let it settle",
+        "body": "Dust lifted during the first pass has to come down before it can be removed. A vendor who skips this leaves you with a hazy unit the next morning."
+      },
+      {
+        "title": "Final detail pass",
+        "body": "Surfaces, glass and fittings wiped down once the air has cleared. Expect a little residual dust over the following week regardless; that is the nature of the work, not a defect."
+      }
+    ]
   },
   {
     "slug": "spring-cleaning",
@@ -376,18 +599,58 @@
       "You are willing to book several weeks ahead to secure a slot at a normal rate"
     ],
     "chooseInsteadIf": [
-      { "serviceSlug": "deep-cleaning", "reason": "You want the same standard of clean outside the festive window. It is the same work without the seasonal premium, and availability is far better." },
-      { "serviceSlug": "mattress-sofa-cleaning", "reason": "The home is generally fine and it is specifically the sofa or mattresses that need attention before guests arrive." }
+      {
+        "serviceSlug": "deep-cleaning",
+        "reason": "You want the same standard of clean outside the festive window. It is the same work without the seasonal premium, and availability is far better."
+      },
+      {
+        "serviceSlug": "mattress-sofa-cleaning",
+        "reason": "The home is generally fine and it is specifically the sofa or mattresses that need attention before guests arrive."
+      }
     ],
     "faqs": [
-      { "q": "When should I book for Chinese New Year?", "a": "Several weeks ahead. Demand builds from December and peaks in the fortnight before the holiday, and that is when both surcharges and slot scarcity bite. Booking early is worth more than negotiating hard: in the final week the constraint is availability, not price." },
-      { "q": "How much more does it cost during the CNY period?", "a": "Published guides commonly cite around a 20 percent surcharge, with steeper increases reported in the final week before the holiday. Reported peak figures vary a great deal between sources, so treat any single number with caution and ask your vendor for their specific peak rate in writing before booking." },
-      { "q": "Is spring cleaning the same as deep cleaning?", "a": "Substantially, yes. The scopes overlap almost entirely. The differences are emphasis, more attention to storage, clutter and guest-facing areas, and season, which is what actually drives the price difference. If the timing is flexible, book a deep clean instead and pay less for the same work." },
-      { "q": "Can the cleaners help me throw things out?", "a": "They can help sort and move, but decisions about what to discard stay with you, and disposal of bulky items is a separate service. Vendors will not remove items without explicit instruction, for obvious reasons." }
+      {
+        "q": "When should I book for Chinese New Year?",
+        "a": "Several weeks ahead. Demand builds from December and peaks in the fortnight before the holiday, and that is when both surcharges and slot scarcity bite. Booking early is worth more than negotiating hard: in the final week the constraint is availability, not price."
+      },
+      {
+        "q": "How much more does it cost during the CNY period?",
+        "a": "Published guides commonly cite around a 20 percent surcharge, with steeper increases reported in the final week before the holiday. Reported peak figures vary a great deal between sources, so treat any single number with caution and ask your vendor for their specific peak rate in writing before booking."
+      },
+      {
+        "q": "Is spring cleaning the same as deep cleaning?",
+        "a": "Substantially, yes. The scopes overlap almost entirely. The differences are emphasis, more attention to storage, clutter and guest-facing areas, and season, which is what actually drives the price difference. If the timing is flexible, book a deep clean instead and pay less for the same work."
+      },
+      {
+        "q": "Can the cleaners help me throw things out?",
+        "a": "They can help sort and move, but decisions about what to discard stay with you, and disposal of bulky items is a separate service. Vendors will not remove items without explicit instruction, for obvious reasons."
+      }
     ],
-    "relatedServiceSlugs": ["deep-cleaning", "mattress-sofa-cleaning", "part-time-cleaning"],
+    "relatedServiceSlugs": [
+      "deep-cleaning",
+      "mattress-sofa-cleaning",
+      "part-time-cleaning"
+    ],
     "locationEnabled": false,
-    "batch": 1
+    "batch": 1,
+    "process": [
+      {
+        "title": "Book several weeks ahead",
+        "body": "Demand builds from December. In the final fortnight before Chinese New Year the binding constraint is availability, not price, and no amount of negotiating creates a slot."
+      },
+      {
+        "title": "Declutter before the team arrives",
+        "body": "Decisions about what to keep are yours and they are slow. Making them in advance converts the booked hours into cleaning rather than sorting."
+      },
+      {
+        "title": "Full deep clean scope",
+        "body": "The same work as a deep clean: grout, window tracks, appliance interiors, high surfaces, behind and beneath furniture."
+      },
+      {
+        "title": "Guest-facing areas detailed last",
+        "body": "Living and dining areas, display surfaces and the entrance finished at the end so they are at their best when people arrive."
+      }
+    ]
   },
   {
     "slug": "mattress-sofa-cleaning",
@@ -439,18 +702,65 @@
       "The rest of the home is fine and it is specifically soft furnishings that need work"
     ],
     "chooseInsteadIf": [
-      { "serviceSlug": "deep-cleaning", "reason": "The whole home needs attention, not only the upholstery. Add upholstery as a separate line item to a deep clean booking, since it is priced per item either way." },
-      { "serviceSlug": "part-time-cleaning", "reason": "You only want routine surface vacuuming of the sofa, which is part of ordinary recurring work and does not need extraction." }
+      {
+        "serviceSlug": "deep-cleaning",
+        "reason": "The whole home needs attention, not only the upholstery. Add upholstery as a separate line item to a deep clean booking, since it is priced per item either way."
+      },
+      {
+        "serviceSlug": "part-time-cleaning",
+        "reason": "You only want routine surface vacuuming of the sofa, which is part of ordinary recurring work and does not need extraction."
+      }
     ],
     "faqs": [
-      { "q": "How long does upholstery take to dry?", "a": "Typically four to eight hours with good airflow, and longer in humid conditions or a closed room. Run a fan or the aircon and keep the room ventilated. Do not put fitted sheets or covers back on until the item is fully dry, because trapping residual moisture in Singapore's climate is how you end up with a mould problem worse than the stain you started with." },
-      { "q": "Will every stain come out?", "a": "No. Extraction is very effective on body oils, general soiling and dust mite matter. It is unreliable on dye transfer, ink, and anything that has soaked through to the foam core, and it cannot reverse fabric that has faded or worn. A vendor who inspects first and tells you honestly what will not come out is a better sign than one who promises everything will." },
-      { "q": "How often should a mattress be cleaned?", "a": "Every twelve to eighteen months is a common recommendation, more often where there are allergy sufferers, young children or pets. Singapore's humidity means dust mite populations are not seasonal here the way they are in temperate climates." },
-      { "q": "Is it priced per item or per hour?", "a": "Per item, essentially always. Sofas are quoted by seater count, mattresses by bed size. This is worth knowing because it means the price is predictable in advance, unlike hourly work, and because most vendors set a minimum order value, so booking a single armchair on its own may not be possible." },
-      { "q": "Can leather be cleaned the same way?", "a": "No. Leather is not extracted, it is cleaned and conditioned, which is a different process and priced differently. Tell the vendor the material when booking. A vendor who quotes for a leather sofa without asking what it is made of has not understood the job." }
+      {
+        "q": "How long does upholstery take to dry?",
+        "a": "Typically four to eight hours with good airflow, and longer in humid conditions or a closed room. Run a fan or the aircon and keep the room ventilated. Do not put fitted sheets or covers back on until the item is fully dry, because trapping residual moisture in Singapore's climate is how you end up with a mould problem worse than the stain you started with."
+      },
+      {
+        "q": "Will every stain come out?",
+        "a": "No. Extraction is very effective on body oils, general soiling and dust mite matter. It is unreliable on dye transfer, ink, and anything that has soaked through to the foam core, and it cannot reverse fabric that has faded or worn. A vendor who inspects first and tells you honestly what will not come out is a better sign than one who promises everything will."
+      },
+      {
+        "q": "How often should a mattress be cleaned?",
+        "a": "Every twelve to eighteen months is a common recommendation, more often where there are allergy sufferers, young children or pets. Singapore's humidity means dust mite populations are not seasonal here the way they are in temperate climates."
+      },
+      {
+        "q": "Is it priced per item or per hour?",
+        "a": "Per item, essentially always. Sofas are quoted by seater count, mattresses by bed size. This is worth knowing because it means the price is predictable in advance, unlike hourly work, and because most vendors set a minimum order value, so booking a single armchair on its own may not be possible."
+      },
+      {
+        "q": "Can leather be cleaned the same way?",
+        "a": "No. Leather is not extracted, it is cleaned and conditioned, which is a different process and priced differently. Tell the vendor the material when booking. A vendor who quotes for a leather sofa without asking what it is made of has not understood the job."
+      }
     ],
-    "relatedServiceSlugs": ["deep-cleaning", "spring-cleaning", "part-time-cleaning"],
+    "relatedServiceSlugs": [
+      "deep-cleaning",
+      "spring-cleaning",
+      "part-time-cleaning"
+    ],
     "locationEnabled": false,
-    "batch": 1
+    "batch": 1,
+    "process": [
+      {
+        "title": "Material check and colourfast test",
+        "body": "Fabric or leather, and a discreet test patch. Leather is cleaned and conditioned, never extracted. A vendor who quotes without asking what the item is made of has not understood the job."
+      },
+      {
+        "title": "Dry vacuum",
+        "body": "Loose particulate and surface debris removed first, so the extraction stage is not simply pushing grit deeper into the weave."
+      },
+      {
+        "title": "Stain pre-treatment",
+        "body": "Applied where the fabric permits. This is also when the vendor should tell you honestly which marks will not come out."
+      },
+      {
+        "title": "Hot water extraction",
+        "body": "Solution injected into the material and drawn straight back out under vacuum, lifting body oils, soiling and dust mite matter from within rather than off the surface."
+      },
+      {
+        "title": "Drying, which matters more here than elsewhere",
+        "body": "Four to eight hours with airflow, longer in humid conditions. Do not put covers or fitted sheets back on until it is completely dry, or Singapore humidity turns a stain problem into a mould problem."
+      }
+    ]
   }
 ]

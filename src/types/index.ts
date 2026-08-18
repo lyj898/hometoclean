@@ -48,6 +48,12 @@ export interface Faq {
   a: string;
 }
 
+/** One step in how a service is actually carried out. */
+export interface ProcessStep {
+  title: string;
+  body: string;
+}
+
 /** Pointer to a better-fitting service, with the reason a customer would switch. */
 export interface ServiceAlternative {
   serviceSlug: ServiceSlug;
@@ -73,6 +79,8 @@ export interface Service {
   /** Drives the "is this the right service?" section. */
   chooseInsteadIf: ServiceAlternative[];
   faqs: Faq[];
+  /** How the service runs, in order. Rendered as the process section. */
+  process: ProcessStep[];
   relatedServiceSlugs: string[];
   /** Whether this service generates /cleaning/{service}/{town}/ pages. */
   locationEnabled: boolean;
@@ -126,6 +134,16 @@ export interface Combo {
   batch: Batch;
   /** Master switch. `false` keeps the page out of the build and the sitemap. */
   published: boolean;
+  /**
+   * The paragraph that makes this page fail the swap test on purpose: why this
+   * service specifically matters in this town, written against its housing
+   * stock. `null` means not yet written.
+   *
+   * A combo cannot be published without one. That is enforced in
+   * scripts/validate-data.mjs, so it is impossible to ship a thin location
+   * page by flipping a flag.
+   */
+  localAngle: string | null;
 }
 
 export interface OperatingHours {

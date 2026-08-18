@@ -118,6 +118,14 @@ for (const s of services) {
   if (!s.inclusions.length) err(`service "${s.slug}": no inclusions`);
   if (!s.exclusions.length) err(`service "${s.slug}": no exclusions`);
   if (s.faqs.length < 3) warn(`service "${s.slug}": only ${s.faqs.length} FAQs`);
+  if (!Array.isArray(s.process) || s.process.length < 3) {
+    err(`service "${s.slug}": needs at least 3 process steps`);
+  }
+  for (const step of s.process ?? []) {
+    if (!step.title?.trim() || !step.body?.trim()) {
+      err(`service "${s.slug}": process step missing title or body`);
+    }
+  }
 }
 
 // --- property types ---------------------------------------------------------
@@ -150,6 +158,25 @@ for (const c of combos) {
   const svc = services.find((s) => s.slug === c.serviceSlug);
   if (svc && !svc.locationEnabled) err(`combo "${key}": service is not locationEnabled`);
   if (typeof c.published !== 'boolean') err(`combo "${key}": published must be a boolean`);
+
+  // A location page without town-specific copy is the exact failure mode this
+  // site exists to avoid: 27 pages that are one page with a swapped noun. So
+  // publishing without a localAngle is an error, not a warning.
+  const angleWords = c.localAngle ? c.localAngle.trim().split(/\s+/).length : 0;
+  if (c.published && angleWords < 50) {
+    err(
+      `combo "${key}": published but localAngle is ${angleWords} words (min 50). ` +
+        `Write town-specific copy or set published: false.`,
+    );
+  }
+  if (c.localAngle && angleWords > 110) {
+    warn(`combo "${key}": localAngle is ${angleWords} words (target 60-100)`);
+  }
+  // The swap test, mechanically: the copy must name its own town.
+  const townName = locations.find((l) => l.slug === c.townSlug)?.name ?? '';
+  if (c.localAngle && townName && !c.localAngle.includes(townName.split(' ')[0])) {
+    warn(`combo "${key}": localAngle never names ${townName}`);
+  }
 }
 
 // --- company ----------------------------------------------------------------
