@@ -8,7 +8,6 @@
  */
 import { company, services, propertyTypes, isBatchPublished } from '../lib/data';
 import { urls } from '../lib/urls';
-import { publicEmail } from '../lib/contact';
 
 const year = new Date().getFullYear();
 
@@ -82,7 +81,7 @@ const postal = isPlaceholder(company.address.postalCode) ? '' : `Singapore ${com
         <span>UEN: {company.uen}</span><br />
         {addressLine && <>{addressLine}<br /></>}
         {postal && <>{postal}<br /></>}
-        {publicEmail() && <a href={`mailto:${publicEmail()}`} class="font-medium text-brand no-underline">{publicEmail()}</a>}
+        <a href={urls.contact()} class="font-medium text-brand no-underline">Send us a message</a>
         <br />
         <span>{company.operatingHoursDisplay}</span>
       </address>
