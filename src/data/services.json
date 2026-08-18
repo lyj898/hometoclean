@@ -1,0 +1,456 @@
+[
+  {
+    "slug": "part-time-cleaning",
+    "name": "Part-Time Cleaning",
+    "h1Template": "Part-Time Cleaning in {town}",
+    "h1Default": "Part-Time Cleaning Services in Singapore",
+    "shortDescription": "Recurring weekly or fortnightly home cleaning, billed by the hour, with a 3 to 4 hour minimum per session.",
+    "longDescription": "Part-time cleaning is the recurring, hourly service most Singapore households mean when they say they want a cleaner. A cleaner attends on a fixed weekly or fortnightly slot and works through routine upkeep: floors, bathrooms, kitchen surfaces, bed linen, laundry and general tidying. It is maintenance work, not restoration. It assumes the home is already in reasonable condition and keeps it there.",
+    "pricingModel": "hourly",
+    "priceRangeSGD": {
+      "min": 22,
+      "max": 32,
+      "unit": "per hour",
+      "notes": "Recurring weekly and fortnightly rates. One-off sessions typically price 10 to 20 percent higher because the vendor cannot rely on repeat scheduling. Most vendors enforce a 3 to 4 hour minimum per session, so the practical floor for a single booking is roughly S$66 to S$128 regardless of home size. Rates before GST.",
+      "confidence": "researched",
+      "sourceBasis": "Published 2026 Singapore market rate guides. Range reflects the commonly quoted S$22 to S$32 band for recurring residential work; some listings run from S$18 and up to S$45 at the extremes.",
+      "minimumHours": 3
+    },
+    "inclusions": [
+      "Sweeping, vacuuming and mopping all floor areas",
+      "Bathroom cleaning: toilet, basin, shower area, mirrors and accessible tiling",
+      "Kitchen surfaces, sink, hob exterior and cabinet fronts",
+      "Dusting reachable surfaces, sills and furniture",
+      "Bed linen change where linen is provided by the household",
+      "Load-and-run laundry and basic ironing, if agreed in advance and within the booked hours",
+      "Rubbish removal to the chute or bin point"
+    ],
+    "exclusions": [
+      "Grout scrubbing and stain restoration, which belongs to a deep clean",
+      "Interior cleaning of oven, refrigerator or washing machine",
+      "External window faces, window track deep cleaning and grilles",
+      "High-level work requiring ladders beyond a two-step stool",
+      "Aircon servicing, which is a separate licensed trade",
+      "Moving heavy furniture or appliances",
+      "Pest treatment and mould remediation",
+      "Cleaning after renovation or construction work"
+    ],
+    "typicalDurationByProperty": {
+      "hdb-2-room": "2 to 3 hours of work, usually billed at the 3-hour minimum",
+      "hdb-3-room": "3 to 4 hours",
+      "hdb-4-room": "3 to 4 hours",
+      "hdb-5-room": "4 to 5 hours",
+      "hdb-executive": "4 to 6 hours",
+      "condo-1-2-bed": "3 to 4 hours",
+      "condo-3-bed-plus": "4 to 6 hours",
+      "landed": "6 to 8 hours, often two cleaners"
+    },
+    "chooseThisIf": [
+      "Your home is already in reasonable condition and you want to keep it that way",
+      "You want the same cleaner on a predictable weekly or fortnightly slot",
+      "You are willing to commit to a recurring schedule in exchange for a lower hourly rate"
+    ],
+    "chooseInsteadIf": [
+      { "serviceSlug": "deep-cleaning", "reason": "The home has not had a thorough clean in a year or more, or you can see grout staining, limescale build-up or grease on kitchen surfaces. Hourly cleaning will not resolve those within a normal session." },
+      { "serviceSlug": "spring-cleaning", "reason": "You want a single intensive reset before Chinese New Year or before guests, rather than an ongoing arrangement." }
+    ],
+    "faqs": [
+      { "q": "Is there a minimum number of hours?", "a": "Almost always, yes. Most vendors in Singapore set a 3 or 4 hour minimum per session. The reason is travel: a cleaner who spends an hour crossing the island for a 90-minute job cannot make the day work economically. If a 2-room flat only needs two hours of actual work, you will still normally be billed for the minimum." },
+      { "q": "Are cleaning supplies and equipment included?", "a": "This varies by vendor and it is the single most common source of disagreement on the first visit. Many part-time arrangements assume the household provides cloths, detergents and a working vacuum, because the cleaner arrives by public transport. Others bring their own and price it in. Confirm which applies before the first session, and confirm it in writing." },
+      { "q": "Why is a recurring rate cheaper than a one-off?", "a": "A recurring booking gives the vendor a guaranteed slot they can plan a route around, so the travel and scheduling cost per visit falls. That saving is passed on. Expect a one-off session to price roughly 10 to 20 percent above the equivalent recurring rate." },
+      { "q": "Will I get the same cleaner every time?", "a": "With a recurring booking you normally should, and it matters more than people expect, because a cleaner who knows your home works faster. Ask what happens when your regular cleaner is on leave or unwell, and whether a replacement is provided or the session is skipped." },
+      { "q": "Can I book a part-time cleaner for just one session?", "a": "Yes, though it is priced as a one-off and still subject to the minimum hours. If you are after a single intensive session rather than routine upkeep, a deep clean or spring clean is usually better value for the money." }
+    ],
+    "relatedServiceSlugs": ["deep-cleaning", "spring-cleaning", "mattress-sofa-cleaning"],
+    "locationEnabled": true,
+    "batch": 1
+  },
+  {
+    "slug": "deep-cleaning",
+    "name": "Deep Cleaning",
+    "h1Template": "Deep Cleaning in {town}",
+    "h1Default": "Deep Cleaning Services in Singapore",
+    "shortDescription": "A whole-home reset priced per property, not per hour. Covers the accumulated build-up that routine sessions never reach.",
+    "longDescription": "Deep cleaning is a scheduled restoration of the whole home, quoted as a flat rate against property size rather than billed by the hour. A team works through the areas a routine session skips by design: grout lines, window tracks, appliance interiors, high surfaces, skirtings, cabinet interiors and behind or beneath movable furniture. The distinction from part-time cleaning is not intensity, it is scope and pricing basis.",
+    "pricingModel": "flat_rate_by_property_size",
+    "priceRangeSGD": {
+      "min": 280,
+      "max": 850,
+      "unit": "per session, by property size",
+      "notes": "Flat rate, not hourly. Roughly S$280 to S$400 for a 2-room HDB, S$380 to S$550 for a 4-room HDB, S$450 to S$650 for a 5-room, and S$500 to S$850 for a larger condominium. Landed property sits well above this range and is quoted after a site visit. Rates before GST. Expect the upper end during the December to February peak.",
+      "confidence": "researched",
+      "sourceBasis": "Published 2026 Singapore price guides. Per-property-type figures are carried in propertyTypes.json and should be treated as the authoritative breakdown.",
+      "minimumHours": null
+    },
+    "inclusions": [
+      "Everything in a routine clean, done to a higher standard",
+      "Bathroom grout, tile joints and limescale on glass and fittings",
+      "Window tracks, sills, frames and internal glass faces",
+      "Interior of oven, microwave and refrigerator, on request",
+      "Kitchen degreasing including hob, backsplash, hood exterior and cabinet fronts",
+      "High surfaces: tops of wardrobes, door frames, ceiling fan blades, light fittings",
+      "Skirtings, door tracks and switch plates",
+      "Cleaning behind and beneath movable furniture and appliances"
+    ],
+    "exclusions": [
+      "External window faces above ground level, which is regulated high-level work",
+      "Cement, paint or adhesive residue from renovation, which requires post-renovation cleaning",
+      "Aircon chemical wash or servicing",
+      "Upholstery and mattress extraction, priced separately per item",
+      "Mould remediation beyond surface cleaning, and pest treatment",
+      "Repairs, regrouting or resealing, which are trade works not cleaning",
+      "Clearance and disposal of bulky items"
+    ],
+    "typicalDurationByProperty": {
+      "hdb-2-room": "3 to 5 hours",
+      "hdb-3-room": "4 to 6 hours",
+      "hdb-4-room": "5 to 7 hours",
+      "hdb-5-room": "6 to 8 hours",
+      "hdb-executive": "7 to 10 hours, commonly a two-person team",
+      "condo-1-2-bed": "4 to 6 hours",
+      "condo-3-bed-plus": "6 to 10 hours",
+      "landed": "10 to 20 hours across one or two days"
+    },
+    "chooseThisIf": [
+      "The home has not had a full clean in twelve months or more",
+      "You can see grout discolouration, limescale, or grease that ordinary cleaning has stopped shifting",
+      "You are moving from an occasional cleaner to a regular one and want a clean baseline first"
+    ],
+    "chooseInsteadIf": [
+      { "serviceSlug": "post-renovation-cleaning", "reason": "There has been renovation, painting or hacking work in the last few months. Cement dust and adhesive residue need different equipment and a multi-stage process. Booking a deep clean for this almost always results in a second visit." },
+      { "serviceSlug": "move-out-cleaning", "reason": "You are handing the property back to a landlord or a buyer. Move-out cleaning is scoped against a handover checklist rather than against liveability, and it is done in an empty unit." },
+      { "serviceSlug": "part-time-cleaning", "reason": "The home is already in good order and you want ongoing upkeep. Paying a flat deep-clean rate for a well-maintained home is poor value." }
+    ],
+    "faqs": [
+      { "q": "How is deep cleaning priced differently from part-time cleaning?", "a": "Part-time cleaning is billed per hour. Deep cleaning is quoted as a flat rate against the size of the property. This matters, because a deep clean quoted to you as an hourly figure is a warning sign: it transfers the risk of the job overrunning from the vendor to you, and it is the most common way households end up paying more than they expected." },
+      { "q": "How often should a home be deep cleaned?", "a": "For a household already using a regular part-time cleaner, once every twelve to eighteen months is a reasonable rhythm. Homes without regular cleaning, homes with pets, and homes near the coast or an active construction site will justify it more often." },
+      { "q": "Do I need to be at home during the session?", "a": "Someone should be present at the start to walk the vendor through priorities and at the end to inspect. A deep clean is when disagreements about scope surface, and both are far easier to settle in person than afterwards by message." },
+      { "q": "Will deep cleaning make old grout look new?", "a": "No, and any vendor promising it is overselling. Cleaning removes soiling and biofilm from grout. It does not restore grout that is cracked, eroded or permanently stained. That needs regrouting, which is a trade repair, not a cleaning service." },
+      { "q": "Should I book before or after moving furniture?", "a": "After, if you can. A deep clean is materially more effective in a home where large items have already been shifted, and vendors will not move heavy furniture themselves for liability reasons." }
+    ],
+    "relatedServiceSlugs": ["part-time-cleaning", "spring-cleaning", "post-renovation-cleaning"],
+    "locationEnabled": true,
+    "batch": 1
+  },
+  {
+    "slug": "move-out-cleaning",
+    "name": "Move-Out Cleaning",
+    "h1Template": "Move-Out Cleaning in {town}",
+    "h1Default": "Move-Out Cleaning Services in Singapore",
+    "shortDescription": "End-of-tenancy and pre-handover cleaning scoped against a landlord or HDB handover checklist, carried out in an empty unit.",
+    "longDescription": "Move-out cleaning is done when you are giving a property back, whether to a landlord at the end of a tenancy or to a buyer at completion. It is not the same as a deep clean, because the standard it is measured against is different: a deep clean is judged by whether the home feels clean, while a move-out clean is judged by whether the person receiving the keys signs off. That makes the handover checklist, not the vendor's own scope list, the document that matters.",
+    "pricingModel": "flat_rate_by_property_size",
+    "priceRangeSGD": {
+      "min": 290,
+      "max": 900,
+      "unit": "per session, by property size",
+      "notes": "Roughly S$290 to S$380 for a 2 or 3-room HDB, S$380 to S$550 for a 4-room, S$450 to S$650 for a 5-room or condominium, and up to around S$900 for landed property. Very large units above 3,000 sqft price higher again. Rates before GST. Prices assume an empty or near-empty unit; a unit still full of belongings will be requoted on site.",
+      "confidence": "researched",
+      "sourceBasis": "Published 2026 Singapore move-out cleaning cost guides.",
+      "minimumHours": null
+    },
+    "inclusions": [
+      "Full internal clean of an emptied unit, room by room",
+      "Cabinet, wardrobe and drawer interiors, which are standard handover inspection points",
+      "Bathroom descaling, grout and sanitaryware",
+      "Kitchen degreasing including hob, hood exterior and cabinet interiors",
+      "Window tracks, sills, internal glass and grilles",
+      "Removal of adhesive residue from hooks, decals and wall fixings where the surface allows",
+      "Floor cleaning throughout including under where furniture stood",
+      "Balcony and service yard"
+    ],
+    "exclusions": [
+      "Disposal of furniture, appliances or bulky items left behind, which is a separate clearance job",
+      "Repainting, patching or making good of wall damage",
+      "Repairs to fittings, and replacement of damaged items",
+      "External window faces above ground level",
+      "Aircon chemical wash, which many tenancy agreements require separately as a servicing record",
+      "Cement or paint residue from renovation work"
+    ],
+    "typicalDurationByProperty": {
+      "hdb-2-room": "3 to 5 hours",
+      "hdb-3-room": "4 to 6 hours",
+      "hdb-4-room": "5 to 8 hours",
+      "hdb-5-room": "6 to 9 hours",
+      "hdb-executive": "8 to 12 hours",
+      "condo-1-2-bed": "4 to 6 hours",
+      "condo-3-bed-plus": "7 to 12 hours",
+      "landed": "12 to 20 hours across one or two days"
+    },
+    "chooseThisIf": [
+      "You are a tenant at the end of a lease and want the security deposit returned in full",
+      "You are a seller and completion is scheduled",
+      "A landlord or agent has given you a handover checklist to meet"
+    ],
+    "chooseInsteadIf": [
+      { "serviceSlug": "move-in-cleaning", "reason": "You are the one arriving rather than leaving. The scope overlaps but the priorities differ: move-in cleaning is about sanitising surfaces the previous occupant used, not about passing an inspection." },
+      { "serviceSlug": "post-renovation-cleaning", "reason": "The unit has had reinstatement or hacking works done before handover. Construction residue needs a different process." }
+    ],
+    "faqs": [
+      { "q": "Will move-out cleaning guarantee my deposit back?", "a": "No cleaner can promise that, and you should be wary of any who does. Deposits are withheld for damage, wear beyond fair use, unpaid bills and missing items as well as cleanliness. What a good move-out clean does is remove cleanliness from the list of things your landlord can raise, which is usually the easiest of those to control." },
+      { "q": "Should I book before or after the movers?", "a": "After. Always. Cleaning a unit that still has furniture in it means the areas an inspection will actually check, cabinet interiors, skirtings, floors under wardrobes, are exactly the areas that cannot be reached. Book the clean for the day after the unit is emptied." },
+      { "q": "What does a landlord or agent usually inspect first?", "a": "In practice: inside kitchen cabinets, the hob and hood, bathroom grout and sanitaryware, window tracks, aircon filters, and marks left by wall fixings. Ask your agent for the checklist and give it to the vendor before the quote rather than after the job." },
+      { "q": "Is aircon servicing part of move-out cleaning?", "a": "Usually not, and this catches people out. Many tenancy agreements separately require a documented aircon servicing record at handover. That is a different trade and a separate booking. Check your agreement before assuming the cleaner covers it." },
+      { "q": "How far in advance should I book?", "a": "Two weeks where possible. End of month and quarter-end are the busiest windows because most leases end then, and the day-after-move-out slot you actually need is the first to go." }
+    ],
+    "relatedServiceSlugs": ["move-in-cleaning", "deep-cleaning", "post-renovation-cleaning"],
+    "locationEnabled": false,
+    "batch": 1
+  },
+  {
+    "slug": "move-in-cleaning",
+    "name": "Move-In Cleaning",
+    "h1Template": "Move-In Cleaning in {town}",
+    "h1Default": "Move-In Cleaning Services in Singapore",
+    "shortDescription": "Pre-occupancy cleaning of an empty unit before your belongings arrive, so surfaces are sanitised before first use.",
+    "longDescription": "Move-in cleaning is carried out in the window between getting the keys and moving your things in. That window is short and it is the only time the entire unit is empty and fully accessible, which is what makes the service worth booking rather than doing later. The priority is different from a move-out clean: less about passing an inspection, more about sanitising the surfaces a previous occupant or a construction crew has been in contact with.",
+    "pricingModel": "flat_rate_by_property_size",
+    "priceRangeSGD": {
+      "min": 250,
+      "max": 700,
+      "unit": "per session, by property size",
+      "notes": "Broadly aligned with move-out pricing, typically slightly lower because an unoccupied unit handed over in reasonable condition holds less accumulated soiling than one lived in for years. Roughly S$250 to S$350 for a 2 or 3-room HDB and S$380 to S$600 for a 4-room to 5-room or condominium. Rates before GST. A brand-new unit collected directly from HDB needs less work than a resale unit and should be quoted lower.",
+      "confidence": "researched",
+      "sourceBasis": "Published 2026 Singapore move-in and move-out cleaning guides, which generally quote the two services as a combined price band.",
+      "minimumHours": null
+    },
+    "inclusions": [
+      "Full internal clean of the empty unit",
+      "Sanitising of bathrooms and all sanitaryware before first use",
+      "Cabinet, wardrobe and drawer interiors before your belongings go in",
+      "Kitchen surfaces, sink and cabinet interiors",
+      "Floor cleaning throughout, including corners that will be inaccessible once furnished",
+      "Window tracks, sills, internal glass and grilles",
+      "Removal of protective film, stickers and handover labels from new fittings",
+      "Balcony and service yard"
+    ],
+    "exclusions": [
+      "Renovation debris, cement dust and paint residue, which needs post-renovation cleaning",
+      "Furniture assembly and unpacking",
+      "Aircon servicing",
+      "Pest treatment, though this is worth arranging separately before you move in",
+      "Repairs or defect rectification, which for a new HDB flat goes through the defects liability process",
+      "External window faces above ground level"
+    ],
+    "typicalDurationByProperty": {
+      "hdb-2-room": "3 to 4 hours",
+      "hdb-3-room": "4 to 5 hours",
+      "hdb-4-room": "5 to 7 hours",
+      "hdb-5-room": "6 to 8 hours",
+      "hdb-executive": "7 to 10 hours",
+      "condo-1-2-bed": "4 to 5 hours",
+      "condo-3-bed-plus": "6 to 10 hours",
+      "landed": "10 to 18 hours"
+    },
+    "chooseThisIf": [
+      "You have the keys but have not moved your belongings in yet",
+      "You are taking over a resale flat or a previously tenanted unit",
+      "You want bathrooms and cabinet interiors sanitised before first use"
+    ],
+    "chooseInsteadIf": [
+      { "serviceSlug": "post-renovation-cleaning", "reason": "You have renovated before moving in, which is the norm for a resale flat or a new BTO. Renovation residue is a different job and a move-in clean will not remove it. Book post-renovation cleaning, then move in." },
+      { "serviceSlug": "deep-cleaning", "reason": "You have already moved in and missed the empty-unit window. A deep clean is the equivalent service for an occupied home." }
+    ],
+    "faqs": [
+      { "q": "Do I need move-in cleaning for a brand-new BTO flat?", "a": "Usually yes, but a light version. A new flat has no previous occupant, but it will carry construction dust, adhesive residue from protective film, and debris in window tracks and drainage channels. That is a smaller job than a resale unit and should be priced accordingly. If you have renovated, this is not the service you need." },
+      { "q": "When exactly should I schedule it?", "a": "After any renovation is complete and signed off, and before the movers arrive. Ideally the day before the move. Booking it after your belongings are in wastes most of the value, because the accessible-empty-unit advantage is gone." },
+      { "q": "Is it different from move-out cleaning?", "a": "The work overlaps heavily but the standard differs. Move-out cleaning is measured against someone else's handover checklist. Move-in cleaning is measured against your own comfort, and tends to weight bathrooms, kitchen and storage interiors more heavily than the cosmetic points an inspection focuses on." },
+      { "q": "Should I do pest control at the same time?", "a": "Worth considering, and the sequence matters. Pest treatment is better done in an empty unit, and generally after cleaning rather than before, so residual treatment is not immediately wiped away. It is a separate trade and a separate booking." }
+    ],
+    "relatedServiceSlugs": ["move-out-cleaning", "post-renovation-cleaning", "deep-cleaning"],
+    "locationEnabled": false,
+    "batch": 1
+  },
+  {
+    "slug": "post-renovation-cleaning",
+    "name": "Post-Renovation Cleaning",
+    "h1Template": "Post-Renovation Cleaning in {town}",
+    "h1Default": "Post-Renovation Cleaning Services in Singapore",
+    "shortDescription": "Multi-stage removal of cement dust, paint splatter and adhesive residue after renovation. Different equipment, different process, priced by size and debris level.",
+    "longDescription": "Post-renovation cleaning is the most technically distinct service on this site and the one most often booked incorrectly. Renovation leaves behind fine cement and gypsum dust that settles into every horizontal surface and recirculates for weeks, plus paint splatter, silicone smears, adhesive residue, grout haze and sticker glue. None of that responds to ordinary cleaning. It needs a staged process and equipment a household cleaner does not carry, which is why a standard deep clean booked for a renovated unit usually ends in a second visit.",
+    "pricingModel": "flat_rate_by_size_and_debris",
+    "priceRangeSGD": {
+      "min": 350,
+      "max": 1200,
+      "unit": "per session, by property size and debris level",
+      "notes": "Typically S$400 to S$550 for a 4-room HDB, scaling up and down with size. An alternative basis used by many vendors is roughly S$0.25 to S$0.50 per square foot. Extent of works matters as much as size: a full hack-and-rebuild costs materially more than a repaint. Rates before GST. Quotes given without either a site visit or photographs should be treated as provisional.",
+      "confidence": "researched",
+      "sourceBasis": "Published 2026 Singapore post-renovation cleaning guides, which quote both flat-rate-by-size and per-square-foot bases.",
+      "minimumHours": null
+    },
+    "inclusions": [
+      "Coarse debris removal and initial dry vacuuming with industrial equipment",
+      "Cement, gypsum and sanding dust removal from all surfaces including high level",
+      "Paint splatter, silicone smear and adhesive residue removal from floors, glass and fittings",
+      "Grout haze removal from new tiling",
+      "Protective film, sticker and label removal from new fittings and appliances",
+      "Cabinet, wardrobe and drawer interiors, which trap dust heavily",
+      "Window tracks, frames, grilles and internal glass",
+      "Final detailing wipe-down after dust has resettled"
+    ],
+    "exclusions": [
+      "Disposal of construction waste, offcuts and packaging, which is the contractor's responsibility and often a licensed waste stream",
+      "Removal of cement or grout bonded to surfaces where removal would damage the finish",
+      "Rectification of contractor defects, paint touch-ups or resealing",
+      "Aircon chemical wash, which is strongly advised after renovation but is a separate trade",
+      "External facade or external window faces",
+      "Heavy item relocation"
+    ],
+    "typicalDurationByProperty": {
+      "hdb-2-room": "4 to 6 hours",
+      "hdb-3-room": "5 to 8 hours",
+      "hdb-4-room": "6 to 10 hours",
+      "hdb-5-room": "8 to 12 hours",
+      "hdb-executive": "10 to 16 hours, usually a team",
+      "condo-1-2-bed": "5 to 8 hours",
+      "condo-3-bed-plus": "8 to 16 hours",
+      "landed": "16 to 30 hours across two or more days"
+    },
+    "chooseThisIf": [
+      "Any hacking, tiling, plastering, carpentry or painting has been done in the unit",
+      "There is visible fine dust on surfaces that returns a day after wiping",
+      "New fittings still carry protective film, stickers or grout haze"
+    ],
+    "chooseInsteadIf": [
+      { "serviceSlug": "deep-cleaning", "reason": "The only work done was cosmetic, such as a single feature wall repaint with no sanding, and there is no fine dust. A deep clean is cheaper and sufficient." },
+      { "serviceSlug": "move-in-cleaning", "reason": "The unit was handed over clean with no renovation at all and you simply want it cleaned before moving in." }
+    ],
+    "faqs": [
+      { "q": "Why can a standard deep clean not handle this?", "a": "Two reasons. Cement and gypsum dust is abrasive and far finer than household dust, so wiping it with a domestic cloth grinds it into finishes and scratches them, and a domestic vacuum without the right filtration blows it straight back into the air. Second, the process is staged rather than single-pass. Dust suspended during the first pass has to settle before a final detail wipe, and a vendor who does not build that into the schedule will leave you with a hazy unit the next morning." },
+      { "q": "How long after the contractor finishes should I book?", "a": "After every trade is genuinely off site, including the final touch-up visit. Booking while a contractor still has work outstanding is the most common cause of paying twice. If your contractor includes a clean, ask exactly what it covers. A contractor clear-out is usually debris removal, not a fine-dust clean." },
+      { "q": "Is one session enough?", "a": "For most HDB units after a full renovation, one properly staged session is enough, but expect some residual dust to appear over the following week as air movement settles the last of it. That is normal and not a defect. Extensive hacking works in a larger unit sometimes justify a second lighter visit." },
+      { "q": "How is it priced, by size or by mess?", "a": "Both, which is why quoting is harder than for other services. Size sets the baseline, and the extent of works moves it. Vendors commonly work either from a flat rate by property type or from a per-square-foot figure of roughly S$0.25 to S$0.50. Either way, send photographs before accepting a quote." },
+      { "q": "Should I service the aircon at the same time?", "a": "Yes, and it is genuinely important. Renovation dust is drawn into fan coil units and will keep re-entering the room every time the unit runs, undoing the clean. It is a separate licensed trade, so book it separately, and schedule it before the final cleaning pass rather than after." }
+    ],
+    "relatedServiceSlugs": ["move-in-cleaning", "deep-cleaning", "move-out-cleaning"],
+    "locationEnabled": true,
+    "batch": 1
+  },
+  {
+    "slug": "spring-cleaning",
+    "name": "Spring Cleaning",
+    "h1Template": "Spring Cleaning in {town}",
+    "h1Default": "Spring Cleaning Services in Singapore",
+    "shortDescription": "The pre-Chinese New Year whole-home reset. Same scope family as a deep clean, but demand and pricing are seasonal.",
+    "longDescription": "Spring cleaning in Singapore is a calendar event rather than a distinct technical service. The scope is broadly that of a deep clean, and where it differs it differs by emphasis: decluttering, storage areas, soft furnishings and the reception rooms guests will actually see. What sets it apart commercially is timing. Demand concentrates hard into the weeks before Chinese New Year, and both price and availability move accordingly.",
+    "pricingModel": "flat_rate_by_property_size_seasonal",
+    "priceRangeSGD": {
+      "min": 180,
+      "max": 800,
+      "unit": "per session, by property size, before seasonal surcharge",
+      "notes": "Off-peak, roughly S$260 to S$350 for a 3-room HDB, S$320 to S$450 for a 4-room and S$380 to S$550 for a 5-room, with smaller units from around S$180. In the run-up to Chinese New Year, surcharges are widely reported: commonly around 20 percent, rising steeply in the final week or two before the holiday. Rates before GST. Booking several weeks ahead is the single most effective way to avoid the surcharge.",
+      "confidence": "researched",
+      "sourceBasis": "Published 2026 Singapore spring cleaning guides. Peak surcharge figures vary widely between sources and are reported as a range rather than a single number; treat the upper end as anecdotal.",
+      "minimumHours": null
+    },
+    "inclusions": [
+      "Full deep clean scope across the home",
+      "Storage areas, store rooms and the tops of wardrobes",
+      "Living and dining areas detailed for guests, including display surfaces",
+      "Kitchen degreasing ahead of heavy festive cooking",
+      "Window tracks, grilles, sills and internal glass",
+      "Ceiling fans, light fittings and high-level dusting",
+      "Decluttering assistance where agreed in advance and the household directs what goes"
+    ],
+    "exclusions": [
+      "Disposal of bulky items and accumulated clutter, which is a separate clearance service",
+      "Deciding what to discard, which remains the household's decision",
+      "Upholstery and mattress extraction, priced separately per item",
+      "Aircon servicing",
+      "External window faces above ground level",
+      "Renovation residue"
+    ],
+    "typicalDurationByProperty": {
+      "hdb-2-room": "3 to 5 hours",
+      "hdb-3-room": "4 to 6 hours",
+      "hdb-4-room": "5 to 8 hours",
+      "hdb-5-room": "6 to 9 hours",
+      "hdb-executive": "8 to 12 hours",
+      "condo-1-2-bed": "4 to 6 hours",
+      "condo-3-bed-plus": "7 to 12 hours",
+      "landed": "12 to 20 hours"
+    },
+    "chooseThisIf": [
+      "You want the home reset before Chinese New Year or before hosting",
+      "Storage areas and clutter are as much the problem as surface dirt",
+      "You are willing to book several weeks ahead to secure a slot at a normal rate"
+    ],
+    "chooseInsteadIf": [
+      { "serviceSlug": "deep-cleaning", "reason": "You want the same standard of clean outside the festive window. It is the same work without the seasonal premium, and availability is far better." },
+      { "serviceSlug": "mattress-sofa-cleaning", "reason": "The home is generally fine and it is specifically the sofa or mattresses that need attention before guests arrive." }
+    ],
+    "faqs": [
+      { "q": "When should I book for Chinese New Year?", "a": "Several weeks ahead. Demand builds from December and peaks in the fortnight before the holiday, and that is when both surcharges and slot scarcity bite. Booking early is worth more than negotiating hard: in the final week the constraint is availability, not price." },
+      { "q": "How much more does it cost during the CNY period?", "a": "Published guides commonly cite around a 20 percent surcharge, with steeper increases reported in the final week before the holiday. Reported peak figures vary a great deal between sources, so treat any single number with caution and ask your vendor for their specific peak rate in writing before booking." },
+      { "q": "Is spring cleaning the same as deep cleaning?", "a": "Substantially, yes. The scopes overlap almost entirely. The differences are emphasis, more attention to storage, clutter and guest-facing areas, and season, which is what actually drives the price difference. If the timing is flexible, book a deep clean instead and pay less for the same work." },
+      { "q": "Can the cleaners help me throw things out?", "a": "They can help sort and move, but decisions about what to discard stay with you, and disposal of bulky items is a separate service. Vendors will not remove items without explicit instruction, for obvious reasons." }
+    ],
+    "relatedServiceSlugs": ["deep-cleaning", "mattress-sofa-cleaning", "part-time-cleaning"],
+    "locationEnabled": false,
+    "batch": 1
+  },
+  {
+    "slug": "mattress-sofa-cleaning",
+    "name": "Mattress & Sofa Cleaning",
+    "h1Template": "Mattress & Sofa Cleaning in {town}",
+    "h1Default": "Mattress & Sofa Cleaning Services in Singapore",
+    "shortDescription": "Hot water extraction for upholstery and mattresses, with dust mite treatment. Priced per item, not per hour or per home.",
+    "longDescription": "Mattress and sofa cleaning is priced and scoped per item, which makes it the odd one out among these services. The standard method is hot water extraction: a cleaning solution is injected into the fabric and immediately drawn back out under vacuum, lifting soiling, body oils, dust mite matter and allergens from within the material rather than off its surface. Singapore's humidity makes this more relevant here than in drier climates, because upholstery that stays damp does not simply dry out on its own.",
+    "pricingModel": "per_item",
+    "priceRangeSGD": {
+      "min": 45,
+      "max": 350,
+      "unit": "per item",
+      "notes": "Fabric sofa roughly S$60 to S$120 for a 1-seater, S$100 to S$180 for a 2-seater, S$150 to S$250 for a 3-seater, and S$200 to S$350 for an L-shape or 4-seater. Leather typically S$150 to S$300 and includes conditioning. Mattresses roughly S$45 to S$200 for a queen depending on method and provider. Rates before GST. Most vendors set a minimum order value, so a single small item may not be bookable on its own.",
+      "confidence": "researched",
+      "sourceBasis": "Published 2026 Singapore sofa and mattress cleaning price lists. Sofa pricing is quoted per seater across the market; mattress pricing varies widely by method, which is why the range is wide.",
+      "minimumHours": null
+    },
+    "inclusions": [
+      "Pre-inspection of fabric type and colourfastness testing",
+      "Dry vacuuming to remove surface debris and loose particulate",
+      "Stain pre-treatment where the fabric permits",
+      "Hot water extraction through the material",
+      "Dust mite and allergen treatment on request",
+      "Deodorising",
+      "Leather cleaning and conditioning where applicable, in place of extraction"
+    ],
+    "exclusions": [
+      "Guaranteed removal of set-in stains, dye transfer, ink or pet urine that has reached the foam core",
+      "Repair of tears, seam damage or worn fabric",
+      "Reupholstery and foam replacement",
+      "Mould remediation inside a mattress core, where replacement is usually the correct answer",
+      "Curtain and carpet cleaning unless separately quoted",
+      "Structural or frame repair"
+    ],
+    "typicalDurationByProperty": {
+      "hdb-2-room": "1 to 2 hours for a typical two-item booking",
+      "hdb-3-room": "1 to 3 hours depending on item count",
+      "hdb-4-room": "2 to 3 hours for a sofa and two mattresses",
+      "hdb-5-room": "2 to 4 hours",
+      "hdb-executive": "3 to 5 hours",
+      "condo-1-2-bed": "1 to 3 hours",
+      "condo-3-bed-plus": "3 to 5 hours",
+      "landed": "4 to 8 hours"
+    },
+    "chooseThisIf": [
+      "There is visible staining, odour, or a household member with dust allergies or asthma",
+      "The mattress or sofa has never been professionally cleaned",
+      "The rest of the home is fine and it is specifically soft furnishings that need work"
+    ],
+    "chooseInsteadIf": [
+      { "serviceSlug": "deep-cleaning", "reason": "The whole home needs attention, not only the upholstery. Add upholstery as a separate line item to a deep clean booking, since it is priced per item either way." },
+      { "serviceSlug": "part-time-cleaning", "reason": "You only want routine surface vacuuming of the sofa, which is part of ordinary recurring work and does not need extraction." }
+    ],
+    "faqs": [
+      { "q": "How long does upholstery take to dry?", "a": "Typically four to eight hours with good airflow, and longer in humid conditions or a closed room. Run a fan or the aircon and keep the room ventilated. Do not put fitted sheets or covers back on until the item is fully dry, because trapping residual moisture in Singapore's climate is how you end up with a mould problem worse than the stain you started with." },
+      { "q": "Will every stain come out?", "a": "No. Extraction is very effective on body oils, general soiling and dust mite matter. It is unreliable on dye transfer, ink, and anything that has soaked through to the foam core, and it cannot reverse fabric that has faded or worn. A vendor who inspects first and tells you honestly what will not come out is a better sign than one who promises everything will." },
+      { "q": "How often should a mattress be cleaned?", "a": "Every twelve to eighteen months is a common recommendation, more often where there are allergy sufferers, young children or pets. Singapore's humidity means dust mite populations are not seasonal here the way they are in temperate climates." },
+      { "q": "Is it priced per item or per hour?", "a": "Per item, essentially always. Sofas are quoted by seater count, mattresses by bed size. This is worth knowing because it means the price is predictable in advance, unlike hourly work, and because most vendors set a minimum order value, so booking a single armchair on its own may not be possible." },
+      { "q": "Can leather be cleaned the same way?", "a": "No. Leather is not extracted, it is cleaned and conditioned, which is a different process and priced differently. Tell the vendor the material when booking. A vendor who quotes for a leather sofa without asking what it is made of has not understood the job." }
+    ],
+    "relatedServiceSlugs": ["deep-cleaning", "spring-cleaning", "part-time-cleaning"],
+    "locationEnabled": false,
+    "batch": 1
+  }
+]

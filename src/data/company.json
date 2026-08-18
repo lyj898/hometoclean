@@ -1,0 +1,27 @@
+{
+  "entityName": "SKAP Waste Management Pte Ltd",
+  "tradingName": "HomeToClean",
+  "uen": "[UEN]",
+  "yearEstablished": 2009,
+  "siteUrl": "https://hometoclean.com",
+  "address": {
+    "street": "[ADDRESS_LINE_1]",
+    "unit": "[UNIT_NO]",
+    "postalCode": "[POSTAL_CODE]",
+    "locality": "Singapore",
+    "country": "SG"
+  },
+  "phone": "[PHONE_E164]",
+  "phoneDisplay": "[PHONE_DISPLAY]",
+  "whatsappNumber": "[WHATSAPP_E164_DIGITS_ONLY]",
+  "email": "[EMAIL]",
+  "operatingHours": [
+    { "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "09:00", "closes": "18:00" },
+    { "days": ["Saturday"], "opens": "09:00", "closes": "13:00" }
+  ],
+  "operatingHoursDisplay": "Mon-Fri 9am-6pm, Sat 9am-1pm. Closed Sunday and public holidays.",
+  "gstRatePercent": 9,
+  "gstRegistered": null,
+  "businessModel": "matching",
+  "businessModelStatement": "HomeToClean is a matching service. We connect households in Singapore with vetted, independent cleaning vendors. We do not carry out cleaning work ourselves."
+}

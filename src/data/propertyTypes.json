@@ -1,0 +1,98 @@
+[
+  {
+    "slug": "hdb-2-room",
+    "name": "2-room HDB",
+    "category": "hdb",
+    "floorAreaSqm": { "min": 36, "max": 47 },
+    "floorAreaSqft": { "min": 388, "max": 506 },
+    "regularCleanHours": { "min": 2, "max": 3 },
+    "deepCleanFlatRateSGD": { "min": 280, "max": 400 },
+    "deepCleanHours": { "min": 3, "max": 5 },
+    "batch": 1,
+    "notes": "Covers 2-room Flexi and older 2-room flats. Below the 3-hour minimum most vendors enforce for recurring work, so a 2-room booking is usually billed as 3 hours regardless of actual time on site."
+  },
+  {
+    "slug": "hdb-3-room",
+    "name": "3-room HDB",
+    "category": "hdb",
+    "floorAreaSqm": { "min": 60, "max": 74 },
+    "floorAreaSqft": { "min": 646, "max": 797 },
+    "regularCleanHours": { "min": 3, "max": 4 },
+    "deepCleanFlatRateSGD": { "min": 320, "max": 450 },
+    "deepCleanHours": { "min": 4, "max": 6 },
+    "batch": 1,
+    "notes": "The most common flat type in older estates such as Toa Payoh, Ang Mo Kio and Queenstown. Many are 40+ years old, so grout condition and original tile rather than layout is what drives deep-clean time."
+  },
+  {
+    "slug": "hdb-4-room",
+    "name": "4-room HDB",
+    "category": "hdb",
+    "floorAreaSqm": { "min": 83, "max": 105 },
+    "floorAreaSqft": { "min": 893, "max": 1130 },
+    "regularCleanHours": { "min": 3, "max": 4 },
+    "deepCleanFlatRateSGD": { "min": 380, "max": 550 },
+    "deepCleanHours": { "min": 5, "max": 7 },
+    "batch": 1,
+    "notes": "The national default and the size most published price lists quote against. If a vendor advertises a single headline deep-clean price with no size stated, it is almost always the 4-room number."
+  },
+  {
+    "slug": "hdb-5-room",
+    "name": "5-room HDB",
+    "category": "hdb",
+    "floorAreaSqm": { "min": 110, "max": 123 },
+    "floorAreaSqft": { "min": 1184, "max": 1324 },
+    "regularCleanHours": { "min": 4, "max": 5 },
+    "deepCleanFlatRateSGD": { "min": 450, "max": 650 },
+    "deepCleanHours": { "min": 6, "max": 8 },
+    "batch": 1,
+    "notes": "Dominant in 1990s towns such as Pasir Ris, Bukit Panjang and Woodlands. Usually three bedrooms plus two bathrooms, and the second bathroom is what pushes a deep clean past the one-day mark for a single cleaner."
+  },
+  {
+    "slug": "hdb-executive",
+    "name": "Executive HDB",
+    "category": "hdb",
+    "floorAreaSqm": { "min": 130, "max": 150 },
+    "floorAreaSqft": { "min": 1399, "max": 1615 },
+    "regularCleanHours": { "min": 4, "max": 6 },
+    "deepCleanFlatRateSGD": { "min": 550, "max": 750 },
+    "deepCleanHours": { "min": 7, "max": 10 },
+    "batch": 1,
+    "notes": "Includes executive maisonettes, which are two-storey. A maisonette has an internal staircase and stair balustrades, which add real time to a deep clean and are frequently missed in a quote given over the phone."
+  },
+  {
+    "slug": "condo-1-2-bed",
+    "name": "1-2 bedroom condo",
+    "category": "condo",
+    "floorAreaSqm": { "min": 45, "max": 90 },
+    "floorAreaSqft": { "min": 484, "max": 969 },
+    "regularCleanHours": { "min": 3, "max": 4 },
+    "deepCleanFlatRateSGD": { "min": 320, "max": 500 },
+    "deepCleanHours": { "min": 4, "max": 6 },
+    "batch": 1,
+    "notes": "Smaller than the equivalent HDB but usually with more glass, more built-in joinery and a balcony. Balcony glass and track drainage are the two items most often excluded from a headline price."
+  },
+  {
+    "slug": "condo-3-bed-plus",
+    "name": "3+ bedroom condo",
+    "category": "condo",
+    "floorAreaSqm": { "min": 100, "max": 200 },
+    "floorAreaSqft": { "min": 1076, "max": 2153 },
+    "regularCleanHours": { "min": 4, "max": 6 },
+    "deepCleanFlatRateSGD": { "min": 500, "max": 850 },
+    "deepCleanHours": { "min": 6, "max": 10 },
+    "batch": 1,
+    "notes": "Typically three bathrooms plus a utility or helper's room. Bathroom count, not floor area, is the single biggest driver of deep-clean cost at this size. Condo management may also require vendors to register and show insurance before entering."
+  },
+  {
+    "slug": "landed",
+    "name": "Landed property",
+    "category": "landed",
+    "floorAreaSqm": { "min": 200, "max": 500 },
+    "floorAreaSqft": { "min": 2153, "max": 5382 },
+    "regularCleanHours": { "min": 6, "max": 8 },
+    "deepCleanFlatRateSGD": { "min": 800, "max": 1600 },
+    "deepCleanHours": { "min": 10, "max": 20 },
+    "batch": 1,
+    "notes": "Terrace, semi-detached and detached houses across two to four storeys. Almost always quoted only after a site visit. External areas, car porch and any pool deck are separate line items and are not part of an internal deep clean."
+  }
+]

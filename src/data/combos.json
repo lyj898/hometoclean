@@ -1,0 +1,488 @@
+[
+  {
+    "serviceSlug": "part-time-cleaning",
+    "townSlug": "ang-mo-kio",
+    "batch": 2,
+    "published": false
+  },
+  {
+    "serviceSlug": "part-time-cleaning",
+    "townSlug": "bedok",
+    "batch": 2,
+    "published": false
+  },
+  {
+    "serviceSlug": "part-time-cleaning",
+    "townSlug": "bishan",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "part-time-cleaning",
+    "townSlug": "bukit-batok",
+    "batch": 2,
+    "published": false
+  },
+  {
+    "serviceSlug": "part-time-cleaning",
+    "townSlug": "bukit-merah",
+    "batch": 2,
+    "published": false
+  },
+  {
+    "serviceSlug": "part-time-cleaning",
+    "townSlug": "bukit-panjang",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "part-time-cleaning",
+    "townSlug": "bukit-timah",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "part-time-cleaning",
+    "townSlug": "central-area",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "part-time-cleaning",
+    "townSlug": "choa-chu-kang",
+    "batch": 2,
+    "published": false
+  },
+  {
+    "serviceSlug": "part-time-cleaning",
+    "townSlug": "clementi",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "part-time-cleaning",
+    "townSlug": "geylang",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "part-time-cleaning",
+    "townSlug": "hougang",
+    "batch": 2,
+    "published": false
+  },
+  {
+    "serviceSlug": "part-time-cleaning",
+    "townSlug": "jurong-east",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "part-time-cleaning",
+    "townSlug": "jurong-west",
+    "batch": 2,
+    "published": false
+  },
+  {
+    "serviceSlug": "part-time-cleaning",
+    "townSlug": "kallang",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "part-time-cleaning",
+    "townSlug": "marine-parade",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "part-time-cleaning",
+    "townSlug": "pasir-ris",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "part-time-cleaning",
+    "townSlug": "punggol",
+    "batch": 2,
+    "published": false
+  },
+  {
+    "serviceSlug": "part-time-cleaning",
+    "townSlug": "queenstown",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "part-time-cleaning",
+    "townSlug": "sembawang",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "part-time-cleaning",
+    "townSlug": "sengkang",
+    "batch": 2,
+    "published": false
+  },
+  {
+    "serviceSlug": "part-time-cleaning",
+    "townSlug": "serangoon",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "part-time-cleaning",
+    "townSlug": "tampines",
+    "batch": 2,
+    "published": false
+  },
+  {
+    "serviceSlug": "part-time-cleaning",
+    "townSlug": "tengah",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "part-time-cleaning",
+    "townSlug": "toa-payoh",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "part-time-cleaning",
+    "townSlug": "woodlands",
+    "batch": 2,
+    "published": false
+  },
+  {
+    "serviceSlug": "part-time-cleaning",
+    "townSlug": "yishun",
+    "batch": 2,
+    "published": false
+  },
+  {
+    "serviceSlug": "deep-cleaning",
+    "townSlug": "ang-mo-kio",
+    "batch": 2,
+    "published": false
+  },
+  {
+    "serviceSlug": "deep-cleaning",
+    "townSlug": "bedok",
+    "batch": 2,
+    "published": false
+  },
+  {
+    "serviceSlug": "deep-cleaning",
+    "townSlug": "bishan",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "deep-cleaning",
+    "townSlug": "bukit-batok",
+    "batch": 2,
+    "published": false
+  },
+  {
+    "serviceSlug": "deep-cleaning",
+    "townSlug": "bukit-merah",
+    "batch": 2,
+    "published": false
+  },
+  {
+    "serviceSlug": "deep-cleaning",
+    "townSlug": "bukit-panjang",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "deep-cleaning",
+    "townSlug": "bukit-timah",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "deep-cleaning",
+    "townSlug": "central-area",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "deep-cleaning",
+    "townSlug": "choa-chu-kang",
+    "batch": 2,
+    "published": false
+  },
+  {
+    "serviceSlug": "deep-cleaning",
+    "townSlug": "clementi",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "deep-cleaning",
+    "townSlug": "geylang",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "deep-cleaning",
+    "townSlug": "hougang",
+    "batch": 2,
+    "published": false
+  },
+  {
+    "serviceSlug": "deep-cleaning",
+    "townSlug": "jurong-east",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "deep-cleaning",
+    "townSlug": "jurong-west",
+    "batch": 2,
+    "published": false
+  },
+  {
+    "serviceSlug": "deep-cleaning",
+    "townSlug": "kallang",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "deep-cleaning",
+    "townSlug": "marine-parade",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "deep-cleaning",
+    "townSlug": "pasir-ris",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "deep-cleaning",
+    "townSlug": "punggol",
+    "batch": 2,
+    "published": false
+  },
+  {
+    "serviceSlug": "deep-cleaning",
+    "townSlug": "queenstown",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "deep-cleaning",
+    "townSlug": "sembawang",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "deep-cleaning",
+    "townSlug": "sengkang",
+    "batch": 2,
+    "published": false
+  },
+  {
+    "serviceSlug": "deep-cleaning",
+    "townSlug": "serangoon",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "deep-cleaning",
+    "townSlug": "tampines",
+    "batch": 2,
+    "published": false
+  },
+  {
+    "serviceSlug": "deep-cleaning",
+    "townSlug": "tengah",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "deep-cleaning",
+    "townSlug": "toa-payoh",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "deep-cleaning",
+    "townSlug": "woodlands",
+    "batch": 2,
+    "published": false
+  },
+  {
+    "serviceSlug": "deep-cleaning",
+    "townSlug": "yishun",
+    "batch": 2,
+    "published": false
+  },
+  {
+    "serviceSlug": "post-renovation-cleaning",
+    "townSlug": "ang-mo-kio",
+    "batch": 2,
+    "published": false
+  },
+  {
+    "serviceSlug": "post-renovation-cleaning",
+    "townSlug": "bedok",
+    "batch": 2,
+    "published": false
+  },
+  {
+    "serviceSlug": "post-renovation-cleaning",
+    "townSlug": "bishan",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "post-renovation-cleaning",
+    "townSlug": "bukit-batok",
+    "batch": 2,
+    "published": false
+  },
+  {
+    "serviceSlug": "post-renovation-cleaning",
+    "townSlug": "bukit-merah",
+    "batch": 2,
+    "published": false
+  },
+  {
+    "serviceSlug": "post-renovation-cleaning",
+    "townSlug": "bukit-panjang",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "post-renovation-cleaning",
+    "townSlug": "bukit-timah",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "post-renovation-cleaning",
+    "townSlug": "central-area",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "post-renovation-cleaning",
+    "townSlug": "choa-chu-kang",
+    "batch": 2,
+    "published": false
+  },
+  {
+    "serviceSlug": "post-renovation-cleaning",
+    "townSlug": "clementi",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "post-renovation-cleaning",
+    "townSlug": "geylang",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "post-renovation-cleaning",
+    "townSlug": "hougang",
+    "batch": 2,
+    "published": false
+  },
+  {
+    "serviceSlug": "post-renovation-cleaning",
+    "townSlug": "jurong-east",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "post-renovation-cleaning",
+    "townSlug": "jurong-west",
+    "batch": 2,
+    "published": false
+  },
+  {
+    "serviceSlug": "post-renovation-cleaning",
+    "townSlug": "kallang",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "post-renovation-cleaning",
+    "townSlug": "marine-parade",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "post-renovation-cleaning",
+    "townSlug": "pasir-ris",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "post-renovation-cleaning",
+    "townSlug": "punggol",
+    "batch": 2,
+    "published": false
+  },
+  {
+    "serviceSlug": "post-renovation-cleaning",
+    "townSlug": "queenstown",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "post-renovation-cleaning",
+    "townSlug": "sembawang",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "post-renovation-cleaning",
+    "townSlug": "sengkang",
+    "batch": 2,
+    "published": false
+  },
+  {
+    "serviceSlug": "post-renovation-cleaning",
+    "townSlug": "serangoon",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "post-renovation-cleaning",
+    "townSlug": "tampines",
+    "batch": 2,
+    "published": false
+  },
+  {
+    "serviceSlug": "post-renovation-cleaning",
+    "townSlug": "tengah",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "post-renovation-cleaning",
+    "townSlug": "toa-payoh",
+    "batch": 3,
+    "published": false
+  },
+  {
+    "serviceSlug": "post-renovation-cleaning",
+    "townSlug": "woodlands",
+    "batch": 2,
+    "published": false
+  },
+  {
+    "serviceSlug": "post-renovation-cleaning",
+    "townSlug": "yishun",
+    "batch": 2,
+    "published": false
+  }
+]

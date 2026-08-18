@@ -1,0 +1,479 @@
+[
+  {
+    "slug": "ang-mo-kio",
+    "name": "Ang Mo Kio",
+    "adjacentSlugs": [
+      "bishan",
+      "serangoon",
+      "yishun",
+      "toa-payoh"
+    ],
+    "batch": 2,
+    "dominantPropertyTypes": [
+      "hdb-3-room",
+      "hdb-4-room",
+      "hdb-5-room"
+    ],
+    "housingProfile": "One of Singapore's earliest new towns, built out from the mid-1970s around Ang Mo Kio Avenues 1 to 10. The bulk of the stock is 3-room and 4-room flats now well past forty years old, which is why deep cleaning demand here skews towards grout condition, original mosaic and terrazzo flooring, and kitchen surfaces that have absorbed decades of cooking oil. Many blocks have been through the Home Improvement Programme, so bathrooms are often newer than the flats around them. Newer builds sit at Kebun Baru and Cheng San, and landed enclaves run along the Upper Thomson edge.",
+    "notes": "Mature estate. HIP and lift upgrading works mean access and debris conditions vary block to block."
+  },
+  {
+    "slug": "bedok",
+    "name": "Bedok",
+    "adjacentSlugs": [
+      "tampines",
+      "marine-parade",
+      "pasir-ris",
+      "geylang"
+    ],
+    "batch": 2,
+    "dominantPropertyTypes": [
+      "hdb-3-room",
+      "hdb-4-room",
+      "hdb-5-room"
+    ],
+    "housingProfile": "Among the most populous towns in Singapore and one of the oldest in the east, with the Chai Chee and Bedok South blocks dating to the 1970s and Bedok Reservoir developed considerably later. The age spread matters: a Chai Chee 3-room and a Bedok Reservoir 5-room are different jobs needing different hours. Private stock is heavy for an eastern HDB town, taking in the Frankel and Opera Estate landed enclaves and a run of condominiums along Bedok Reservoir Road. The coastal position means salt-laden air and heavier window track and grille soiling than inland estates.",
+    "notes": "Very large catchment. Worth splitting by Bedok North / South / Reservoir if search data later supports it."
+  },
+  {
+    "slug": "bishan",
+    "name": "Bishan",
+    "adjacentSlugs": [
+      "ang-mo-kio",
+      "toa-payoh",
+      "serangoon"
+    ],
+    "batch": 3,
+    "dominantPropertyTypes": [
+      "hdb-4-room",
+      "hdb-5-room",
+      "hdb-executive",
+      "condo-3-bed-plus"
+    ],
+    "housingProfile": "Developed from the mid-1980s and built with a larger average flat size than the towns around it, so 5-room and executive flats and maisonettes make up an unusually high share of the public housing stock. Executive maisonettes are two-storey with an internal staircase, which changes both the hours and the equipment a deep clean needs. Bishan also carries a heavy private component, with condominiums along Bishan Street 15, Sin Ming Avenue and Bright Hill, plus older private apartments around Sin Ming. Larger homes and a settled owner-occupier base make recurring fortnightly work more common here than one-off jobs.",
+    "notes": "High maisonette share is the distinguishing operational fact for this town."
+  },
+  {
+    "slug": "bukit-batok",
+    "name": "Bukit Batok",
+    "adjacentSlugs": [
+      "bukit-panjang",
+      "jurong-east",
+      "choa-chu-kang",
+      "clementi"
+    ],
+    "batch": 2,
+    "dominantPropertyTypes": [
+      "hdb-4-room",
+      "hdb-5-room",
+      "hdb-executive"
+    ],
+    "housingProfile": "Built out largely through the 1980s along Bukit Batok Street 11 to 52 and the West Avenues, with 4-room, 5-room and executive flats forming the core of the stock. Flats here are now in the window where original kitchen and bathroom finishes are either being replaced or are visibly at end of life, which drives post-renovation and deep cleaning demand from the same households. A second, much newer front sits at Bukit Batok West Avenues 8 and 9, where recent projects on the Tengah boundary are handing over to first-time owners. Hilly terrain means awkward access at some older blocks.",
+    "notes": "Two distinct demand streams: ageing 1980s stock and new BTO handovers on the western edge."
+  },
+  {
+    "slug": "bukit-merah",
+    "name": "Bukit Merah",
+    "adjacentSlugs": [
+      "queenstown",
+      "bukit-timah",
+      "central-area",
+      "toa-payoh"
+    ],
+    "batch": 2,
+    "dominantPropertyTypes": [
+      "hdb-2-room",
+      "hdb-3-room",
+      "hdb-4-room"
+    ],
+    "housingProfile": "Bukit Merah holds some of the oldest public housing in the country, taking in Tiong Bahru's pre-war SIT blocks, Redhill, Henderson and Telok Blangah. Small 2-room and 3-room flats are heavily represented, and the conservation flats at Tiong Bahru have original terrazzo, timber and curved detailing that will not tolerate aggressive chemicals or abrasive pads. Against that sits the Dawson precinct, where SkyTerrace, SkyVille and later projects delivered large modern flats within walking distance of blocks four times their age. Few towns in Singapore hold that spread of building ages in one postcode.",
+    "notes": "Tiong Bahru conservation stock needs vendors briefed on heritage finishes. Genuine matching differentiator."
+  },
+  {
+    "slug": "bukit-panjang",
+    "name": "Bukit Panjang",
+    "adjacentSlugs": [
+      "bukit-batok",
+      "choa-chu-kang",
+      "bukit-timah"
+    ],
+    "batch": 3,
+    "dominantPropertyTypes": [
+      "hdb-4-room",
+      "hdb-5-room",
+      "hdb-executive"
+    ],
+    "housingProfile": "A 1990s town laid out along the Segar, Fajar, Jelapang, Petir and Senja precincts and served by the LRT loop, with 4-room, 5-room and executive flats dominating and comparatively little small-flat stock. Most flats are now around or past the twenty-five year mark, the point at which households typically commission a first full renovation, so post-renovation cleaning runs alongside routine recurring work. Newer blocks sit around Senja and Saraca. On the Upper Bukit Timah fringe the estate meets private landed and condominium housing at Cashew, Chestnut and Dairy Farm, where floor areas and job durations rise sharply.",
+    "notes": "The Cashew / Dairy Farm fringe is materially different work from the HDB core."
+  },
+  {
+    "slug": "bukit-timah",
+    "name": "Bukit Timah",
+    "adjacentSlugs": [
+      "bukit-panjang",
+      "bukit-batok",
+      "queenstown",
+      "central-area"
+    ],
+    "batch": 3,
+    "dominantPropertyTypes": [
+      "landed",
+      "condo-3-bed-plus"
+    ],
+    "housingProfile": "Overwhelmingly private housing and the exception among these towns. Landed housing runs through the Holland, Coronation, Namly and Binjai areas, including Good Class Bungalow land, with condominiums lining Bukit Timah Road, Dunearn Road and the Sixth to Tenth Avenue stretch. Public housing is limited to small pockets such as Toh Yi Drive and Farrer Road. The practical consequence is scale: multi-storey homes, four or more bathrooms, extensive glazing, gardens and car porches. Almost nothing here is quotable from a price list, and careful vendors will insist on a site visit before committing to a figure.",
+    "notes": "Do not publish flat-rate pricing for this town. Site-visit-only messaging."
+  },
+  {
+    "slug": "central-area",
+    "name": "Central Area",
+    "adjacentSlugs": [
+      "bukit-merah",
+      "kallang",
+      "toa-payoh"
+    ],
+    "batch": 3,
+    "dominantPropertyTypes": [
+      "hdb-2-room",
+      "hdb-3-room",
+      "condo-1-2-bed"
+    ],
+    "housingProfile": "The Central Area is the downtown planning area, covering Chinatown and Kreta Ayer, Rochor, Jalan Besar, Bugis and Tanjong Pagar. Public housing here is a study in contrasts: small, very old blocks around Kreta Ayer and Rochor sit near Pinnacle@Duxton and other high-density newer developments. A large share of private stock is one and two bedroom city apartments, many of them tenanted, which produces steady move-in and move-out demand on lease cycles rather than the family-driven pattern seen in the heartlands. Loading bay restrictions and lift booking requirements are routine in the newer buildings.",
+    "notes": "Tenancy-driven turnover rather than family lifecycle. Building access rules are a real scheduling constraint."
+  },
+  {
+    "slug": "choa-chu-kang",
+    "name": "Choa Chu Kang",
+    "adjacentSlugs": [
+      "bukit-panjang",
+      "bukit-batok",
+      "jurong-west",
+      "tengah"
+    ],
+    "batch": 2,
+    "dominantPropertyTypes": [
+      "hdb-4-room",
+      "hdb-5-room",
+      "hdb-executive"
+    ],
+    "housingProfile": "A largely 1990s town spanning Choa Chu Kang Avenues 1 to 7, the Yew Tee precinct and the older Teck Whye blocks, which date from the 1980s and are noticeably more worn than the rest of the estate. Larger flat types predominate, so a routine session here more often runs four hours than three. Newer development at Keat Hong and Sunshine Gardens has added younger households to the mix. The town also carries a high share of executive flats and maisonettes, and its position on the Tengah boundary means renovation traffic and construction dust affect western-facing blocks.",
+    "notes": "Teck Whye is the outlier by age within an otherwise 1990s estate."
+  },
+  {
+    "slug": "clementi",
+    "name": "Clementi",
+    "adjacentSlugs": [
+      "bukit-batok",
+      "jurong-east",
+      "queenstown",
+      "bukit-timah"
+    ],
+    "batch": 3,
+    "dominantPropertyTypes": [
+      "hdb-3-room",
+      "hdb-4-room",
+      "hdb-5-room",
+      "condo-1-2-bed"
+    ],
+    "housingProfile": "A 1970s and 1980s town along Clementi Avenues 1 to 6 that has been substantially rebuilt in parts, with Selective En bloc Redevelopment and newer projects such as Clementi Peaks and Trivelis inserting modern high-rise blocks among original stock. Proximity to the National University of Singapore and Singapore Polytechnic sustains a rental market, and tenanted units turn over on academic rather than calendar cycles, concentrating move-out cleaning demand around mid-year and December. Private condominiums run along the West Coast and Sunset Way fringes, with landed housing at Sunset Way and Faber.",
+    "notes": "Academic-cycle move-out demand is a genuine and unusual scheduling signal for this town."
+  },
+  {
+    "slug": "geylang",
+    "name": "Geylang",
+    "adjacentSlugs": [
+      "kallang",
+      "bedok",
+      "marine-parade",
+      "toa-payoh"
+    ],
+    "batch": 3,
+    "dominantPropertyTypes": [
+      "hdb-3-room",
+      "hdb-4-room",
+      "condo-1-2-bed"
+    ],
+    "housingProfile": "An unusually mixed area taking in Geylang East, Eunos Crescent, Aljunied and the Geylang lorongs. Public housing here dates mostly to the late 1970s and 1980s, while the lorongs hold a dense stock of small private walk-up apartments and conserved shophouses, many without lifts. Walk-up access changes a job materially, because equipment for deep cleaning and post-renovation work has to be carried up by hand. The Dakota and Old Airport Road area has seen significant redevelopment. Older shophouse units frequently have original timber floors and tiled airwells needing specific handling.",
+    "notes": "Walk-up access and heritage finishes are the two operational facts that matter for vendor matching here."
+  },
+  {
+    "slug": "hougang",
+    "name": "Hougang",
+    "adjacentSlugs": [
+      "sengkang",
+      "serangoon",
+      "punggol",
+      "ang-mo-kio"
+    ],
+    "batch": 2,
+    "dominantPropertyTypes": [
+      "hdb-4-room",
+      "hdb-5-room",
+      "hdb-executive"
+    ],
+    "housingProfile": "Built out through the 1980s and 1990s across Hougang Avenues 1 to 10 and the Buangkok fringe, with a large stock of 5-room flats and executive maisonettes that gives the town one of the bigger average unit sizes in the north-east. Maisonettes carry an internal staircase and a second-storey bathroom, and both are routinely underestimated when a deep clean is quoted by flat type alone. Kovan, on the southern edge, holds established landed housing along Simon Road and the surrounding estate. Most flats are now into their second or third renovation cycle, sustaining steady post-renovation demand.",
+    "notes": "Maisonette share is high. Quote by staircase and bathroom count, not floor area alone."
+  },
+  {
+    "slug": "jurong-east",
+    "name": "Jurong East",
+    "adjacentSlugs": [
+      "jurong-west",
+      "clementi",
+      "bukit-batok",
+      "tengah"
+    ],
+    "batch": 3,
+    "dominantPropertyTypes": [
+      "hdb-3-room",
+      "hdb-4-room",
+      "hdb-5-room"
+    ],
+    "housingProfile": "A 1980s estate laid out along Jurong East Streets 13 to 32 and Toh Guan Road, smaller in population than its western neighbour and anchored by the Jurong Lake District regional centre. Original flats are now around forty years old, with the usual consequences for grout, window tracks and kitchen cabinetry. The commercial core has drawn newer private development, including high-rise condominiums close to the interchange, so the town mixes ageing public stock with recent private units in a compact area. Continuing Jurong Lake District construction makes airborne dust a live factor for blocks facing active worksites.",
+    "notes": "Regional-centre construction is a real and current driver of repeat cleaning demand."
+  },
+  {
+    "slug": "jurong-west",
+    "name": "Jurong West",
+    "adjacentSlugs": [
+      "jurong-east",
+      "choa-chu-kang",
+      "tengah",
+      "clementi"
+    ],
+    "batch": 2,
+    "dominantPropertyTypes": [
+      "hdb-4-room",
+      "hdb-5-room",
+      "hdb-executive"
+    ],
+    "housingProfile": "One of the largest public housing towns in Singapore by population, spanning Jurong West Streets 41 to 93, Boon Lay, Pioneer and the older Taman Jurong precinct. Taman Jurong is materially older than the rest, dating to the 1970s, while the bulk of the town is 1980s and 1990s stock weighted towards 4-room, 5-room and executive flats. The size of the town means travel time between precincts is significant, and vendors quoting a flat call-out for the whole town are usually pricing from their nearest precinct only. Proximity to the western industrial belt brings heavier particulate loading than central estates.",
+    "notes": "Town is large enough that intra-town travel affects vendor availability and pricing."
+  },
+  {
+    "slug": "kallang",
+    "name": "Kallang",
+    "adjacentSlugs": [
+      "central-area",
+      "geylang",
+      "toa-payoh",
+      "marine-parade"
+    ],
+    "batch": 3,
+    "dominantPropertyTypes": [
+      "hdb-2-room",
+      "hdb-3-room",
+      "hdb-4-room"
+    ],
+    "housingProfile": "Covers Whampoa, Bendemeer, Boon Keng, St George's and the Kallang Basin, and holds some of the oldest surviving HDB blocks in Singapore, several from the 1960s. Small 2-room and 3-room units are heavily represented and many are occupied by long-tenured, older households, which changes what a deep clean actually involves: decades of accumulated contents, original finishes, and bathrooms that predate modern waterproofing. Redevelopment at Kallang Trivista, St George's and Bendemeer has inserted new blocks among them, and private waterfront condominiums line the Kallang Riverside stretch.",
+    "notes": "Oldest surviving stock in the system. Content-heavy homes make time estimates unreliable without a site visit."
+  },
+  {
+    "slug": "marine-parade",
+    "name": "Marine Parade",
+    "adjacentSlugs": [
+      "bedok",
+      "geylang",
+      "kallang"
+    ],
+    "batch": 3,
+    "dominantPropertyTypes": [
+      "hdb-3-room",
+      "hdb-4-room",
+      "hdb-5-room",
+      "condo-3-bed-plus"
+    ],
+    "housingProfile": "Singapore's only HDB town built entirely on reclaimed land, developed from the mid-1970s along Marine Crescent, Marine Terrace and Marine Drive. The flats are sea-facing and comparatively generous for their vintage, and the estate has an unusually settled, ageing resident base. Salt air is the defining maintenance fact here: window grilles, sliding door tracks, aircon casings and metal fittings corrode and soil faster than anywhere inland, making window track cleaning a recurring rather than occasional item. The surrounding Katong and Joo Chiat conservation shophouses and East Coast Road condominiums add a substantial private component.",
+    "notes": "Salt-air corrosion is a genuine, checkable, town-specific differentiator."
+  },
+  {
+    "slug": "pasir-ris",
+    "name": "Pasir Ris",
+    "adjacentSlugs": [
+      "tampines",
+      "bedok",
+      "punggol"
+    ],
+    "batch": 3,
+    "dominantPropertyTypes": [
+      "hdb-5-room",
+      "hdb-executive",
+      "condo-3-bed-plus"
+    ],
+    "housingProfile": "A 1990s town with one of the largest average flat sizes in the public housing system: 5-room and executive units dominate and small flats are scarce. That single fact reshapes pricing here, because a routine session that runs three hours in an older estate typically runs four to five in Pasir Ris, and deep cleans are quoted at the upper end of published ranges. Landed housing sits at Pasir Ris Heights and the Elias estate, with condominiums along Pasir Ris Drive and near the beach. The coastal position brings the same salt and sand loading as other eastern seafront estates.",
+    "notes": "Largest average flat size of the 1990s towns. Published national averages understate cost here."
+  },
+  {
+    "slug": "punggol",
+    "name": "Punggol",
+    "adjacentSlugs": [
+      "sengkang",
+      "pasir-ris",
+      "hougang"
+    ],
+    "batch": 2,
+    "dominantPropertyTypes": [
+      "hdb-4-room",
+      "hdb-5-room",
+      "condo-3-bed-plus"
+    ],
+    "housingProfile": "Effectively a new town, built almost entirely from 2007 onwards around the Punggol Waterway and the Northshore, Waterway and Matilda precincts. Stock is overwhelmingly 4-room and 5-room flats occupied by young families, with executive condominiums and private developments near Waterway Point. Because projects have handed over in continuous waves rather than a single burst, Punggol generates a steady pipeline of move-in and post-renovation cleaning rather than the deep-clean-driven demand of mature estates. There is very little aged stock, so grout restoration and heavy appliance degreasing are far less common requests here than elsewhere.",
+    "notes": "Demand profile is move-in and post-renovation led. De-emphasise deep cleaning content for this town."
+  },
+  {
+    "slug": "queenstown",
+    "name": "Queenstown",
+    "adjacentSlugs": [
+      "bukit-merah",
+      "clementi",
+      "bukit-timah",
+      "central-area"
+    ],
+    "batch": 3,
+    "dominantPropertyTypes": [
+      "hdb-3-room",
+      "hdb-4-room",
+      "condo-3-bed-plus"
+    ],
+    "housingProfile": "Queenstown was Singapore’s first satellite town, with development beginning in the 1950s, and still the clearest example of the country's redevelopment cycle. Tanglin Halt and Commonwealth hold original blocks approaching or past seventy years, several under Selective En bloc Redevelopment, while the Dawson precinct next door delivers some of the newest and largest flats in the central region. Original stock has terrazzo floors, single-skin walls and pre-modern bathroom waterproofing, none of which behaves like a contemporary flat under a deep clean. Private condominiums run along Alexandra Road, Queensway and Holland Road.",
+    "notes": "SERS activity means some addresses are transitional. Move-out demand is elevated in affected blocks."
+  },
+  {
+    "slug": "sembawang",
+    "name": "Sembawang",
+    "adjacentSlugs": [
+      "yishun",
+      "woodlands"
+    ],
+    "batch": 3,
+    "dominantPropertyTypes": [
+      "hdb-4-room",
+      "hdb-5-room"
+    ],
+    "housingProfile": "One of the smaller and younger northern towns, developed from the late 1990s along Sembawang Drive, Canberra Road and Wellington Circle, with 4-room and 5-room flats making up most of the stock. The Canberra precinct has expanded significantly since Canberra MRT opened in 2019, adding newer blocks and a fresh wave of first-time owners, which keeps move-in and post-renovation work active. Executive condominiums near Canberra Link supplement the public housing. The town is comparatively remote from central Singapore, so vendor travel time is a real constraint on same-day and short-notice bookings.",
+    "notes": "Vendor supply is thinner here than in central towns. Set realistic lead-time expectations."
+  },
+  {
+    "slug": "sengkang",
+    "name": "Sengkang",
+    "adjacentSlugs": [
+      "punggol",
+      "hougang",
+      "ang-mo-kio",
+      "yishun"
+    ],
+    "batch": 2,
+    "dominantPropertyTypes": [
+      "hdb-4-room",
+      "hdb-5-room"
+    ],
+    "housingProfile": "Sengkang is a 2000s town organised into the Compassvale, Anchorvale, Rivervale and Fernvale precincts and served by the LRT loop, with 4-room and 5-room flats making up the overwhelming majority of stock. Rivervale is the oldest part, dating to the late 1990s, and those flats are now at the twenty-five to thirty year mark where first major renovations cluster. The rest of the town is younger. The result is a town shifting from a move-in demand profile into a renovation-and-deep-clean one, which is not yet true of Punggol next door. Executive condominiums are well represented.",
+    "notes": "Rivervale ages out first. Renovation-cycle demand is emerging here ahead of Punggol."
+  },
+  {
+    "slug": "serangoon",
+    "name": "Serangoon",
+    "adjacentSlugs": [
+      "hougang",
+      "ang-mo-kio",
+      "bishan",
+      "toa-payoh"
+    ],
+    "batch": 3,
+    "dominantPropertyTypes": [
+      "hdb-4-room",
+      "hdb-5-room",
+      "landed",
+      "condo-3-bed-plus"
+    ],
+    "housingProfile": "A mixed town where public and private housing sit unusually close together. Serangoon North and the Serangoon Central blocks date largely to the 1980s, while Serangoon Gardens is an established landed estate of terrace and semi-detached houses with gardens, car porches and multiple bathrooms. Condominium stock is concentrated around Lorong Chuan and the Serangoon Central interchange. The practical effect is that two enquiries from the same postcode can be entirely different jobs, one a four-hour flat session and the other a full-day house clean, so quoting by town alone is unreliable here.",
+    "notes": "Widest job-size spread of any town in the set. Property type must drive the quote, not location."
+  },
+  {
+    "slug": "tampines",
+    "name": "Tampines",
+    "adjacentSlugs": [
+      "bedok",
+      "pasir-ris",
+      "punggol"
+    ],
+    "batch": 2,
+    "dominantPropertyTypes": [
+      "hdb-4-room",
+      "hdb-5-room",
+      "hdb-executive"
+    ],
+    "housingProfile": "A large mature town developed from the early 1980s across Tampines Streets 11 to 91, with a substantial stock of 4-room, 5-room and executive flats now deep into their renovation cycles. Alongside it, Tampines North has been handing over new projects, giving the town two clearly separated demand streams: deep cleaning and post-renovation work in the mature core, and move-in cleaning in the north. Private stock includes large condominium and executive condominium developments along Tampines Avenue 10. Town size means a vendor based in one part of Tampines may decline a job at the opposite end.",
+    "notes": "Mature core plus active BTO front. Both service angles are genuinely live here."
+  },
+  {
+    "slug": "tengah",
+    "name": "Tengah",
+    "adjacentSlugs": [
+      "jurong-east",
+      "jurong-west",
+      "choa-chu-kang",
+      "bukit-batok"
+    ],
+    "batch": 3,
+    "dominantPropertyTypes": [
+      "hdb-4-room",
+      "hdb-5-room"
+    ],
+    "housingProfile": "Tengah is Singapore’s newest HDB town, with first keys handed over from 2023 and construction continuing across the Plantation, Park and Garden districts. Every home here is new, which makes the demand profile unlike any other town in this list: nearly all enquiries are move-in cleaning or post-renovation cleaning, and there is no aged grout, no worn terrazzo and no decades-old kitchen grease anywhere in the town. Because the town remains an active construction site, ambient dust ingress is unusually high, and newly renovated units often need a second clean weeks after the first.",
+    "notes": "Do not weight deep cleaning or recurring maintenance content for this town. Post-renovation and move-in only, effectively."
+  },
+  {
+    "slug": "toa-payoh",
+    "name": "Toa Payoh",
+    "adjacentSlugs": [
+      "bishan",
+      "kallang",
+      "central-area",
+      "serangoon",
+      "ang-mo-kio"
+    ],
+    "batch": 3,
+    "dominantPropertyTypes": [
+      "hdb-3-room",
+      "hdb-4-room",
+      "hdb-5-room"
+    ],
+    "housingProfile": "The first town HDB planned and built from scratch, with the Lorong 1 to 8 blocks dating to the 1960s and much of the estate following through the 1970s. Small 3-room flats are heavily represented and the original stock has the finishes of its era, including terrazzo, mosaic tiling and pre-modern bathroom construction. What makes Toa Payoh unusual is Bidadari on its eastern side, where the Alkaff and Woodleigh projects have been handing over new flats since the early 2020s. The town therefore runs sixty-year-old flats and near-new ones under one town name, with entirely different cleaning requirements.",
+    "notes": "Bidadari handovers are the newest demand stream in an otherwise very old town."
+  },
+  {
+    "slug": "woodlands",
+    "name": "Woodlands",
+    "adjacentSlugs": [
+      "sembawang",
+      "yishun",
+      "choa-chu-kang"
+    ],
+    "batch": 2,
+    "dominantPropertyTypes": [
+      "hdb-4-room",
+      "hdb-5-room",
+      "hdb-executive"
+    ],
+    "housingProfile": "A large northern town built out mainly through the 1990s across the Woodlands Streets, Admiralty and the Woodgrove area, with 4-room, 5-room and executive flats forming the bulk of the stock. Marsiling, on the western side, is noticeably older and dates to the 1980s. Most of the town is now past the twenty-five year mark, so renovation activity and the post-renovation cleaning that follows are consistently strong. Landed housing sits at Woodgrove and Rosewood. Distance from the city centre and the Causeway traffic pattern make vendor travel time a genuine factor in scheduling and call-out pricing.",
+    "notes": "Marsiling is the older sub-estate. Travel time affects vendor willingness for short jobs."
+  },
+  {
+    "slug": "yishun",
+    "name": "Yishun",
+    "adjacentSlugs": [
+      "sembawang",
+      "ang-mo-kio",
+      "sengkang",
+      "woodlands"
+    ],
+    "batch": 2,
+    "dominantPropertyTypes": [
+      "hdb-3-room",
+      "hdb-4-room",
+      "hdb-5-room"
+    ],
+    "housingProfile": "Developed principally through the 1980s across the Yishun Rings and Avenues, with a large stock of 3-room and 4-room flats that has been a major focus of the Home Improvement Programme. Upgraded bathrooms sitting inside otherwise original flats are common, and that changes what a deep clean should target: kitchen surfaces, window tracks and original floor tiling rather than sanitaryware. Newer development at Yishun Avenue 1 and towards Miltonia and Canberra has added younger households and private condominium stock. Improved connectivity at Khatib and Canberra has widened the pool of vendors willing to travel north.",
+    "notes": "HIP upgrading means bathroom condition is a poor proxy for flat age here."
+  }
+]
