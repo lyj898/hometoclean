@@ -193,9 +193,20 @@ check('payload carries the ourkampung field set',
 check('payload carries a _subject', typeof payload._subject === 'string' && payload._subject.length > 0,
   payload._subject);
 
-check('success message shown to the user',
-  (await evalX(`document.querySelector('[data-lead-status]').textContent`)) ===
-    'Your message is on its way!');
+check('form is replaced by the success panel',
+  (await evalX(`document.querySelector('[data-lead-form]').hidden`)) === true &&
+    (await evalX(`!document.querySelector('[data-lead-success]').hidden`)) === true);
+check('confirmation is scrolled into view, not left off screen',
+  JSON.parse(await evalX(`
+    (function(){ var r=document.querySelector('[data-lead-success]').getBoundingClientRect();
+      return JSON.stringify(r.top >= 0 && r.top < window.innerHeight); })()`)) === true);
+check('"Send another message" restores the form',
+  await (async () => {
+    await evalX(`document.querySelector('[data-lead-again]').click(); 'ok'`);
+    await sleep(400);
+    return (await evalX(`document.querySelector('[data-lead-form]').hidden`)) === false &&
+      (await evalX(`document.querySelector('[data-lead-success]').hidden`)) === true;
+  })());
 
 // --- a 200 with success:false must NOT count as a conversion -----------------
 // This is exactly what FormSubmit returns for an unactivated form.
@@ -220,6 +231,9 @@ check('HTTP 200 with success:false is not counted as a conversion',
 check('rejected submission shows an error, not a success message',
   (await evalX(`document.querySelector('[data-lead-status]').textContent`)) ===
     'Sorry, that did not send. Please try again in a moment.');
+check('rejected submission leaves the form on screen',
+  (await evalX(`document.querySelector('[data-lead-form]').hidden`)) === false &&
+    (await evalX(`document.querySelector('[data-lead-success]').hidden`)) === true);
 
 // --- event hygiene -----------------------------------------------------------
 const names = [...new Set(evs.map((e) => e[1]))];
