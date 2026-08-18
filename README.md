@@ -66,7 +66,18 @@ only). There is no generic `button_click`, and no `whatsapp_click` or
 `phone_click` — this site has no such channels, and an event that can never fire
 is worse than no event.
 
-With no `PUBLIC_GA4_ID` set, no analytics script is emitted at all.
+With no `PUBLIC_GA4_ID` set, no analytics script is emitted at all. It is set as
+a **repository variable** (Settings → Secrets and variables → Actions →
+Variables), not a secret: the measurement ID is public in page source by design.
+
+Verified live: `page_view`, `form_start` and `form_submit` all reach GA4.
+
+**When testing the form, scope any fetch stub to `formsubmit.co`.** GA4's
+transport also uses `fetch`, so a blanket stub swallows analytics hits and makes
+it look as though `form_submit` never reached Google.
+
+`form_submit` still has to be marked as a **key event** in GA4 (Admin → Events)
+before it counts as a conversion. That is a console setting, not a code change.
 
 Lighthouse mobile on the homepage: **100 / 100 / 100 / 100**, CLS 0, LCP 1.3s.
 The site ships **zero JavaScript** — the mobile nav and FAQ accordions are native

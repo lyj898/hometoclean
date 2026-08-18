@@ -117,9 +117,16 @@ const config = await evalX(
 check('GA4 config command queued', (config ?? '').includes(GA4_ID), `config → ${GA4_ID}`);
 
 // Stub fetch so nothing reaches FormSubmit and no real email is sent.
+//
+// Intercept ONLY formsubmit.co. GA4's own transport uses fetch, so a blanket
+// stub silently swallows analytics hits and makes it look as though
+// form_submit never reached Google. That produced a convincing false negative
+// once; do not "simplify" this back to overriding every request.
 await evalX(`
   window.__posted = null;
+  window.__realFetch = window.fetch.bind(window);
   window.fetch = function (url, opts) {
+    if (String(url).indexOf('formsubmit.co') === -1) return window.__realFetch(url, opts);
     window.__posted = { url: String(url), body: opts && opts.body };
     return Promise.resolve({
       ok: true, status: 200,
@@ -211,7 +218,8 @@ check('"Send another message" restores the form',
 // --- a 200 with success:false must NOT count as a conversion -----------------
 // This is exactly what FormSubmit returns for an unactivated form.
 await evalX(`
-  window.fetch = function () {
+  window.fetch = function (url, opts) {
+    if (String(url).indexOf('formsubmit.co') === -1) return window.__realFetch(url, opts);
     return Promise.resolve({
       ok: true, status: 200,
       json: function(){ return Promise.resolve({ success: 'false', message: 'This form needs Activation.' }); }
