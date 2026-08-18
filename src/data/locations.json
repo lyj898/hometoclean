@@ -4,9 +4,11 @@
     "name": "Ang Mo Kio",
     "adjacentSlugs": [
       "bishan",
+      "hougang",
+      "sengkang",
       "serangoon",
-      "yishun",
-      "toa-payoh"
+      "toa-payoh",
+      "yishun"
     ],
     "batch": 2,
     "dominantPropertyTypes": [
@@ -21,10 +23,10 @@
     "slug": "bedok",
     "name": "Bedok",
     "adjacentSlugs": [
-      "tampines",
+      "geylang",
       "marine-parade",
       "pasir-ris",
-      "geylang"
+      "tampines"
     ],
     "batch": 2,
     "dominantPropertyTypes": [
@@ -40,8 +42,8 @@
     "name": "Bishan",
     "adjacentSlugs": [
       "ang-mo-kio",
-      "toa-payoh",
-      "serangoon"
+      "serangoon",
+      "toa-payoh"
     ],
     "batch": 3,
     "dominantPropertyTypes": [
@@ -58,9 +60,11 @@
     "name": "Bukit Batok",
     "adjacentSlugs": [
       "bukit-panjang",
-      "jurong-east",
+      "bukit-timah",
       "choa-chu-kang",
-      "clementi"
+      "clementi",
+      "jurong-east",
+      "tengah"
     ],
     "batch": 2,
     "dominantPropertyTypes": [
@@ -75,9 +79,9 @@
     "slug": "bukit-merah",
     "name": "Bukit Merah",
     "adjacentSlugs": [
-      "queenstown",
       "bukit-timah",
       "central-area",
+      "queenstown",
       "toa-payoh"
     ],
     "batch": 2,
@@ -94,8 +98,8 @@
     "name": "Bukit Panjang",
     "adjacentSlugs": [
       "bukit-batok",
-      "choa-chu-kang",
-      "bukit-timah"
+      "bukit-timah",
+      "choa-chu-kang"
     ],
     "batch": 3,
     "dominantPropertyTypes": [
@@ -110,10 +114,12 @@
     "slug": "bukit-timah",
     "name": "Bukit Timah",
     "adjacentSlugs": [
-      "bukit-panjang",
       "bukit-batok",
-      "queenstown",
-      "central-area"
+      "bukit-merah",
+      "bukit-panjang",
+      "central-area",
+      "clementi",
+      "queenstown"
     ],
     "batch": 3,
     "dominantPropertyTypes": [
@@ -128,7 +134,9 @@
     "name": "Central Area",
     "adjacentSlugs": [
       "bukit-merah",
+      "bukit-timah",
       "kallang",
+      "queenstown",
       "toa-payoh"
     ],
     "batch": 3,
@@ -144,10 +152,11 @@
     "slug": "choa-chu-kang",
     "name": "Choa Chu Kang",
     "adjacentSlugs": [
-      "bukit-panjang",
       "bukit-batok",
+      "bukit-panjang",
       "jurong-west",
-      "tengah"
+      "tengah",
+      "woodlands"
     ],
     "batch": 2,
     "dominantPropertyTypes": [
@@ -163,9 +172,10 @@
     "name": "Clementi",
     "adjacentSlugs": [
       "bukit-batok",
+      "bukit-timah",
       "jurong-east",
-      "queenstown",
-      "bukit-timah"
+      "jurong-west",
+      "queenstown"
     ],
     "batch": 3,
     "dominantPropertyTypes": [
@@ -181,8 +191,8 @@
     "slug": "geylang",
     "name": "Geylang",
     "adjacentSlugs": [
-      "kallang",
       "bedok",
+      "kallang",
       "marine-parade",
       "toa-payoh"
     ],
@@ -199,10 +209,10 @@
     "slug": "hougang",
     "name": "Hougang",
     "adjacentSlugs": [
-      "sengkang",
-      "serangoon",
+      "ang-mo-kio",
       "punggol",
-      "ang-mo-kio"
+      "sengkang",
+      "serangoon"
     ],
     "batch": 2,
     "dominantPropertyTypes": [
@@ -217,9 +227,9 @@
     "slug": "jurong-east",
     "name": "Jurong East",
     "adjacentSlugs": [
-      "jurong-west",
-      "clementi",
       "bukit-batok",
+      "clementi",
+      "jurong-west",
       "tengah"
     ],
     "batch": 3,
@@ -235,10 +245,10 @@
     "slug": "jurong-west",
     "name": "Jurong West",
     "adjacentSlugs": [
-      "jurong-east",
       "choa-chu-kang",
-      "tengah",
-      "clementi"
+      "clementi",
+      "jurong-east",
+      "tengah"
     ],
     "batch": 2,
     "dominantPropertyTypes": [
@@ -255,8 +265,8 @@
     "adjacentSlugs": [
       "central-area",
       "geylang",
-      "toa-payoh",
-      "marine-parade"
+      "marine-parade",
+      "toa-payoh"
     ],
     "batch": 3,
     "dominantPropertyTypes": [
@@ -289,9 +299,9 @@
     "slug": "pasir-ris",
     "name": "Pasir Ris",
     "adjacentSlugs": [
-      "tampines",
       "bedok",
-      "punggol"
+      "punggol",
+      "tampines"
     ],
     "batch": 3,
     "dominantPropertyTypes": [
@@ -306,9 +316,10 @@
     "slug": "punggol",
     "name": "Punggol",
     "adjacentSlugs": [
-      "sengkang",
+      "hougang",
       "pasir-ris",
-      "hougang"
+      "sengkang",
+      "tampines"
     ],
     "batch": 2,
     "dominantPropertyTypes": [
@@ -324,9 +335,9 @@
     "name": "Queenstown",
     "adjacentSlugs": [
       "bukit-merah",
-      "clementi",
       "bukit-timah",
-      "central-area"
+      "central-area",
+      "clementi"
     ],
     "batch": 3,
     "dominantPropertyTypes": [
@@ -341,8 +352,8 @@
     "slug": "sembawang",
     "name": "Sembawang",
     "adjacentSlugs": [
-      "yishun",
-      "woodlands"
+      "woodlands",
+      "yishun"
     ],
     "batch": 3,
     "dominantPropertyTypes": [
@@ -356,9 +367,9 @@
     "slug": "sengkang",
     "name": "Sengkang",
     "adjacentSlugs": [
-      "punggol",
-      "hougang",
       "ang-mo-kio",
+      "hougang",
+      "punggol",
       "yishun"
     ],
     "batch": 2,
@@ -373,9 +384,9 @@
     "slug": "serangoon",
     "name": "Serangoon",
     "adjacentSlugs": [
-      "hougang",
       "ang-mo-kio",
       "bishan",
+      "hougang",
       "toa-payoh"
     ],
     "batch": 3,
@@ -409,10 +420,10 @@
     "slug": "tengah",
     "name": "Tengah",
     "adjacentSlugs": [
-      "jurong-east",
-      "jurong-west",
+      "bukit-batok",
       "choa-chu-kang",
-      "bukit-batok"
+      "jurong-east",
+      "jurong-west"
     ],
     "batch": 3,
     "dominantPropertyTypes": [
@@ -426,11 +437,13 @@
     "slug": "toa-payoh",
     "name": "Toa Payoh",
     "adjacentSlugs": [
+      "ang-mo-kio",
       "bishan",
-      "kallang",
+      "bukit-merah",
       "central-area",
-      "serangoon",
-      "ang-mo-kio"
+      "geylang",
+      "kallang",
+      "serangoon"
     ],
     "batch": 3,
     "dominantPropertyTypes": [
@@ -445,9 +458,9 @@
     "slug": "woodlands",
     "name": "Woodlands",
     "adjacentSlugs": [
+      "choa-chu-kang",
       "sembawang",
-      "yishun",
-      "choa-chu-kang"
+      "yishun"
     ],
     "batch": 2,
     "dominantPropertyTypes": [
@@ -462,8 +475,8 @@
     "slug": "yishun",
     "name": "Yishun",
     "adjacentSlugs": [
-      "sembawang",
       "ang-mo-kio",
+      "sembawang",
       "sengkang",
       "woodlands"
     ],

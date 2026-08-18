@@ -1,0 +1,112 @@
+---
+/**
+ * /cleaning/{service}/{town}/
+ *
+ * Generated from combos.json. A combo only produces a page when it is flagged
+ * published AND its batch is live, so this route is the batch control point.
+ *
+ * Note: no LocalBusiness schema here. We have no premises in these towns.
+ */
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import {
+  publishedCombos,
+  getService,
+  getLocation,
+  dominantPropertyTypes,
+  linkableAdjacentTowns,
+} from '../../../lib/data';
+import { urls } from '../../../lib/urls';
+import { meta, fit } from '../../../lib/seo';
+import { serviceNode } from '../../../lib/schema';
+import type { Location, Service } from '../../../types';
+
+export const getStaticPaths = (() =>
+  publishedCombos().map((combo) => {
+    const service = getService(combo.serviceSlug);
+    const town = getLocation(combo.townSlug);
+    return {
+      params: { service: service.slug, town: town.slug },
+      props: { service, town },
+    };
+  })) satisfies GetStaticPaths;
+
+interface Props {
+  service: Service;
+  town: Location;
+}
+
+const { service, town } = Astro.props;
+
+const path = urls.location(service.slug, town.slug);
+const h1 = service.h1Template.replace('{town}', town.name);
+const propertyTypes = dominantPropertyTypes(town);
+const adjacent = linkableAdjacentTowns(town.slug, service.slug);
+
+// Purpose-written rather than assembled from longDescription, so it reads as a
+// sentence instead of a truncation. fit() stays as a backstop for long names.
+const { title, description } = meta(
+  fit(`${service.name} in ${town.name} | Prices & Vetted Vendors`, 60),
+  fit(
+    `${service.name} in ${town.name}: typical prices, what's included, and how we match you with vetted, insured cleaning vendors.`,
+    155,
+  ),
+);
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path={path}
+  batch={service.batch}
+  crumbs={[
+    { name: service.name, path: urls.service(service.slug) },
+    { name: town.name, path },
+  ]}
+  schemaNodes={[serviceNode(service, path, town)]}
+>
+  <h1>{h1}</h1>
+  <p>{service.shortDescription}</p>
+
+  <h2>Housing in {town.name}</h2>
+  <p>{town.housingProfile}</p>
+
+  <h2>{service.name} pricing for {town.name} homes</h2>
+  <p>{service.priceRangeSGD.notes}</p>
+  <table>
+    <thead>
+      <tr><th>Property type</th><th>Typical duration</th></tr>
+    </thead>
+    <tbody>
+      {propertyTypes.map((p) => (
+        <tr>
+          <td><a href={urls.propertyType(p.slug)}>{p.name}</a></td>
+          <td>{service.typicalDurationByProperty[p.slug]}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+
+  <h2>Frequently asked questions</h2>
+  <dl>
+    {service.faqs.map((f) => (
+      <>
+        <dt>{f.q}</dt>
+        <dd>{f.a}</dd>
+      </>
+    ))}
+  </dl>
+
+  {adjacent.length > 0 && (
+    <>
+      <h2>Nearby towns</h2>
+      <ul>
+        {adjacent.map((t) => (
+          <li><a href={urls.location(service.slug, t.slug)}>{service.name} in {t.name}</a></li>
+        ))}
+      </ul>
+    </>
+  )}
+
+  <p><a href={urls.service(service.slug)}>All about {service.name.toLowerCase()}</a></p>
+</BaseLayout>

@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { urls } from '../lib/urls';
+import { meta } from '../lib/seo';
+
+const path = urls.terms();
+const { title, description } = meta(
+  'Terms of Service | HomeToClean',
+  'Terms governing use of hometoclean.com. HomeToClean is a matching service and is not the provider of the cleaning services arranged through this site.',
+);
+---
+
+<BaseLayout title={title} description={description} path={path} batch={0}
+  crumbs={[{ name: 'Terms of Service', path: urls.terms() }]}>
+  <h1>Terms of Service</h1>
+  <p>Terms governing use of hometoclean.com. HomeToClean is a matching service and is not the provider of the cleaning services arranged through this site.</p>
+  <p><em>Phase 2 placeholder. Content lands in Phase 3 and 4.</em></p>
+</BaseLayout>

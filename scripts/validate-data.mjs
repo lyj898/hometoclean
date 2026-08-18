@@ -50,13 +50,18 @@ for (const t of locations) {
     if (!townSlugs.has(a)) err(`location "${t.slug}": adjacentSlugs references unknown town "${a}"`);
     if (a === t.slug) err(`location "${t.slug}": adjacent to itself`);
   }
-  // Adjacency should be symmetric: if A borders B, B borders A.
+  // Adjacency must be symmetric: if A borders B, B borders A. Asymmetry means
+  // reciprocal town links render on one side only, so this is an error.
   for (const a of t.adjacentSlugs) {
     const other = locations.find((l) => l.slug === a);
     if (other && !other.adjacentSlugs.includes(t.slug)) {
-      warn(`adjacency not symmetric: "${t.slug}" -> "${a}" but not back`);
+      err(`adjacency not symmetric: "${t.slug}" -> "${a}" but not back`);
     }
   }
+  if (new Set(t.adjacentSlugs).size !== t.adjacentSlugs.length) {
+    err(`location "${t.slug}": duplicate entries in adjacentSlugs`);
+  }
+  if (!t.adjacentSlugs.length) err(`location "${t.slug}": no adjacent towns`);
   for (const p of t.dominantPropertyTypes) {
     if (!propSlugs.has(p)) err(`location "${t.slug}": unknown property type "${p}"`);
   }

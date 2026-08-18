@@ -1,0 +1,143 @@
+---
+/**
+ * Base layout. Owns <head>, the canonical link, and the single JSON-LD graph.
+ *
+ * Phase 2: structure and SEO plumbing only. Styling arrives in Phase 3.
+ */
+import { company, isBatchPublished } from '../lib/data';
+import { canonical, urls, assertValidPath, type Path } from '../lib/urls';
+import {
+  graph,
+  organizationNode,
+  webSiteNode,
+  webPageNode,
+  breadcrumbNode,
+  type Crumb,
+} from '../lib/schema';
+import type { Batch } from '../types';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Site-root-relative path of THIS page. Drives the self-referencing canonical. */
+  path: Path;
+  /** Breadcrumb trail excluding Home, which is prepended. Omit on the homepage. */
+  crumbs?: Crumb[];
+  /** Extra JSON-LD nodes (Service, etc.) merged into the page's single graph. */
+  schemaNodes?: Record<string, unknown>[];
+  /** Batch this page belongs to. Unpublished batches are noindex. */
+  batch?: Batch;
+  /** Force noindex regardless of batch. Used by the 404 page. */
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  path,
+  crumbs = [],
+  schemaNodes = [],
+  batch = 0,
+  noindex = false,
+} = Astro.props;
+
+assertValidPath(path);
+
+const canonicalUrl = canonical(path);
+const isIndexable = !noindex && isBatchPublished(batch);
+
+const fullCrumbs: Crumb[] = crumbs.length ? [{ name: 'Home', path: urls.home() }, ...crumbs] : [];
+
+const jsonLd = graph([
+  organizationNode(),
+  webSiteNode(),
+  webPageNode(path, title, description),
+  ...(fullCrumbs.length ? [breadcrumbNode(fullCrumbs, path)] : []),
+  ...schemaNodes,
+]);
+
+const year = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="en-SG">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- Self-referencing canonical, absolute, on every page without exception. -->
+    <link rel="canonical" href={canonicalUrl} />
+
+    {/* Pages in a batch that is not yet live are built for review but kept out of the index. */}
+    {isIndexable
+      ? <meta name="robots" content="index,follow,max-image-preview:large" />
+      : <meta name="robots" content="noindex,follow" />}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={company.tradingName} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:locale" content="en_SG" />
+    <meta name="twitter:card" content="summary" />
+
+    <meta name="format-detection" content="telephone=no" />
+
+    {/* set:html on a real <script> element: the JSON must not be HTML-escaped. */}
+    <script type="application/ld+json" is:inline set:html={jsonLd} />
+  </head>
+
+  <body>
+    <a href="#main">Skip to content</a>
+
+    <header>
+      <nav aria-label="Primary">
+        <a href={urls.home()}>{company.tradingName}</a>
+        <ul>
+          <li><a href={urls.pricing()}>Pricing</a></li>
+          <li><a href={urls.vendorStandards()}>Vendor Standards</a></li>
+          <li><a href={urls.areas()}>Areas</a></li>
+          <li><a href={urls.about()}>About</a></li>
+          <li><a href={urls.contact()}>Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    {fullCrumbs.length > 0 && (
+      <nav aria-label="Breadcrumb">
+        <ol>
+          {fullCrumbs.map((c, i) => (
+            <li>
+              {i === fullCrumbs.length - 1
+                ? <span aria-current="page">{c.name}</span>
+                : <a href={c.path}>{c.name}</a>}
+            </li>
+          ))}
+        </ol>
+      </nav>
+    )}
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer>
+      <p>{company.businessModelStatement}</p>
+      <p>
+        <strong>{company.entityName}</strong> trading as {company.tradingName}<br />
+        UEN: {company.uen}<br />
+        {company.address.street} {company.address.unit}, Singapore {company.address.postalCode}<br />
+        Tel: <a href={`tel:${company.phone}`}>{company.phoneDisplay}</a><br />
+        {company.operatingHoursDisplay}
+      </p>
+      <ul>
+        <li><a href={urls.privacy()}>Privacy Policy</a></li>
+        <li><a href={urls.terms()}>Terms of Service</a></li>
+      </ul>
+      <p>&copy; {year} {company.entityName}. Established {company.yearEstablished}.</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,87 @@
+---
+/**
+ * /pricing/
+ *
+ * Phase 2: the internal link hub for services and property types, so nothing is
+ * orphaned. Real pricing-guide copy lands in Phase 4.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { urls } from '../lib/urls';
+import { meta } from '../lib/seo';
+import { publishedServices, publishedPropertyTypes, company } from '../lib/data';
+
+const path = urls.pricing();
+const services = publishedServices();
+const propertyTypes = publishedPropertyTypes();
+
+const { title, description } = meta(
+  'Cleaning Prices in Singapore 2026 | HomeToClean',
+  'What home cleaning actually costs in Singapore, by service and property size. Hourly versus flat rate explained, with the GST position stated plainly.',
+);
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path={path}
+  batch={0}
+  crumbs={[{ name: 'Pricing', path }]}
+>
+  <h1>Cleaning prices in Singapore</h1>
+  <p>
+    All figures below are indicative market ranges in Singapore dollars, stated
+    before GST at {company.gstRatePercent}%. They are ranges, not quotes.
+  </p>
+
+  <h2>Price by service</h2>
+  <table>
+    <thead>
+      <tr><th>Service</th><th>Basis</th><th>Typical range (S$)</th></tr>
+    </thead>
+    <tbody>
+      {services.map((s) => (
+        <tr>
+          <td><a href={urls.service(s.slug)}>{s.name}</a></td>
+          <td>{s.priceRangeSGD.unit}</td>
+          <td>
+            {s.priceRangeSGD.min !== null && s.priceRangeSGD.max !== null
+              ? `S$${s.priceRangeSGD.min} – S$${s.priceRangeSGD.max}`
+              : 'Quoted on request'}
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+
+  <h2>Price by property size</h2>
+  <p>
+    Cleaning pricing keys off property size more than location, so this is
+    usually the more useful table.
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <th>Property type</th>
+        <th>Floor area (sqft)</th>
+        <th>Routine clean</th>
+        <th>Deep clean (S$)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {propertyTypes.map((p) => (
+        <tr>
+          <td><a href={urls.propertyType(p.slug)}>{p.name}</a></td>
+          <td>{p.floorAreaSqft.min}–{p.floorAreaSqft.max}</td>
+          <td>{p.regularCleanHours.min}–{p.regularCleanHours.max} hours</td>
+          <td>
+            {p.deepCleanFlatRateSGD !== null
+              ? `S$${p.deepCleanFlatRateSGD.min} – S$${p.deepCleanFlatRateSGD.max}`
+              : 'Site visit required'}
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+
+  <p><em>Phase 2 placeholder. Full pricing guide copy lands in Phase 4.</em></p>
+</BaseLayout>

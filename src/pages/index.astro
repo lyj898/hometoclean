@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { urls } from '../lib/urls';
+import { meta } from '../lib/seo';
+
+const path = urls.home();
+const { title, description } = meta(
+  'Home Cleaning Services Singapore | HomeToClean',
+  'Get matched with vetted, insured cleaning vendors across Singapore. Transparent SGD pricing by property size. Part-time, deep and post-renovation cleaning.',
+);
+---
+
+<BaseLayout title={title} description={description} path={path} batch={0}>
+  <h1>Home Cleaning Services Singapore</h1>
+  <p>Get matched with vetted, insured cleaning vendors across Singapore. Transparent SGD pricing by property size. Part-time, deep and post-renovation cleaning.</p>
+  <p><em>Phase 2 placeholder. Content lands in Phase 3 and 4.</em></p>
+</BaseLayout>

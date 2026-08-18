@@ -1,0 +1,107 @@
+---
+/**
+ * /cleaning/{service}/
+ *
+ * Routes are derived from services.json. There is no hardcoded page list here,
+ * so adding a service to the data generates this page with no template edit.
+ */
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { services, publishedTownsForService, relatedServices } from '../../lib/data';
+import { urls } from '../../lib/urls';
+import { meta, fit } from '../../lib/seo';
+import { serviceNode } from '../../lib/schema';
+import type { Service } from '../../types';
+
+export const getStaticPaths = (() =>
+  services.map((service) => ({
+    params: { service: service.slug },
+    props: { service },
+  }))) satisfies GetStaticPaths;
+
+interface Props {
+  service: Service;
+}
+
+const { service } = Astro.props;
+
+const path = urls.service(service.slug);
+const towns = publishedTownsForService(service.slug);
+const related = relatedServices(service);
+
+const { title, description } = meta(
+  fit(`${service.name} Singapore | Prices & What's Included`, 60),
+  fit(
+    `${service.name} in Singapore: what it covers, what it excludes, and what it costs in S$. Matched with vetted, insured cleaning vendors.`,
+    155,
+  ),
+);
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path={path}
+  batch={service.batch}
+  crumbs={[{ name: service.name, path }]}
+  schemaNodes={[serviceNode(service, path)]}
+>
+  <h1>{service.h1Default}</h1>
+  <p>{service.shortDescription}</p>
+  <p>{service.longDescription}</p>
+
+  <h2>What's included</h2>
+  <ul>{service.inclusions.map((i) => <li>{i}</li>)}</ul>
+
+  <h2>What's not included</h2>
+  <ul>{service.exclusions.map((e) => <li>{e}</li>)}</ul>
+
+  <h2>How pricing works</h2>
+  <p>
+    Billed <strong>{service.priceRangeSGD.unit}</strong>.
+    {service.priceRangeSGD.min !== null && service.priceRangeSGD.max !== null
+      ? ` Typically S$${service.priceRangeSGD.min} to S$${service.priceRangeSGD.max} ${service.priceRangeSGD.unit}.`
+      : ' Quoted on request.'}
+  </p>
+  <p>{service.priceRangeSGD.notes}</p>
+
+  <h2>Is this the right service?</h2>
+  <p>Choose {service.name.toLowerCase()} if:</p>
+  <ul>{service.chooseThisIf.map((c) => <li>{c}</li>)}</ul>
+  <p>Consider something else if:</p>
+  <ul>
+    {service.chooseInsteadIf.map((alt) => (
+      <li><a href={urls.service(alt.serviceSlug)}>{alt.serviceSlug}</a> — {alt.reason}</li>
+    ))}
+  </ul>
+
+  <h2>Frequently asked questions</h2>
+  <dl>
+    {service.faqs.map((f) => (
+      <>
+        <dt>{f.q}</dt>
+        <dd>{f.a}</dd>
+      </>
+    ))}
+  </dl>
+
+  {towns.length > 0 && (
+    <>
+      <h2>{service.name} by town</h2>
+      <ul>
+        {towns.map((t) => (
+          <li><a href={urls.location(service.slug, t.slug)}>{service.name} in {t.name}</a></li>
+        ))}
+      </ul>
+    </>
+  )}
+
+  {related.length > 0 && (
+    <>
+      <h2>Related services</h2>
+      <ul>
+        {related.map((r) => <li><a href={urls.service(r.slug)}>{r.name}</a></li>)}
+      </ul>
+    </>
+  )}
+</BaseLayout>

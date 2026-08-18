@@ -1,0 +1,12 @@
+{
+  "publishedBatches": [
+    0,
+    1
+  ],
+  "batchNotes": {
+    "0": "Home, vendor standards, pricing, about, contact, privacy, terms, areas index",
+    "1": "7 service pages + 8 property-type pages",
+    "2": "3 services x 12 highest-population towns (location pages)",
+    "3": "Remaining location towns, driven by Search Console data"
+  }
+}

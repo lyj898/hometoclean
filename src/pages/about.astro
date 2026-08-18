@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { urls } from '../lib/urls';
+import { meta } from '../lib/seo';
+
+const path = urls.about();
+const { title, description } = meta(
+  'About HomeToClean | SKAP Waste Management',
+  'HomeToClean is the trading name of SKAP Waste Management Pte Ltd, established 2009. We are a matching service connecting households with cleaning vendors.',
+);
+---
+
+<BaseLayout title={title} description={description} path={path} batch={0}
+  crumbs={[{ name: 'About', path: urls.about() }]}>
+  <h1>About HomeToClean</h1>
+  <p>HomeToClean is the trading name of SKAP Waste Management Pte Ltd, established 2009. We are a matching service connecting households with cleaning vendors.</p>
+  <p><em>Phase 2 placeholder. Content lands in Phase 3 and 4.</em></p>
+</BaseLayout>

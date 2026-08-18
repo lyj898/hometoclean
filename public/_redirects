@@ -1,0 +1,13 @@
+# Cloudflare Pages redirects for hometoclean.com
+#
+# Intentionally empty. Nothing has moved yet.
+#
+# Rules to observe when adding entries:
+#   - Destinations MUST carry a trailing slash, matching trailingSlash: 'always'
+#     in astro.config.mjs. A redirect to a slash-less path creates exactly the
+#     duplication this site is configured to avoid.
+#   - Use 301 for permanent moves, 302 only for genuinely temporary ones.
+#   - One hop only. Chained redirects lose signal at each step.
+#   - Never redirect a live, indexed URL without checking Search Console first.
+#
+# Format:  /old-path/  /new-path/  301

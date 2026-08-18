@@ -1,0 +1,73 @@
+---
+/**
+ * /property/{type}/
+ *
+ * Cleaning pricing keys off property size more than location, so these pages
+ * carry the numbers the location pages reference.
+ */
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { propertyTypes, publishedServices } from '../../lib/data';
+import { urls } from '../../lib/urls';
+import { meta, fit } from '../../lib/seo';
+import type { PropertyType } from '../../types';
+
+export const getStaticPaths = (() =>
+  propertyTypes.map((propertyType) => ({
+    params: { type: propertyType.slug },
+    props: { propertyType },
+  }))) satisfies GetStaticPaths;
+
+interface Props {
+  propertyType: PropertyType;
+}
+
+const { propertyType: pt } = Astro.props;
+
+const path = urls.propertyType(pt.slug);
+const services = publishedServices();
+
+const { title, description } = meta(
+  fit(`${pt.name} Cleaning Singapore | Hours & Cost`, 60),
+  fit(
+    `What cleaning a ${pt.name} in Singapore involves: typical floor area ${pt.floorAreaSqft.min}-${pt.floorAreaSqft.max} sqft, hours required, and what a deep clean costs.`,
+    155,
+  ),
+);
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path={path}
+  batch={pt.batch}
+  crumbs={[{ name: pt.name, path }]}
+>
+  <h1>Cleaning a {pt.name} in Singapore</h1>
+  <p>{pt.notes}</p>
+
+  <h2>Size and time</h2>
+  <ul>
+    <li>Typical floor area: {pt.floorAreaSqm.min}–{pt.floorAreaSqm.max} sqm ({pt.floorAreaSqft.min}–{pt.floorAreaSqft.max} sqft)</li>
+    <li>Routine clean: {pt.regularCleanHours.min}–{pt.regularCleanHours.max} hours</li>
+    <li>Deep clean: {pt.deepCleanHours.min}–{pt.deepCleanHours.max} hours</li>
+    {pt.deepCleanFlatRateSGD !== null && (
+      <li>Deep clean flat rate: S${pt.deepCleanFlatRateSGD.min}–S${pt.deepCleanFlatRateSGD.max} before GST</li>
+    )}
+  </ul>
+
+  <h2>Time needed by service</h2>
+  <table>
+    <thead>
+      <tr><th>Service</th><th>Typical duration</th></tr>
+    </thead>
+    <tbody>
+      {services.map((s) => (
+        <tr>
+          <td><a href={urls.service(s.slug)}>{s.name}</a></td>
+          <td>{s.typicalDurationByProperty[pt.slug]}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</BaseLayout>

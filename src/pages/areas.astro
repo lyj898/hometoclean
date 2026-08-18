@@ -1,0 +1,58 @@
+---
+/**
+ * /areas/
+ *
+ * Town index. Lists all 27 towns we cover, and links through to whichever
+ * location pages are actually published. Towns without a published location
+ * page are still listed — we cover them, they just have no page yet — but are
+ * not linked, so the crawl graph stays honest.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { urls } from '../lib/urls';
+import { meta } from '../lib/seo';
+import { locations, publishedServicesForTown } from '../lib/data';
+
+const path = urls.areas();
+
+const towns = locations.map((town) => ({
+  town,
+  services: publishedServicesForTown(town.slug),
+}));
+
+const { title, description } = meta(
+  'Areas We Cover in Singapore | HomeToClean',
+  'HomeToClean matches households with vetted cleaning vendors across 27 residential towns in Singapore. Find cleaning services covering your estate.',
+);
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path={path}
+  batch={0}
+  crumbs={[{ name: 'Areas', path }]}
+>
+  <h1>Areas we cover in Singapore</h1>
+  <p>
+    We match households with vetted cleaning vendors across {locations.length} residential
+    towns. Coverage is island-wide; the links below go to town-specific pages
+    where we have published them.
+  </p>
+
+  <ul>
+    {towns.map(({ town, services }) => (
+      <li>
+        <strong>{town.name}</strong>
+        {services.length > 0 ? (
+          <ul>
+            {services.map((s) => (
+              <li>
+                <a href={urls.location(s.slug, town.slug)}>{s.name} in {town.name}</a>
+              </li>
+            ))}
+          </ul>
+        ) : null}
+      </li>
+    ))}
+  </ul>
+</BaseLayout>

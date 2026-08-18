@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { urls } from '../lib/urls';
+import { meta } from '../lib/seo';
+
+const path = urls.contact();
+const { title, description } = meta(
+  'Contact HomeToClean | Get a Cleaning Quote',
+  'Request a cleaning quote in Singapore. Tell us your town, property type and service, and we will match you with vetted, insured cleaning vendors.',
+);
+---
+
+<BaseLayout title={title} description={description} path={path} batch={0}
+  crumbs={[{ name: 'Contact', path: urls.contact() }]}>
+  <h1>Contact HomeToClean</h1>
+  <p>Request a cleaning quote in Singapore. Tell us your town, property type and service, and we will match you with vetted, insured cleaning vendors.</p>
+  <p><em>Phase 2 placeholder. Content lands in Phase 3 and 4.</em></p>
+</BaseLayout>

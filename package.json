@@ -9,7 +9,11 @@
     "preview": "astro preview",
     "check": "astro check",
     "validate": "node scripts/validate-data.mjs && node scripts/gen-combos.mjs --check",
-    "gen:combos": "node scripts/gen-combos.mjs"
+    "gen:combos": "node scripts/gen-combos.mjs",
+    "publish": "node scripts/publish-batch.mjs",
+    "status": "node scripts/publish-batch.mjs status",
+    "audit": "node scripts/audit-build.mjs",
+    "verify": "npm run build && npm run audit"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.10",

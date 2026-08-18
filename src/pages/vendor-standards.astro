@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { urls } from '../lib/urls';
+import { meta } from '../lib/seo';
+
+const path = urls.vendorStandards();
+const { title, description } = meta(
+  'How We Vet Cleaning Vendors | HomeToClean',
+  'Licensing, insurance and work-pass compliance: the checks we run before a cleaning vendor is matched with a Singapore household, and why they matter.',
+);
+---
+
+<BaseLayout title={title} description={description} path={path} batch={0}
+  crumbs={[{ name: 'Vendor Standards', path: urls.vendorStandards() }]}>
+  <h1>How We Vet Cleaning Vendors</h1>
+  <p>Licensing, insurance and work-pass compliance: the checks we run before a cleaning vendor is matched with a Singapore household, and why they matter.</p>
+  <p><em>Phase 2 placeholder. Content lands in Phase 3 and 4.</em></p>
+</BaseLayout>
