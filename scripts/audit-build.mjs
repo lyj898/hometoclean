@@ -282,6 +282,17 @@ for (const p of pages.values()) {
   }
 }
 
+// --- no unresolved placeholders in rendered output ---------------------------
+// A literal "[POSTAL_CODE]" on a live page looks broken and is worse than
+// omitting the field. Every company.json value is optional and guarded, so this
+// should never fire.
+for (const p of pages.values()) {
+  const found = [...new Set(p.html.match(/\[[A-Z][A-Z_0-9]{2,}\]/g) ?? [])];
+  if (found.length) {
+    err(`${p.route}: unresolved placeholder(s) rendered: ${found.join(', ')}`);
+  }
+}
+
 // --- report -----------------------------------------------------------------
 for (const w of warnings) console.warn(`  warn  ${w}`);
 for (const e of errors) console.error(`  ERROR ${e}`);

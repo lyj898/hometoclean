@@ -5,9 +5,9 @@
   "yearEstablished": 2009,
   "siteUrl": "https://hometoclean.com",
   "address": {
-    "street": "[ADDRESS_LINE_1]",
-    "unit": "[UNIT_NO]",
-    "postalCode": "[POSTAL_CODE]",
+    "street": "",
+    "unit": "",
+    "postalCode": "",
     "locality": "Singapore",
     "country": "SG"
   },
@@ -37,7 +37,6 @@
   ],
   "operatingHoursDisplay": "Mon-Fri 9am-6pm, Sat 9am-1pm. Closed Sunday and public holidays.",
   "gstRatePercent": 9,
-  "gstRegistered": null,
   "businessModel": "matching",
   "businessModelStatement": "HomeToClean is a matching service. We connect households in Singapore with vetted, independent cleaning vendors. We do not carry out cleaning work ourselves.",
   "contactModel": "form-only",
@@ -45,5 +44,6 @@
     "endpoint": "https://formsubmit.co/ajax/lyj898@gmail.com",
     "subject": "New enquiry - HomeToClean",
     "note": "FormSubmit requires a one-time activation: the first submission emails a confirmation link to the destination address. The destination address appears ONLY here and in the compiled form script - it is deliberately absent from every rendered page. After activating, replace the address with the hashed alias FormSubmit provides so it disappears from page source too."
-  }
+  },
+  "entityUrl": "https://junktoclear.com.sg"
 }

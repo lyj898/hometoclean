@@ -6,7 +6,8 @@
  * Placeholder contact values are rendered as plain text rather than as links,
  * so nothing here looks clickable before it works.
  */
-import { company, services, propertyTypes, isBatchPublished, hasUen } from '../lib/data';
+import { company, services, propertyTypes, isBatchPublished, hasUen, addressLines } from '../lib/data';
+import EntityName from './EntityName.astro';
 import { urls } from '../lib/urls';
 
 const year = new Date().getFullYear();
@@ -14,11 +15,7 @@ const year = new Date().getFullYear();
 const liveServices = services.filter((s) => isBatchPublished(s.batch));
 const liveProperties = propertyTypes.filter((p) => isBatchPublished(p.batch));
 
-const isPlaceholder = (v: string): boolean => /^\[.*\]$/.test(v);
-const addressLine = [company.address.street, company.address.unit]
-  .filter((v) => !isPlaceholder(v))
-  .join(' ');
-const postal = isPlaceholder(company.address.postalCode) ? '' : `Singapore ${company.address.postalCode}`;
+const address = addressLines();
 ---
 
 <footer class="border-t border-line bg-surface-sunk">
@@ -76,18 +73,17 @@ const postal = isPlaceholder(company.address.postalCode) ? '' : `Singapore ${com
     {/* Registered entity details. Required in the footer. */}
     <div class="mt-12 border-t border-line pt-8">
       <address class="text-sm not-italic leading-relaxed text-ink-muted">
-        <strong class="font-semibold text-ink">{company.entityName}</strong>
+        <strong class="font-semibold"><EntityName /></strong>
         <span> trading as {company.tradingName}</span><br />
         {hasUen() && <><span>UEN: {company.uen}</span><br /></>}
-        {addressLine && <>{addressLine}<br /></>}
-        {postal && <>{postal}<br /></>}
+        {address.map((line) => <>{line}<br /></>)}
         <a href={urls.contact()} class="font-medium text-brand no-underline">Send us a message</a>
         <br />
         <span>{company.operatingHoursDisplay}</span>
       </address>
 
       <p class="mt-6 text-2xs leading-relaxed text-ink-faint">
-        &copy; {year} {company.entityName}. Established {company.yearEstablished}.
+        &copy; {year} <EntityName />. Established {company.yearEstablished}.
         Prices shown on this site are indicative market ranges in Singapore dollars
         and are not quotations.
       </p>

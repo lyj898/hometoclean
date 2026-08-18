@@ -154,6 +154,7 @@ export interface OperatingHours {
 }
 
 export interface Address {
+  /** Empty until supplied. Render sites omit the address while blank. */
   street: string;
   unit: string;
   postalCode: string;
@@ -173,6 +174,8 @@ export interface FormSubmitConfig {
 export interface Company {
   /** Registered entity. Must appear in the footer. */
   entityName: string;
+  /** The operating entity's own website. Rendered mentions link here. */
+  entityUrl: string;
   tradingName: string;
   /** Empty until supplied. Every render site omits it while blank — see hasUen(). */
   uen: string;
@@ -188,9 +191,8 @@ export interface Company {
   email: string;
   operatingHours: OperatingHours[];
   operatingHoursDisplay: string;
+  /** National GST rate, cited when explaining vendor pricing. */
   gstRatePercent: number;
-  /** `null` until confirmed. Determines whether prices are shown "before GST". */
-  gstRegistered: boolean | null;
   /** We match customers to vendors. We do not perform cleaning. */
   businessModel: 'matching';
   businessModelStatement: string;

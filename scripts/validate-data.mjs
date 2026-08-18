@@ -190,8 +190,12 @@ const placeholders = Object.entries(company)
         ? Object.entries(v).filter(([, vv]) => typeof vv === 'string' && /^\[.*\]$/.test(vv)).map(([kk]) => `${k}.${kk}`)
         : [],
   );
-if (placeholders.length) warn(`company.json: unresolved placeholders: ${placeholders.join(', ')}`);
-if (company.gstRegistered === null) warn('company.json: gstRegistered is null; GST wording cannot be finalised');
+// Every company.json string is optional and guarded at the render site, so a
+// placeholder is an error rather than a warning: it means a guard is missing.
+if (placeholders.length) {
+  err(`company.json: placeholder values must be emptied, not left bracketed: ${placeholders.join(', ')}`);
+}
+if (!company.entityUrl) warn('company.json: entityUrl unset; entity name will render unlinked');
 
 // --- enum / literal-union conformance ---------------------------------------
 // The TS types narrow these to unions. JSON cannot express that, so the

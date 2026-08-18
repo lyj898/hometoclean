@@ -10,6 +10,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Section from '../components/Section.astro';
 import FaqList from '../components/FaqList.astro';
+import EntityName from '../components/EntityName.astro';
 
 import { urls } from '../lib/urls';
 import { meta } from '../lib/seo';
@@ -127,7 +128,7 @@ const homeFaqs = [
           <span class="text-sm text-ink-muted">Operating as a Singapore business since</span>
         </div>
         <div class="text-sm text-ink-muted">
-          <span class="font-semibold text-ink">{company.entityName}</span><br />
+          <span class="font-semibold"><EntityName /></span><br />
           Singapore-registered company
         </div>
         <div class="text-sm text-ink-muted">

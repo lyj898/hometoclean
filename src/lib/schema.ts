@@ -68,6 +68,9 @@ export function organizationNode(): JsonLdNode {
       : undefined,
     address: postalAddress,
     telephone: real(company.phone),
+    // The operating entity's own website. sameAs is how schema.org associates
+    // one organisation with its other web presence.
+    sameAs: real(company.entityUrl) ? [company.entityUrl] : undefined,
     // The inbox address is deliberately NOT published here. Contact is
     // form-only, and an email in structured data on every page is a
     // spam-harvesting target. Point at the form instead.

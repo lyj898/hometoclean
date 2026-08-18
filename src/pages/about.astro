@@ -5,7 +5,8 @@ import CtaBand from '../components/CtaBand.astro';
 
 import { urls } from '../lib/urls';
 import { meta } from '../lib/seo';
-import { company, locations, hasUen } from '../lib/data';
+import { company, locations, hasUen, hasAddress, addressLines } from '../lib/data';
+import EntityName from '../components/EntityName.astro';
 
 const path = urls.about();
 
@@ -46,8 +47,8 @@ const { title, description } = meta(
       <div class="prose-ht text-ink-muted">
         <h2 class="text-2xl font-semibold text-ink sm:text-3xl">Who operates this site</h2>
         <p>
-          {company.tradingName} is a trading name of <strong class="text-ink">{company.entityName}</strong>,
-          a Singapore-registered company that has been operating since {company.yearEstablished}.
+          {company.tradingName} is a trading name of <strong><EntityName /></strong>, a
+          Singapore-registered company that has been operating since {company.yearEstablished}.
           The registered entity details are in the footer of every page on this site,
           because you should not have to hunt for them.
         </p>
@@ -95,13 +96,14 @@ const { title, description } = meta(
         <div class="rounded-card border border-line bg-surface p-6">
           <h2 class="font-semibold">Registered entity</h2>
           <address class="mt-3 text-sm not-italic leading-relaxed text-ink-muted">
-            <strong class="font-semibold text-ink">{company.entityName}</strong><br />
+            <strong class="font-semibold"><EntityName /></strong><br />
             trading as {company.tradingName}<br />
             {hasUen() && <>UEN {company.uen}<br /></>}
-            <span class="mt-2 block">
-              {company.address.street} {company.address.unit}<br />
-              Singapore {company.address.postalCode}
-            </span>
+            {hasAddress() && (
+              <span class="mt-2 block">
+                {addressLines().map((line) => <>{line}<br /></>)}
+              </span>
+            )}
             <span class="mt-2 block">
               <a href={urls.contact()} class="font-medium text-brand no-underline">
                 Send us a message

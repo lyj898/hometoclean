@@ -10,7 +10,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { urls } from '../lib/urls';
 import { meta } from '../lib/seo';
-import { company, hasUen } from '../lib/data';
+import { company, hasUen, hasAddress, addressLines } from '../lib/data';
+import EntityName from '../components/EntityName.astro';
 
 const path = urls.terms();
 
@@ -33,7 +34,7 @@ const lastUpdated = 'August 2026';
     <div class="wrap-narrow py-12 sm:py-16">
       <h1 class="text-3xl font-semibold sm:text-4xl">Terms of Service</h1>
       <p class="mt-4 text-ink-muted">
-        These terms govern your use of hometoclean.com, operated by {company.entityName}{hasUen() ? ` (UEN ${company.uen})` : ''},
+        These terms govern your use of hometoclean.com, operated by <EntityName />{hasUen() ? ` (UEN ${company.uen})` : ''},
         trading as {company.tradingName}.
       </p>
       <p class="mt-2 text-sm text-ink-faint">Last updated: {lastUpdated}</p>
@@ -131,7 +132,7 @@ const lastUpdated = 'August 2026';
     <h2>8. Intellectual property</h2>
     <p>
       The content of this site, including the text, pricing guidance and design, belongs to
-      {company.entityName} unless otherwise stated. You may read and share it for personal,
+      <EntityName /> unless otherwise stated. You may read and share it for personal,
       non-commercial use. You may not reproduce it commercially without our written
       permission.
     </p>
@@ -175,11 +176,10 @@ const lastUpdated = 'August 2026';
 
     <h2>13. Contact</h2>
     <div class="rounded-card border border-line bg-surface p-5 text-sm not-prose">
-      <p class="font-semibold text-ink">{company.entityName}</p>
+      <p class="font-semibold"><EntityName /></p>
       <p class="mt-1">trading as {company.tradingName}</p>
       {hasUen() && <p>UEN {company.uen}</p>}
-      <p class="mt-2">{company.address.street} {company.address.unit}</p>
-      <p>Singapore {company.address.postalCode}</p>
+      {hasAddress() && addressLines().map((line) => <p>{line}</p>)}
       <p class="mt-2">
         Contact us through the
         <a href={urls.contact()} class="text-brand underline underline-offset-2">enquiry form</a>,

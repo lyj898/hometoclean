@@ -1,0 +1,27 @@
+---
+/**
+ * The registered entity name, linked to the entity's own website.
+ *
+ * Used everywhere the entity is named so the link is consistent and appears in
+ * one place in the codebase. Falls back to plain text if entityUrl is unset.
+ */
+import { company } from '../lib/data';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+const href = company.entityUrl?.trim();
+---
+
+{href ? (
+  <a
+    href={href}
+    rel="noopener"
+    target="_blank"
+    class={`text-brand no-underline hover:underline ${className}`}
+  >{company.entityName}</a>
+) : (
+  <span class={className}>{company.entityName}</span>
+)}
