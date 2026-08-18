@@ -174,7 +174,7 @@ export interface Company {
   /** Registered entity. Must appear in the footer. */
   entityName: string;
   tradingName: string;
-  /** Placeholder `[UEN]` until supplied. */
+  /** Empty until supplied. Every render site omits it while blank — see hasUen(). */
   uen: string;
   yearEstablished: number;
   /** Absolute origin, no trailing slash. Used for canonicals and JSON-LD @id. */

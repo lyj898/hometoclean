@@ -2,7 +2,7 @@
 
 Lead generation site for **HomeToClean**, the trading name of **SKAP Waste Management Pte Ltd** (est. 2009).
 
-HomeToClean is a **matching service**. It connects households in Singapore with vetted, independent cleaning vendors. It does not carry out cleaning work. Copy must never say "our cleaners" or "our team will arrive" — say "matched with vetted, licensed cleaners". This is a legal accuracy requirement, not a style preference.
+HomeToClean is a **matching service**. It connects households in Singapore with vetted, independent cleaning vendors. It does not carry out cleaning work. Copy must never say "our cleaners" or "our team will arrive" — say "matched with vetted cleaners". This is a legal accuracy requirement, not a style preference.
 
 Market: Singapore only. English only. No locale prefixes, ever.
 
@@ -141,7 +141,13 @@ The generator **preserves existing entries**, so hand-edits to `batch` or `publi
 
 ### `company.json`
 
-Entity name, UEN, address, phone, WhatsApp, hours, year established. Placeholders are written as `[UEN]`, `[PHONE_E164]` etc. The validator warns about every unresolved placeholder, so they cannot quietly reach production.
+Entity name, address, hours, year established, and the FormSubmit endpoint.
+
+Several fields are **deliberately empty** and every render site omits them while
+they are: `uen`, `email`, `phone`, `phoneDisplay`, `whatsappNumber`. Setting one
+publishes it everywhere at once — `hasUen()` in `src/lib/data.ts` is the pattern.
+Address fields still carry `[PLACEHOLDER]` values, and the validator warns about
+each, so they cannot quietly reach production.
 
 ---
 

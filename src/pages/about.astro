@@ -5,7 +5,7 @@ import CtaBand from '../components/CtaBand.astro';
 
 import { urls } from '../lib/urls';
 import { meta } from '../lib/seo';
-import { company, locations } from '../lib/data';
+import { company, locations, hasUen } from '../lib/data';
 
 const path = urls.about();
 
@@ -48,8 +48,8 @@ const { title, description } = meta(
         <p>
           {company.tradingName} is a trading name of <strong class="text-ink">{company.entityName}</strong>,
           a Singapore-registered company that has been operating since {company.yearEstablished}.
-          The registered entity details and UEN are in the footer of every page on this
-          site, because you should not have to hunt for them.
+          The registered entity details are in the footer of every page on this site,
+          because you should not have to hunt for them.
         </p>
 
         <h2 class="text-2xl font-semibold text-ink sm:text-3xl">Why we built it this way</h2>
@@ -97,7 +97,7 @@ const { title, description } = meta(
           <address class="mt-3 text-sm not-italic leading-relaxed text-ink-muted">
             <strong class="font-semibold text-ink">{company.entityName}</strong><br />
             trading as {company.tradingName}<br />
-            UEN {company.uen}<br />
+            {hasUen() && <>UEN {company.uen}<br /></>}
             <span class="mt-2 block">
               {company.address.street} {company.address.unit}<br />
               Singapore {company.address.postalCode}

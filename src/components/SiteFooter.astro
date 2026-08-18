@@ -1,12 +1,12 @@
 ---
 /**
- * Site footer. Carries the full NAP and the registered entity name and UEN,
- * which is a requirement, not a nicety.
+ * Site footer. Carries the registered entity name, and the UEN when one is
+ * configured.
  *
  * Placeholder contact values are rendered as plain text rather than as links,
  * so nothing here looks clickable before it works.
  */
-import { company, services, propertyTypes, isBatchPublished } from '../lib/data';
+import { company, services, propertyTypes, isBatchPublished, hasUen } from '../lib/data';
 import { urls } from '../lib/urls';
 
 const year = new Date().getFullYear();
@@ -78,7 +78,7 @@ const postal = isPlaceholder(company.address.postalCode) ? '' : `Singapore ${com
       <address class="text-sm not-italic leading-relaxed text-ink-muted">
         <strong class="font-semibold text-ink">{company.entityName}</strong>
         <span> trading as {company.tradingName}</span><br />
-        <span>UEN: {company.uen}</span><br />
+        {hasUen() && <><span>UEN: {company.uen}</span><br /></>}
         {addressLine && <>{addressLine}<br /></>}
         {postal && <>{postal}<br /></>}
         <a href={urls.contact()} class="font-medium text-brand no-underline">Send us a message</a>

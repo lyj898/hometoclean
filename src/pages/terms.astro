@@ -10,7 +10,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { urls } from '../lib/urls';
 import { meta } from '../lib/seo';
-import { company } from '../lib/data';
+import { company, hasUen } from '../lib/data';
 
 const path = urls.terms();
 
@@ -33,8 +33,8 @@ const lastUpdated = 'August 2026';
     <div class="wrap-narrow py-12 sm:py-16">
       <h1 class="text-3xl font-semibold sm:text-4xl">Terms of Service</h1>
       <p class="mt-4 text-ink-muted">
-        These terms govern your use of hometoclean.com, operated by {company.entityName}
-        (UEN {company.uen}), trading as {company.tradingName}.
+        These terms govern your use of hometoclean.com, operated by {company.entityName}{hasUen() ? ` (UEN ${company.uen})` : ''},
+        trading as {company.tradingName}.
       </p>
       <p class="mt-2 text-sm text-ink-faint">Last updated: {lastUpdated}</p>
     </div>
@@ -177,7 +177,7 @@ const lastUpdated = 'August 2026';
     <div class="rounded-card border border-line bg-surface p-5 text-sm not-prose">
       <p class="font-semibold text-ink">{company.entityName}</p>
       <p class="mt-1">trading as {company.tradingName}</p>
-      <p>UEN {company.uen}</p>
+      {hasUen() && <p>UEN {company.uen}</p>}
       <p class="mt-2">{company.address.street} {company.address.unit}</p>
       <p>Singapore {company.address.postalCode}</p>
       <p class="mt-2">
