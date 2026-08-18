@@ -150,7 +150,7 @@ Append to `propertyTypes.json`, then add a matching `typicalDurationByProperty` 
 
 ### Known warnings
 
-Nine asymmetric adjacency pairs are warned about. These come from the supplied adjacency graph and have been left **exactly as specified** rather than silently "fixed" — see the Gate 1 notes. They affect reciprocal internal linking between neighbouring towns, so they are worth a decision before location pages go live.
+Thirteen asymmetric adjacency pairs are warned about. These come from the supplied adjacency graph and have been left **exactly as specified** rather than silently "fixed" — see the Gate 1 notes. They affect reciprocal internal linking between neighbouring towns, so they are worth a decision before location pages go live.
 
 ---
 
