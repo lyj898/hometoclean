@@ -10,6 +10,10 @@ import EntityName from '../components/EntityName.astro';
 
 const path = urls.about();
 
+// Derived, not hardcoded, so it stays correct without anyone remembering to
+// update it.
+const yearsOperating = new Date().getFullYear() - company.yearEstablished;
+
 const { title, description } = meta(
   'About HomeToClean | SKAP Waste Management',
   'HomeToClean is the trading name of SKAP Waste Management Pte Ltd, established 2009. We are a matching service connecting households with cleaning vendors.',
@@ -45,12 +49,36 @@ const { title, description } = meta(
   <Section tone="canvas">
     <div class="grid gap-12 lg:grid-cols-[1.2fr_1fr] lg:items-start">
       <div class="prose-ht text-ink-muted">
-        <h2 class="text-2xl font-semibold text-ink sm:text-3xl">Who operates this site</h2>
+        <h2 class="text-2xl font-semibold text-ink sm:text-3xl">Where this came from</h2>
         <p>
-          {company.tradingName} is a trading name of <strong><EntityName /></strong>, a
-          Singapore-registered company that has been operating since {company.yearEstablished}.
-          The registered entity details are in the footer of every page on this site,
-          because you should not have to hunt for them.
+          This site is run by the people behind
+          <a href={company.entityUrl} rel="noopener" target="_blank">{company.entityBrand}</a>,
+          a Singapore disposal company that has been clearing flats, offices and renovation
+          sites since {company.yearEstablished}.
+        </p>
+        <p>
+          That work put us in people's homes at a particular moment. Customers clearing a
+          flat were usually moving out, moving in, or handing over to a landlord. They
+          would ask whether we knew someone who could handle the cleaning, or the move, or
+          whatever we did not do ourselves. So we would recommend someone.
+        </p>
+        <p>
+          {yearsOperating} years of that taught us things you only learn by referring real
+          jobs and hearing what happened afterwards. Which vendors turn up when they said
+          they would. Which ones quote low and find reasons to charge more once they are
+          inside. Which ones you never hear a complaint about. Some we stopped referring
+          after a single job.
+        </p>
+        <p>
+          That list, of vendors we have actually seen work, is what this site is built on.
+          We are not a directory anyone can pay to join, and we are not a cleaning company
+          competing with the vendors we recommend. We match you with people we would use
+          ourselves, and you deal with them directly.
+        </p>
+        <p>
+          {company.tradingName} is a trading name of <strong><EntityName link /></strong>,
+          the same registered company. Its details are in the footer of every page, because
+          you should not have to hunt for them.
         </p>
 
         <h2 class="text-2xl font-semibold text-ink sm:text-3xl">Why we built it this way</h2>
@@ -96,7 +124,7 @@ const { title, description } = meta(
         <div class="rounded-card border border-line bg-surface p-6">
           <h2 class="font-semibold">Registered entity</h2>
           <address class="mt-3 text-sm not-italic leading-relaxed text-ink-muted">
-            <strong class="font-semibold"><EntityName /></strong><br />
+            <strong class="font-semibold"><EntityName link /></strong><br />
             trading as {company.tradingName}<br />
             {hasUen() && <>UEN {company.uen}<br /></>}
             {hasAddress() && (

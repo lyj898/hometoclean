@@ -1,18 +1,22 @@
 ---
 /**
- * The registered entity name, linked to the entity's own website.
+ * The registered entity name.
  *
- * Used everywhere the entity is named so the link is consistent and appears in
- * one place in the codebase. Falls back to plain text if entityUrl is unset.
+ * Renders as plain text by default. Linking to the entity's own site is
+ * opt-in via `link`, and is deliberately used on /about/ only: that is the
+ * page where the relationship between the two businesses is explained, so the
+ * link has context there and would be noise everywhere else.
  */
 import { company } from '../lib/data';
 
 interface Props {
+  /** Link the name to the entity's own website. Off by default. */
+  link?: boolean;
   class?: string;
 }
 
-const { class: className = '' } = Astro.props;
-const href = company.entityUrl?.trim();
+const { link = false, class: className = '' } = Astro.props;
+const href = link ? company.entityUrl?.trim() : '';
 ---
 
 {href ? (

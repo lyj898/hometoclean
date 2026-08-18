@@ -174,8 +174,10 @@ export interface FormSubmitConfig {
 export interface Company {
   /** Registered entity. Must appear in the footer. */
   entityName: string;
-  /** The operating entity's own website. Rendered mentions link here. */
+  /** The operating entity's own website. Linked from /about/ only. */
   entityUrl: string;
+  /** Customer-facing brand the entity trades under for its disposal work. */
+  entityBrand: string;
   tradingName: string;
   /** Empty until supplied. Every render site omits it while blank — see hasUen(). */
   uen: string;
