@@ -1,18 +1,187 @@
 ---
+/**
+ * /terms/
+ *
+ * The load-bearing clause is section 2: we are a matching service and the
+ * contract for the cleaning is between the customer and the vendor. Everything
+ * about liability follows from that, so it is stated first and plainly rather
+ * than buried.
+ */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { urls } from '../lib/urls';
 import { meta } from '../lib/seo';
+import { company } from '../lib/data';
 
 const path = urls.terms();
+
 const { title, description } = meta(
   'Terms of Service | HomeToClean',
   'Terms governing use of hometoclean.com. HomeToClean is a matching service and is not the provider of the cleaning services arranged through this site.',
 );
+
+const lastUpdated = 'August 2026';
 ---
 
-<BaseLayout title={title} description={description} path={path} batch={0}
-  crumbs={[{ name: 'Terms of Service', path: urls.terms() }]}>
-  <h1>Terms of Service</h1>
-  <p>Terms governing use of hometoclean.com. HomeToClean is a matching service and is not the provider of the cleaning services arranged through this site.</p>
-  <p><em>Phase 2 placeholder. Content lands in Phase 3 and 4.</em></p>
+<BaseLayout
+  title={title}
+  description={description}
+  path={path}
+  batch={0}
+  crumbs={[{ name: 'Terms of Service', path }]}
+>
+  <section class="border-b border-line bg-surface">
+    <div class="wrap-narrow py-12 sm:py-16">
+      <h1 class="text-3xl font-semibold sm:text-4xl">Terms of Service</h1>
+      <p class="mt-4 text-ink-muted">
+        These terms govern your use of hometoclean.com, operated by {company.entityName}
+        (UEN {company.uen}), trading as {company.tradingName}.
+      </p>
+      <p class="mt-2 text-sm text-ink-faint">Last updated: {lastUpdated}</p>
+    </div>
+  </section>
+
+  <div class="wrap-narrow prose-ht py-12 text-ink-muted sm:py-16">
+    <div class="rounded-card border border-brand/25 bg-brand-light/50 p-5 text-ink">
+      <p class="text-sm leading-relaxed">
+        <strong class="font-semibold">The short version.</strong> {company.tradingName} is
+        a matching service. We introduce you to independent cleaning vendors. We do not
+        clean your home, we do not employ the cleaners, and the agreement for the cleaning
+        work is between you and the vendor you choose.
+      </p>
+    </div>
+
+    <h2>1. Acceptance</h2>
+    <p>
+      By using this site or submitting an enquiry through it, you agree to these terms. If
+      you do not agree, please do not use the site.
+    </p>
+
+    <h2>2. What we do, and what we do not do</h2>
+    <p>
+      {company.tradingName} is a <strong>matching service</strong>. We introduce households
+      in Singapore to independent third-party cleaning vendors.
+    </p>
+    <p>We do not:</p>
+    <ul>
+      <li>carry out cleaning work ourselves</li>
+      <li>employ, supervise or direct the cleaners who attend your home</li>
+      <li>set the prices that vendors quote you</li>
+      <li>act as agent for you or for any vendor</li>
+    </ul>
+    <p>
+      When you accept a vendor's quote, you enter into a contract directly with that
+      vendor. {company.tradingName} is not a party to it. Questions about scope, timing,
+      payment, rescheduling, damage or workmanship are matters between you and the vendor.
+    </p>
+
+    <h2>3. Vendor checks, and their limits</h2>
+    <p>
+      We carry out checks on vendors before matching them, as described on our
+      <a href={urls.vendorStandards()}>vendor standards</a> page. Those checks are made in
+      good faith on the information and documents available to us at the time.
+    </p>
+    <p>
+      We do not warrant or guarantee the quality, timeliness or outcome of any work carried
+      out by a vendor, and a vendor's circumstances can change after we have checked them.
+      You remain responsible for satisfying yourself about any vendor before engaging them,
+      and for agreeing scope and price with them directly.
+    </p>
+
+    <h2>4. Prices shown on this site</h2>
+    <p>
+      Prices on this site are <strong>indicative market ranges in Singapore dollars</strong>,
+      compiled from published sources, and are stated before GST at
+      {company.gstRatePercent}%. They are provided so you can judge whether a quote is
+      reasonable.
+    </p>
+    <p>
+      They are <strong>not quotations and not offers</strong>. They do not bind us or any
+      vendor. Your actual price comes from the vendor, after they have understood your
+      home and what you need. Market rates change, and a range that is accurate today may
+      not be in six months.
+    </p>
+
+    <h2>5. Enquiries and your details</h2>
+    <p>
+      When you submit an enquiry and give consent, we pass your details to the vendors
+      matched to your request so they can quote you. Your enquiry may go to more than one
+      vendor. How we handle your data is set out in our
+      <a href={urls.privacy()}>Privacy Policy</a>.
+    </p>
+    <p>
+      You agree that the information you give us is accurate, and that you are enquiring on
+      your own behalf or with the authority of the person you are enquiring for.
+    </p>
+
+    <h2>6. Acceptable use</h2>
+    <p>You agree not to:</p>
+    <ul>
+      <li>submit false, misleading or automated enquiries</li>
+      <li>use the site for any unlawful purpose</li>
+      <li>attempt to interfere with, probe or disrupt the site or its infrastructure</li>
+      <li>scrape, copy or republish substantial parts of the site's content without permission</li>
+    </ul>
+
+    <h2>7. No charge to you</h2>
+    <p>
+      We do not charge you for being matched with a vendor, and you are under no obligation
+      to accept any quote.
+    </p>
+
+    <h2>8. Intellectual property</h2>
+    <p>
+      The content of this site, including the text, pricing guidance and design, belongs to
+      {company.entityName} unless otherwise stated. You may read and share it for personal,
+      non-commercial use. You may not reproduce it commercially without our written
+      permission.
+    </p>
+
+    <h2>9. Limitation of liability</h2>
+    <p>
+      The site and its content are provided on an "as is" basis. To the fullest extent
+      permitted by law, we exclude liability for any loss or damage arising from:
+    </p>
+    <ul>
+      <li>your use of, or reliance on, information published on this site, including price ranges</li>
+      <li>the acts or omissions of any vendor, including the quality of any cleaning work, any damage caused during it, or any failure to attend</li>
+      <li>any dispute between you and a vendor</li>
+      <li>the site being unavailable or containing errors</li>
+    </ul>
+    <p>
+      Nothing in these terms excludes or limits liability that cannot lawfully be excluded
+      or limited, including liability for death or personal injury caused by negligence, or
+      for fraud.
+    </p>
+
+    <h2>10. Third-party links</h2>
+    <p>
+      Our enquiry form is delivered by a third-party form provider, and this site uses
+      Google Analytics. We are not responsible for their content or their independent
+      handling of your data.
+    </p>
+
+    <h2>11. Changes</h2>
+    <p>
+      We may change these terms from time to time. The date at the top of this page shows
+      when they were last changed. Continuing to use the site after a change means you
+      accept the updated terms.
+    </p>
+
+    <h2>12. Governing law</h2>
+    <p>
+      These terms are governed by the laws of Singapore, and the courts of Singapore have
+      exclusive jurisdiction over any dispute arising from them.
+    </p>
+
+    <h2>13. Contact</h2>
+    <div class="rounded-card border border-line bg-surface p-5 text-sm not-prose">
+      <p class="font-semibold text-ink">{company.entityName}</p>
+      <p class="mt-1">trading as {company.tradingName}</p>
+      <p>UEN {company.uen}</p>
+      <p class="mt-2">{company.address.street} {company.address.unit}</p>
+      <p>Singapore {company.address.postalCode}</p>
+      <p class="mt-2">Email: {company.email}</p>
+      <p>Telephone: {company.phoneDisplay}</p>
+    </div>
+  </div>
 </BaseLayout>

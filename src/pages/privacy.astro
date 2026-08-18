@@ -1,18 +1,205 @@
 ---
+/**
+ * /privacy/
+ *
+ * PDPA privacy policy. The disclosure-to-vendors section is the one that
+ * actually matters for a matching service and is the one most sites in this
+ * market gloss over.
+ *
+ * Placeholders for the DPO contact are rendered visibly rather than hidden, so
+ * an unresolved one cannot quietly reach production.
+ */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { urls } from '../lib/urls';
 import { meta } from '../lib/seo';
+import { company } from '../lib/data';
 
 const path = urls.privacy();
+
 const { title, description } = meta(
   'Privacy Policy | HomeToClean',
-  'How HomeToClean collects, uses and discloses personal data under the Singapore Personal Data Protection Act, including disclosure to matched vendors.',
+  'How HomeToClean collects, uses and discloses personal data under Singapore PDPA, including disclosure to the vendor partners we match you with.',
 );
+
+const lastUpdated = 'August 2026';
 ---
 
-<BaseLayout title={title} description={description} path={path} batch={0}
-  crumbs={[{ name: 'Privacy Policy', path: urls.privacy() }]}>
-  <h1>Privacy Policy</h1>
-  <p>How HomeToClean collects, uses and discloses personal data under the Singapore Personal Data Protection Act, including disclosure to matched vendors.</p>
-  <p><em>Phase 2 placeholder. Content lands in Phase 3 and 4.</em></p>
+<BaseLayout
+  title={title}
+  description={description}
+  path={path}
+  batch={0}
+  crumbs={[{ name: 'Privacy Policy', path }]}
+>
+  <section class="border-b border-line bg-surface">
+    <div class="wrap-narrow py-12 sm:py-16">
+      <h1 class="text-3xl font-semibold sm:text-4xl">Privacy Policy</h1>
+      <p class="mt-4 text-ink-muted">
+        How {company.entityName}, trading as {company.tradingName}, handles your personal
+        data under the Singapore Personal Data Protection Act 2012 (PDPA).
+      </p>
+      <p class="mt-2 text-sm text-ink-faint">Last updated: {lastUpdated}</p>
+    </div>
+  </section>
+
+  <div class="wrap-narrow prose-ht py-12 text-ink-muted sm:py-16">
+    <div class="rounded-card border border-brand/25 bg-brand-light/50 p-5 text-ink">
+      <p class="text-sm leading-relaxed">
+        <strong class="font-semibold">The short version.</strong> We are a matching
+        service, not a cleaning company. When you send us an enquiry we pass your name,
+        contact details and what you have told us about the job to the cleaning vendors
+        matched to your request, so that they can quote you directly. That disclosure is
+        the point of the service, and we ask for your consent to it before you submit.
+        We do not sell your data.
+      </p>
+    </div>
+
+    <h2>1. Who we are</h2>
+    <p>
+      This site is operated by <strong>{company.entityName}</strong> (UEN {company.uen}),
+      trading as {company.tradingName}. In this policy, "we", "us" and "our" refer to that
+      company.
+    </p>
+    <p>
+      {company.tradingName} is a matching service. We introduce households in Singapore to
+      independent cleaning vendors. We do not carry out cleaning work, and we do not
+      employ the cleaners who attend your home.
+    </p>
+
+    <h2>2. What personal data we collect</h2>
+    <p>Through the enquiry form on this site, we collect:</p>
+    <ul>
+      <li>Your name</li>
+      <li>Your mobile number and email address</li>
+      <li>The service you are asking about, your town and your property type</li>
+      <li>How often you want the service and your preferred date</li>
+      <li>Anything else you choose to write in the message field</li>
+    </ul>
+    <p>
+      If you email us directly instead, we collect your email address and the contents of
+      that correspondence.
+    </p>
+    <p>
+      We also collect basic, non-identifying usage data through Google Analytics, such as
+      which pages were viewed and whether an enquiry was started or submitted. We do not
+      use this to identify you, and this site does not use browser local storage or session
+      storage.
+    </p>
+
+    <h2>3. Why we collect it</h2>
+    <p>We use your personal data for these purposes, and no others:</p>
+    <ul>
+      <li>To understand what you need and to respond to your enquiry</li>
+      <li>
+        To match you with cleaning vendors who cover your area and offer the service you
+        asked for, and to pass your enquiry to them so they can quote
+      </li>
+      <li>To follow up on an enquiry you have made, by email or by telephone if you gave us a number</li>
+      <li>To keep records of enquiries, and to improve this site and our matching</li>
+      <li>To comply with legal or regulatory obligations</li>
+    </ul>
+
+    <h2>4. Disclosure to vendor partners</h2>
+    <p>
+      This is the disclosure that matters most, so we state it plainly. When you submit an
+      enquiry and give consent, we disclose the following to the cleaning vendors matched
+      to your request:
+    </p>
+    <ul>
+      <li>Your name, mobile number and email address</li>
+      <li>Your town, property type, the service requested, frequency and preferred date</li>
+      <li>Any additional details you included in your message</li>
+    </ul>
+    <p>
+      We do this so those vendors can contact you directly and quote. Your enquiry may be
+      passed to more than one vendor, so that you can compare. We do not sell personal
+      data to anyone, and we do not pass your details to advertisers, data brokers or
+      unrelated businesses.
+    </p>
+    <p>
+      Once a vendor receives your details, that vendor is a separate organisation with its
+      own obligations under the PDPA and its own privacy practices. Any agreement for the
+      cleaning work itself is between you and that vendor.
+    </p>
+    <p>
+      We may also disclose personal data to service providers who help us operate this
+      site, such as hosting and analytics providers, and where we are required to do so by
+      law.
+    </p>
+
+    <h2>5. Consent, and withdrawing it</h2>
+    <p>
+      We ask for your consent on the enquiry form before you submit it. The consent box is
+      not ticked by default, and the form cannot be submitted without it.
+    </p>
+    <p>
+      You may withdraw your consent at any time by contacting us using the details in
+      section 9. We will process the withdrawal within a reasonable period and stop using
+      your data for the purposes above. Withdrawing consent does not affect anything done
+      before we received the request, and we cannot recall data already disclosed to a
+      vendor: you would need to contact that vendor directly.
+    </p>
+
+    <h2>6. How long we keep it</h2>
+    <p>
+      We retain enquiry data for as long as needed for the purposes set out above, and
+      then for up to <strong>24 months</strong> from your last contact with us, so that we
+      can deal with follow-up questions and disputes about a job we matched.
+    </p>
+    <p>
+      After that period we delete it or anonymise it, unless we are required to retain it
+      longer to meet a legal or accounting obligation.
+    </p>
+
+    <h2>7. Your right to access and correct</h2>
+    <p>Under the PDPA you may ask us:</p>
+    <ul>
+      <li>for access to the personal data we hold about you, and information about how it has been used or disclosed in the past year</li>
+      <li>to correct any personal data that is inaccurate or incomplete</li>
+    </ul>
+    <p>
+      Send the request to the contact in section 9. We will respond as soon as reasonably
+      possible. We may need to verify your identity first, and a reasonable fee may apply
+      to an access request, as permitted under the PDPA. If we correct your data, we will
+      also send the correction to any vendor we disclosed it to in the past year, unless
+      that vendor no longer needs it.
+    </p>
+
+    <h2>8. Protection of your data</h2>
+    <p>
+      We make reasonable security arrangements to protect personal data in our possession
+      against unauthorised access, collection, use, disclosure, copying, modification or
+      disposal. No transmission over the internet can be guaranteed completely secure, and
+      we cannot guarantee the security of data you send to us over the internet.
+    </p>
+
+    <h2>9. Data Protection Officer</h2>
+    <p>Questions, access or correction requests, and consent withdrawals go to:</p>
+    <div class="rounded-card border border-line bg-surface p-5 text-sm not-prose">
+      <p class="font-semibold text-ink">Data Protection Officer</p>
+      <p class="mt-1">{company.entityName}</p>
+      <p>{company.address.street} {company.address.unit}</p>
+      <p>Singapore {company.address.postalCode}</p>
+      <p class="mt-2">Email: {company.email}</p>
+      <p>Telephone: {company.phoneDisplay}</p>
+    </div>
+
+    <h2>10. Changes to this policy</h2>
+    <p>
+      We may update this policy from time to time. The date at the top of this page shows
+      when it was last changed. Continuing to use this site after a change means you accept
+      the updated policy.
+    </p>
+
+    <h2>11. Complaints</h2>
+    <p>
+      If you are not satisfied with how we have handled your personal data, contact our
+      Data Protection Officer first. You may also lodge a complaint with the Personal Data
+      Protection Commission of Singapore.
+    </p>
+
+    <p class="text-sm">
+      See also our <a href={urls.terms()}>Terms of Service</a>.
+    </p>
+  </div>
 </BaseLayout>

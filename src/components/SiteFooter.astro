@@ -8,10 +8,9 @@
  */
 import { company, services, propertyTypes, isBatchPublished } from '../lib/data';
 import { urls } from '../lib/urls';
-import { hasPhone, phoneHref, phoneLabel } from '../lib/contact';
+import { publicEmail } from '../lib/contact';
 
 const year = new Date().getFullYear();
-const tel = phoneHref();
 
 const liveServices = services.filter((s) => isBatchPublished(s.batch));
 const liveProperties = propertyTypes.filter((p) => isBatchPublished(p.batch));
@@ -83,13 +82,7 @@ const postal = isPlaceholder(company.address.postalCode) ? '' : `Singapore ${com
         <span>UEN: {company.uen}</span><br />
         {addressLine && <>{addressLine}<br /></>}
         {postal && <>{postal}<br /></>}
-        {hasPhone() ? (
-          <a href={tel!} data-analytics="phone_click" class="font-medium text-brand no-underline">
-            {phoneLabel()}
-          </a>
-        ) : (
-          <span>{company.phoneDisplay}</span>
-        )}
+        {publicEmail() && <a href={`mailto:${publicEmail()}`} class="font-medium text-brand no-underline">{publicEmail()}</a>}
         <br />
         <span>{company.operatingHoursDisplay}</span>
       </address>

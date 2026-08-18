@@ -162,6 +162,14 @@ export interface Address {
   country: string;
 }
 
+export interface FormSubmitConfig {
+  /** FormSubmit AJAX endpoint. Swap the address for the hashed alias once activated. */
+  endpoint: string;
+  /** Subject line of the notification email. */
+  subject: string;
+  note: string;
+}
+
 export interface Company {
   /** Registered entity. Must appear in the footer. */
   entityName: string;
@@ -172,11 +180,10 @@ export interface Company {
   /** Absolute origin, no trailing slash. Used for canonicals and JSON-LD @id. */
   siteUrl: string;
   address: Address;
-  /** E.164, for tel: links and schema. */
+  /** Empty: this site is form-only, with no telephone channel. */
   phone: string;
-  /** Formatted for display. */
   phoneDisplay: string;
-  /** Digits only, no `+`, for wa.me links. */
+  /** Empty: no WhatsApp channel. */
   whatsappNumber: string;
   email: string;
   operatingHours: OperatingHours[];
@@ -187,6 +194,9 @@ export interface Company {
   /** We match customers to vendors. We do not perform cleaning. */
   businessModel: 'matching';
   businessModelStatement: string;
+  /** The enquiry form is the only contact channel. */
+  contactModel: 'form-only';
+  formSubmit: FormSubmitConfig;
 }
 
 // Slug unions are widened to `string` because the data files are the source of

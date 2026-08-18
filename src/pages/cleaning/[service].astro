@@ -58,7 +58,6 @@ const { title, description } = meta(
   batch={service.batch}
   crumbs={[{ name: service.name, path }]}
   schemaNodes={[serviceNode(service, path)]}
-  whatsapp={{ service: service.name }}
 >
   {/* ------------------------------------------------------------------ hero */}
   <section class="border-b border-line bg-surface">
@@ -244,6 +243,5 @@ const { title, description } = meta(
   <CtaBand
     heading={`Need ${service.name.toLowerCase()}? We will match you to a vendor who does it properly.`}
     body="No charge to you, no obligation, and your details go only to the vendors matched to your request."
-    context={{ service: service.name }}
   />
 </BaseLayout>

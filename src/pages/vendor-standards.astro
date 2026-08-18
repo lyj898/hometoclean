@@ -1,18 +1,259 @@
 ---
+/**
+ * /vendor-standards/
+ *
+ * The differentiator page, and the one where accuracy matters most.
+ *
+ * Everything here was verified against primary sources before publishing:
+ *
+ *  - Cleaning of domestic premises is EXCLUDED cleaning work under the
+ *    Environmental Public Health (Excluded Cleaning Work) Notification 2014, so
+ *    a home-cleaning-only operator does not need an NEA Cleaning Business
+ *    Licence. NEA's own FAQ says so, and it excludes condominium common
+ *    property from that exclusion.
+ *  - PWM obligations attach to LICENSED cleaning businesses as a licence
+ *    condition. So PWM is used here as an economic sanity check on
+ *    implausibly cheap quotes, never as a claim that it legally binds every
+ *    home cleaner.
+ *  - WICA insurance is genuinely mandatory for all employees doing manual work.
+ *  - Work-pass status is the real consumer-facing risk, and the penalties fall
+ *    on the household too.
+ *
+ * Do not soften these into "all our vendors are NEA licensed". That claim is
+ * either meaningless or false for domestic work.
+ */
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import CtaBand from '../components/CtaBand.astro';
+import FaqList from '../components/FaqList.astro';
+
 import { urls } from '../lib/urls';
 import { meta } from '../lib/seo';
+import { company } from '../lib/data';
 
 const path = urls.vendorStandards();
+
 const { title, description } = meta(
   'How We Vet Cleaning Vendors | HomeToClean',
-  'Licensing, insurance and work-pass compliance: the checks we run before a cleaning vendor is matched with a Singapore household, and why they matter.',
+  'Insurance, work-pass compliance and business registration: the checks we run before matching a cleaning vendor with a Singapore household.',
 );
+
+const checks = [
+  {
+    n: '01',
+    title: 'A real, registered business',
+    body: 'The vendor must be a live ACRA-registered entity, with a UEN we can look up on BizFile. This is the floor, not a distinction. It means there is a legal entity that can invoice you properly, be held to what it agreed, and still exist next month.',
+    youCanCheck: 'Ask for the UEN and search it on BizFile yourself. It takes about a minute.',
+  },
+  {
+    n: '02',
+    title: 'Insurance that covers your home and their people',
+    body: 'Two separate policies, and both matter. Public liability covers damage to your property while they are working in it. Work Injury Compensation Act cover is legally required for all employees doing manual work, regardless of salary, and without it an injury in your home can become your problem.',
+    youCanCheck: 'Ask for the certificate of insurance, not a verbal assurance. Check the policy is current and that the sum insured is not trivial.',
+  },
+  {
+    n: '03',
+    title: 'Everyone attending is legally allowed to work',
+    body: 'This is the check that matters most in home cleaning and the one almost nobody talks about. A migrant domestic worker may only work for the employer and at the address on her Work Permit. Someone on a Social Visit Pass may not work at all. The cheapest quotes in this market frequently come from people who cannot lawfully accept the job.',
+    youCanCheck: 'Ask the vendor directly whether the person attending is their employee and holds a valid pass permitting this work. A vendor who is vague about this is telling you something.',
+  },
+  {
+    n: '04',
+    title: 'A scope you can hold them to',
+    body: 'A written scope stating what is included, what is excluded, how many hours or what flat rate applies, and who provides supplies and equipment. Most disputes in this trade are scope disputes that were never written down, not quality disputes.',
+    youCanCheck: 'Get it in writing before the first session, not on the doorstep.',
+  },
+  {
+    n: '05',
+    title: 'The right licence, where it is actually required',
+    body: 'An NEA Cleaning Business Licence is not required for cleaning private homes, but it is required for offices, commercial premises and condominium common property. Where a vendor also does that work, we check the licence is valid and in the right class.',
+    youCanCheck: 'NEA publishes a register of licensed cleaning businesses. If a vendor advertises a licence, it should be findable there.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'Are home cleaning companies in Singapore licensed?',
+    a: 'Generally not, and this surprises most people. Under the Environmental Public Health (Excluded Cleaning Work) Notification 2014, cleaning of domestic premises is "excluded cleaning work", so a business cleaning only private homes does not need an NEA Cleaning Business Licence. The licence is required for non-domestic work: offices, commercial premises, food establishments and condominium common property. That is why we do not lead with a licence badge for home cleaning. It would not mean what you would reasonably assume it means.',
+  },
+  {
+    q: 'So does an "NEA licensed" claim mean nothing?',
+    a: 'It means something, just not what it is usually implied to mean. A vendor holding the licence does non-domestic work as well, and to get it they have had to meet requirements on paid-up capital, bizSAFE certification and workforce training. That is a reasonable signal of an established operator. What it does not do is certify the work being done inside your flat, because that work sits outside the licensing regime entirely.',
+  },
+  {
+    q: 'Why does an unusually cheap quote worry you?',
+    a: 'Because of arithmetic. In the licensed cleaning sector the Progressive Wage Model sets a basic wage floor for a resident cleaner, currently S$2,080 a month from 1 July 2026, up from S$1,910. On top of that an employer pays CPF, insurance, transport, supplies and supervision. That floor is a licence condition and does not legally bind a home-cleaning-only operator, but it tells you what compliant labour actually costs. A rate well below what those costs imply is being met somewhere, and usually it is met by employing someone who cannot lawfully do the work.',
+  },
+  {
+    q: 'What happens to me if the cleaner is working illegally?',
+    a: 'The exposure is not only the worker’s. Employing a foreigner without a valid work pass carries a fine of between S$5,000 and S$30,000, imprisonment of up to a year, or both. A migrant domestic worker who moonlights can be fined up to S$20,000 or jailed for up to two years and repatriated, and the household that engaged her can be fined and barred from hiring a helper. Engaging through a vendor that employs its people properly is what keeps that exposure away from you.',
+  },
+  {
+    q: 'Do you guarantee the quality of the cleaning?',
+    a: 'No, and we would not trust anyone who did. We check the things that can be checked before work starts: registration, insurance, work-pass status, and a written scope. Quality on the day depends on the vendor and the person attending. Our terms set out the position: your agreement for the work is with the vendor you choose, not with us.',
+  },
+  {
+    q: 'What if something goes wrong?',
+    a: 'Raise it with the vendor first, because they are the party you contracted with and they are the party insured for it. Tell us as well. We cannot adjudicate a dispute, but a pattern of complaints is exactly the signal that gets a vendor removed from our matching.',
+  },
+];
 ---
 
-<BaseLayout title={title} description={description} path={path} batch={0}
-  crumbs={[{ name: 'Vendor Standards', path: urls.vendorStandards() }]}>
-  <h1>How We Vet Cleaning Vendors</h1>
-  <p>Licensing, insurance and work-pass compliance: the checks we run before a cleaning vendor is matched with a Singapore household, and why they matter.</p>
-  <p><em>Phase 2 placeholder. Content lands in Phase 3 and 4.</em></p>
+<BaseLayout
+  title={title}
+  description={description}
+  path={path}
+  batch={0}
+  crumbs={[{ name: 'Vendor Standards', path }]}
+>
+  <section class="border-b border-line bg-surface">
+    <div class="wrap py-12 sm:py-16">
+      <div class="max-w-3xl">
+        <h1 class="text-3xl font-semibold sm:text-4xl lg:text-5xl">
+          What we check before we match a vendor
+        </h1>
+        <p class="mt-5 text-lg leading-relaxed text-ink-muted">
+          Home cleaning in Singapore is less regulated than most people assume. That is
+          not a reason to worry, but it is a reason to know what actually applies, what
+          does not, and which questions are worth asking.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {/* The correction that the whole page rests on. Stated early, plainly. */}
+  <Section tone="canvas">
+    <div class="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-start">
+      <div>
+        <h2 class="text-2xl font-semibold sm:text-3xl">
+          The licence most people ask about does not cover your home
+        </h2>
+        <div class="prose-ht mt-4 text-ink-muted">
+          <p>
+            Cleaning businesses in Singapore need an NEA Cleaning Business Licence to work
+            in offices, commercial premises, food establishments and the common property of
+            condominiums.
+          </p>
+          <p>
+            <strong class="text-ink">Cleaning inside a private home is different.</strong>
+            Under the Environmental Public Health (Excluded Cleaning Work) Notification
+            2014, cleaning of domestic premises is "excluded cleaning work". A business
+            that cleans only private homes is not required to hold the licence at all.
+          </p>
+          <p>
+            So when a home cleaning company leads with a licence badge, it is worth
+            understanding what that badge is actually certifying. It is a signal about
+            their commercial work, not a certification of the work in your flat.
+          </p>
+          <p>
+            We would rather tell you that than imply a credential we know does not apply.
+            What follows is what we check instead.
+          </p>
+        </div>
+      </div>
+
+      <div class="rounded-card border border-sand-deep/40 bg-sand/40 p-6">
+        <h3 class="font-semibold text-ink">The wage-floor arithmetic</h3>
+        <p class="mt-3 text-sm leading-relaxed text-ink">
+          In the licensed cleaning sector, the Progressive Wage Model sets a basic wage
+          floor for a resident cleaner of <strong>S$2,080 a month</strong> from 1 July
+          2026, raised from S$1,910. That is basic wage only, before employer CPF,
+          insurance, transport, supplies and supervision.
+        </p>
+        <p class="mt-3 text-sm leading-relaxed text-ink">
+          That floor is a condition of the licence, so it does not legally bind an
+          operator doing only domestic work. But it is still the clearest available
+          benchmark for what compliant labour costs in this country.
+        </p>
+        <p class="mt-3 text-sm leading-relaxed text-ink">
+          Use it as a sanity check. If a quote cannot plausibly cover those costs, the
+          difference is being met somewhere, and it is worth knowing where before you
+          book.
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  {/* The five checks. */}
+  <Section tone="sunk">
+    <div class="max-w-2xl">
+      <h2 class="text-2xl font-semibold sm:text-3xl">Our five checks</h2>
+      <p class="mt-4 text-ink-muted">
+        Each of these is something you could verify yourself. We have listed how, because
+        a standard you cannot check is a marketing claim, not a standard.
+      </p>
+    </div>
+
+    <ol class="mt-10 space-y-5">
+      {checks.map((check) => (
+        <li class="rounded-card border border-line bg-surface p-6 sm:p-7">
+          <div class="grid gap-4 sm:grid-cols-[3.5rem_1fr]">
+            <span class="text-lg font-semibold tabular-nums text-brand">{check.n}</span>
+            <div>
+              <h3 class="text-lg font-semibold">{check.title}</h3>
+              <p class="mt-2 leading-relaxed text-ink-muted">{check.body}</p>
+              <p class="mt-3 border-l-2 border-brand pl-4 text-sm leading-relaxed text-ink">
+                <strong class="font-semibold">Check it yourself:</strong> {check.youCanCheck}
+              </p>
+            </div>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </Section>
+
+  {/* Honest limits. */}
+  <Section tone="canvas">
+    <div class="mx-auto max-w-3xl">
+      <h2 class="text-2xl font-semibold sm:text-3xl">What our checks do not do</h2>
+      <div class="prose-ht mt-4 text-ink-muted">
+        <p>
+          Our checks are made in good faith, on the documents and information available to
+          us when we make them. They are not a guarantee, and it would be dishonest to
+          present them as one.
+        </p>
+        <ul>
+          <li>
+            A vendor's circumstances can change after we have checked them. A policy can
+            lapse; a good operator can have a bad month.
+          </li>
+          <li>
+            We do not supervise work in your home. We are not there, and we do not employ
+            the person who is.
+          </li>
+          <li>
+            We do not set prices. Your quote comes from the vendor, and you are free to
+            decline it.
+          </li>
+          <li>
+            We publish no ratings or review counts, because we have not genuinely collected
+            any. When we have, we will say where they came from.
+          </li>
+        </ul>
+        <p>
+          Your agreement for the cleaning is with the vendor you choose. That is set out in
+          our <a href={urls.terms()}>Terms of Service</a>, and it is the honest description
+          of what a matching service is.
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  <Section tone="surface" narrow>
+    <h2 class="text-2xl font-semibold sm:text-3xl">Questions worth asking</h2>
+    <div class="mt-8">
+      <FaqList faqs={faqs} />
+    </div>
+    <p class="mt-8 text-2xs leading-relaxed text-ink-faint">
+      Regulatory positions described on this page were checked against the National
+      Environment Agency and Ministry of Manpower published guidance current at
+      August 2026. Rules change. {company.tradingName} is not a law firm and this page
+      is general information, not legal advice.
+    </p>
+  </Section>
+
+  <CtaBand
+    heading="Get matched with vendors who clear these checks."
+    body="Tell us your town, property type and what you need. No charge, no obligation."
+  />
 </BaseLayout>

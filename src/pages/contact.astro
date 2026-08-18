@@ -1,18 +1,80 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import LeadForm from '../components/LeadForm.astro';
 import { urls } from '../lib/urls';
 import { meta } from '../lib/seo';
+import { company } from '../lib/data';
 
 const path = urls.contact();
+
 const { title, description } = meta(
   'Contact HomeToClean | Get a Cleaning Quote',
   'Request a cleaning quote in Singapore. Tell us your town, property type and service, and we will match you with vetted, insured cleaning vendors.',
 );
 ---
 
-<BaseLayout title={title} description={description} path={path} batch={0}
-  crumbs={[{ name: 'Contact', path: urls.contact() }]}>
-  <h1>Contact HomeToClean</h1>
-  <p>Request a cleaning quote in Singapore. Tell us your town, property type and service, and we will match you with vetted, insured cleaning vendors.</p>
-  <p><em>Phase 2 placeholder. Content lands in Phase 3 and 4.</em></p>
+<BaseLayout
+  title={title}
+  description={description}
+  path={path}
+  batch={0}
+  crumbs={[{ name: 'Contact', path }]}
+>
+  <section class="border-b border-line bg-surface">
+    <div class="wrap py-12 sm:py-16">
+      <h1 class="max-w-3xl text-3xl font-semibold sm:text-4xl lg:text-5xl">
+        Tell us what your home needs
+      </h1>
+      <p class="mt-5 max-w-2xl text-lg leading-relaxed text-ink-muted">
+        Send us a message and we will pass it to vendors who cover your estate and have
+        cleared our checks. They quote you directly. No charge to you, no obligation to
+        book.
+      </p>
+    </div>
+  </section>
+
+  <div class="wrap grid gap-12 py-12 sm:py-16 lg:grid-cols-[1.4fr_1fr]">
+    <div>
+      <LeadForm />
+    </div>
+
+    <aside class="space-y-6">
+      <div class="rounded-card border border-line bg-surface p-6">
+        <h2 class="font-semibold">What to include</h2>
+        <p class="mt-2 text-sm leading-relaxed text-ink-muted">
+          The more of this you tell us, the more useful the quotes come back:
+        </p>
+        <ul class="mt-4 space-y-2 text-sm text-ink-muted">
+          <li>Your town or estate</li>
+          <li>Flat type, and roughly how old it is</li>
+          <li>Which service you think you need</li>
+          <li>One-off, weekly or fortnightly</li>
+          <li>When you would like it done</li>
+        </ul>
+        <p class="mt-4 text-sm leading-relaxed text-ink-muted">
+          Not sure which service? Say what the problem is and we will tell you.
+          <a href={urls.pricing()} class="text-brand no-underline hover:underline">
+            The pricing guide
+          </a> explains the difference.
+        </p>
+      </div>
+
+      <div class="rounded-card border border-line bg-surface p-6">
+        <h2 class="font-semibold">Response time</h2>
+        <p class="mt-2 text-sm leading-relaxed text-ink-muted">
+          We usually reply within one working day. Our hours are
+          {company.operatingHoursDisplay.toLowerCase()}
+        </p>
+      </div>
+
+      <div class="rounded-card border border-line bg-surface-sunk p-6">
+        <h2 class="font-semibold">What happens to your details</h2>
+        <p class="mt-2 text-sm leading-relaxed text-ink-muted">
+          They go to the cleaning vendors matched to your request, so they can quote you.
+          They are not sold, and they are not passed to anyone else. See the
+          <a href={urls.privacy()} class="text-brand underline underline-offset-2">Privacy Policy</a>.
+        </p>
+      </div>
+    </aside>
+  </div>
 </BaseLayout>

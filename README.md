@@ -15,7 +15,7 @@ Market: Singapore only. English only. No locale prefixes, ever.
 | Framework | Astro 5, `output: 'static'`, `trailingSlash: 'always'` |
 | Language | TypeScript, strict + `noUncheckedIndexedAccess` |
 | Styling | Tailwind CSS v4 |
-| Hosting | Cloudflare Pages, deployed from GitHub |
+| Hosting | GitHub Pages, deployed from `main` by GitHub Actions |
 
 ```bash
 npm install
@@ -26,7 +26,47 @@ npm run audit      # checks dist against the acceptance criteria
 npm run verify     # build + audit
 npm run status     # what is published, and what is in the sitemap
 npm run publish 2  # take a batch live (see Publication batches)
+node scripts/verify-tracking.mjs   # drives the form in a real browser
 ```
+
+## Deployment
+
+GitHub Pages, from `main`, via `.github/workflows/deploy.yml`. Two files in
+`public/` are load-bearing and easy to lose:
+
+- **`.nojekyll`** — Astro emits hashed assets into `_astro/`. GitHub Pages runs
+  Jekyll by default, and Jekyll strips underscore-prefixed directories. Without
+  this file every stylesheet 404s and the site renders unstyled.
+- **`CNAME`** — the custom domain. It must be in the published output, not just
+  the repo root, or Pages drops the domain on each deploy.
+
+`npm run audit` checks for both, so a missing one fails CI rather than the live
+site.
+
+## Contact model
+
+The enquiry form is the **only** contact channel. There is no WhatsApp link and
+no `tel:` link anywhere on the site, and the audit fails the build if one
+appears.
+
+The form mirrors ourkampung.com: Name, Email, Mobile (optional), Message, plus a
+`_honey` honeypot, posted as JSON to FormSubmit.
+
+**FormSubmit needs a one-time activation.** The first real submission sends a
+confirmation link to the destination inbox; nothing is delivered until that link
+is clicked. Once activated, replace the address in
+`company.formSubmit.endpoint` with the hashed alias FormSubmit provides, so the
+inbox address stops appearing in page source where scrapers can read it.
+
+## Analytics
+
+GA4 via `PUBLIC_GA4_ID`. Two events, both fired from the form: `form_start`
+(first field focus, once per page view) and `form_submit` (successful POST
+only). There is no generic `button_click`, and no `whatsapp_click` or
+`phone_click` — this site has no such channels, and an event that can never fire
+is worse than no event.
+
+With no `PUBLIC_GA4_ID` set, no analytics script is emitted at all.
 
 Lighthouse mobile on the homepage: **100 / 100 / 100 / 100**, CLS 0, LCP 1.3s.
 The site ships **zero JavaScript** — the mobile nav and FAQ accordions are native
@@ -40,9 +80,9 @@ The site ships **zero JavaScript** — the mobile nav and FAQ accordions are nat
 |---|---|---|
 | 1 | Data layer + types | Complete |
 | 2 | Routing, SEO plumbing, schema | Complete |
-| 3 | Design system + homepage | **Complete — awaiting Gate 3 approval** |
-| 4 | Service / location / property templates | Not started |
-| 5 | Conversion tracking + legal | Not started |
+| 3 | Design system + homepage | Complete |
+| 4 | Service / location / property templates | Complete |
+| 5 | Conversion tracking + legal | Complete |
 
 ---
 

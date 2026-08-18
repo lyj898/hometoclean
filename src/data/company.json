@@ -11,17 +11,39 @@
     "locality": "Singapore",
     "country": "SG"
   },
-  "phone": "[PHONE_E164]",
-  "phoneDisplay": "[PHONE_DISPLAY]",
-  "whatsappNumber": "[WHATSAPP_E164_DIGITS_ONLY]",
-  "email": "[EMAIL]",
+  "phone": "",
+  "phoneDisplay": "",
+  "whatsappNumber": "",
+  "email": "lyj898@gmail.com",
   "operatingHours": [
-    { "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "09:00", "closes": "18:00" },
-    { "days": ["Saturday"], "opens": "09:00", "closes": "13:00" }
+    {
+      "days": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "09:00",
+      "closes": "18:00"
+    },
+    {
+      "days": [
+        "Saturday"
+      ],
+      "opens": "09:00",
+      "closes": "13:00"
+    }
   ],
   "operatingHoursDisplay": "Mon-Fri 9am-6pm, Sat 9am-1pm. Closed Sunday and public holidays.",
   "gstRatePercent": 9,
   "gstRegistered": null,
   "businessModel": "matching",
-  "businessModelStatement": "HomeToClean is a matching service. We connect households in Singapore with vetted, independent cleaning vendors. We do not carry out cleaning work ourselves."
+  "businessModelStatement": "HomeToClean is a matching service. We connect households in Singapore with vetted, independent cleaning vendors. We do not carry out cleaning work ourselves.",
+  "contactModel": "form-only",
+  "formSubmit": {
+    "endpoint": "https://formsubmit.co/ajax/lyj898@gmail.com",
+    "subject": "New enquiry - HomeToClean",
+    "note": "FormSubmit requires a one-time activation: the first submission emails a confirmation link to the destination address. After activating, replace the address in the endpoint with the hashed alias FormSubmit provides, so the inbox address is not exposed in page source."
+  }
 }

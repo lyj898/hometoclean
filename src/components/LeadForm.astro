@@ -1,0 +1,170 @@
+---
+/**
+ * Enquiry form.
+ *
+ * Structure and mechanism deliberately mirror ourkampung.com: four fields
+ * (Name, Email, Mobile optional, Message), a `_honey` honeypot, and an AJAX
+ * POST to FormSubmit with a `_subject` in the payload.
+ *
+ * FormSubmit needs a one-time activation. The first submission sends a
+ * confirmation link to the destination inbox; until that link is clicked,
+ * nothing is delivered. After activating, swap the address in
+ * company.formSubmit.endpoint for the hashed alias FormSubmit provides, so the
+ * inbox address stops appearing in page source where scrapers can read it.
+ */
+import { FORM_ENDPOINT, FORM_SUBJECT, hasFormEndpoint } from '../lib/contact';
+import { urls } from '../lib/urls';
+
+const field =
+  'mt-1.5 w-full rounded-lg border border-line-strong bg-surface px-3.5 py-2.5 text-base text-ink placeholder:text-ink-faint focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/25';
+const label = 'block text-sm font-medium text-ink';
+---
+
+{!hasFormEndpoint() && (
+  <p class="mb-6 rounded-card border border-warning/40 bg-sand/40 p-4 text-sm text-ink">
+    <strong class="font-semibold">This form is not connected yet.</strong> Set
+    <code class="font-mono text-2xs">formSubmit.endpoint</code> in
+    <code class="font-mono text-2xs">src/data/company.json</code> before going live.
+  </p>
+)}
+
+<form data-lead-form novalidate class="space-y-5">
+  <div>
+    <label class={label} for="cf-name">Your name</label>
+    <input id="cf-name" class={field} name="Name" type="text" autocomplete="name" placeholder="e.g. Rachel" />
+  </div>
+
+  <div>
+    <label class={label} for="cf-email">Email</label>
+    <input id="cf-email" class={field} name="Email" type="email" autocomplete="email" placeholder="you@email.com" />
+  </div>
+
+  <div>
+    <label class={label} for="cf-phone">
+      Mobile <span class="font-normal text-ink-faint">(optional)</span>
+    </label>
+    <input id="cf-phone" class={field} name="Mobile" type="tel" inputmode="tel" autocomplete="tel" placeholder="e.g. 8123 4567" />
+  </div>
+
+  <div>
+    <label class={label} for="cf-msg">How can we help?</label>
+    <textarea
+      id="cf-msg"
+      class={field}
+      name="Message"
+      rows="5"
+      placeholder="Tell us what you need cleaned - your town, flat type, which service, and when you would like it done."
+    ></textarea>
+  </div>
+
+  {/* Honeypot. Real people never fill this in; bots usually do. */}
+  <input
+    type="text"
+    name="_honey"
+    tabindex="-1"
+    autocomplete="off"
+    aria-hidden="true"
+    style="position:absolute;left:-9999px"
+  />
+
+  <button
+    type="submit"
+    data-lead-submit
+    class="w-full rounded-lg bg-brand px-6 py-4 text-base font-semibold text-white transition-colors hover:bg-brand-dark disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+  >
+    Send message
+  </button>
+
+  {/* Live region so the outcome is announced, not only shown. */}
+  <p data-lead-status role="status" aria-live="polite" class="hidden text-sm font-medium"></p>
+
+  <p class="text-2xs leading-relaxed text-ink-faint">
+    We usually reply within one working day. By sending this message you agree that we
+    may contact you about your enquiry and pass your details to the cleaning vendors
+    matched to it, so they can quote you. See our
+    <a href={urls.privacy()} class="underline underline-offset-2">Privacy Policy</a>.
+  </p>
+</form>
+
+<script is:inline define:vars={{ FORM_ENDPOINT, FORM_SUBJECT }}>
+  (function () {
+    var form = document.querySelector('[data-lead-form]');
+    if (!form) return;
+
+    var status = form.querySelector('[data-lead-status]');
+    var submit = form.querySelector('[data-lead-submit]');
+
+    function track(name, params) {
+      if (typeof window.gtag === 'function') window.gtag('event', name, params || {});
+    }
+
+    function show(message, ok) {
+      if (!status) return;
+      status.textContent = message;
+      status.classList.remove('hidden');
+      status.style.color = ok ? 'var(--color-positive)' : 'var(--color-warning)';
+    }
+
+    // form_start: first focus into any field, once per page view. Held in a
+    // closure variable - this site uses no localStorage or sessionStorage.
+    var started = false;
+    form.addEventListener('focusin', function () {
+      if (started) return;
+      started = true;
+      track('form_start', { page_path: window.location.pathname });
+    });
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      var name = form.querySelector('[name="Name"]').value.trim();
+      var email = form.querySelector('[name="Email"]').value.trim();
+      var mobile = form.querySelector('[name="Mobile"]').value.trim();
+      var msg = form.querySelector('[name="Message"]').value.trim();
+      var honey = form.querySelector('[name="_honey"]').value;
+
+      // Silently succeed for bots rather than telling them they were caught.
+      if (honey) {
+        show('Your message is on its way!', true);
+        return;
+      }
+
+      if (!name || !/^\S+@\S+\.\S+$/.test(email) || !msg) {
+        show('Please add your name, a valid email, and a message.', false);
+        return;
+      }
+
+      if (!FORM_ENDPOINT) {
+        show('This form is not connected yet. Please try again later.', false);
+        return;
+      }
+
+      submit.disabled = true;
+      show('Sending your message…', true);
+
+      fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          _subject: FORM_SUBJECT,
+          Name: name,
+          Email: email,
+          Mobile: mobile || '-',
+          Message: msg,
+          Page: window.location.pathname,
+        }),
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          // form_submit fires on success only. A failed POST is not a conversion.
+          track('form_submit', { page_path: window.location.pathname });
+          form.reset();
+          show('Your message is on its way!', true);
+        })
+        .catch(function () {
+          submit.disabled = false;
+          show('Sorry, that did not send. Please try again in a moment.', false);
+        });
+    });
+  })();
+</script>

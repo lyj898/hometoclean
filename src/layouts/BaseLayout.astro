@@ -7,10 +7,10 @@ import '../styles/global.css';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import StickyMobileCTA from '../components/StickyMobileCTA.astro';
+import Analytics from '../components/Analytics.astro';
 
 import { company, isBatchPublished } from '../lib/data';
 import { canonical, urls, assertValidPath, type Path } from '../lib/urls';
-import type { WhatsAppContext } from '../lib/contact';
 import {
   graph,
   organizationNode,
@@ -34,8 +34,6 @@ interface Props {
   batch?: Batch;
   /** Force noindex regardless of batch. Used by the 404 page. */
   noindex?: boolean;
-  /** Page context carried into the sticky bar's WhatsApp message. */
-  whatsapp?: WhatsAppContext;
 }
 
 const {
@@ -46,7 +44,6 @@ const {
   schemaNodes = [],
   batch = 0,
   noindex = false,
-  whatsapp = {},
 } = Astro.props;
 
 assertValidPath(path);
@@ -130,6 +127,7 @@ const jsonLd = graph([
     </main>
 
     <SiteFooter />
-    <StickyMobileCTA context={whatsapp} />
+    <StickyMobileCTA />
+    <Analytics />
   </body>
 </html>

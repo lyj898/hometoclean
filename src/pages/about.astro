@@ -1,18 +1,133 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import CtaBand from '../components/CtaBand.astro';
+
 import { urls } from '../lib/urls';
 import { meta } from '../lib/seo';
+import { company, locations } from '../lib/data';
 
 const path = urls.about();
+
 const { title, description } = meta(
   'About HomeToClean | SKAP Waste Management',
   'HomeToClean is the trading name of SKAP Waste Management Pte Ltd, established 2009. We are a matching service connecting households with cleaning vendors.',
 );
 ---
 
-<BaseLayout title={title} description={description} path={path} batch={0}
-  crumbs={[{ name: 'About', path: urls.about() }]}>
-  <h1>About HomeToClean</h1>
-  <p>HomeToClean is the trading name of SKAP Waste Management Pte Ltd, established 2009. We are a matching service connecting households with cleaning vendors.</p>
-  <p><em>Phase 2 placeholder. Content lands in Phase 3 and 4.</em></p>
+<BaseLayout
+  title={title}
+  description={description}
+  path={path}
+  batch={0}
+  crumbs={[{ name: 'About', path }]}
+>
+  <section class="border-b border-line bg-surface">
+    <div class="wrap py-12 sm:py-16">
+      <div class="max-w-3xl">
+        <p class="text-sm font-semibold uppercase tracking-widest text-brand">
+          Established {company.yearEstablished}
+        </p>
+        <h1 class="mt-4 text-3xl font-semibold sm:text-4xl lg:text-5xl">
+          A matching service, and we are strict about saying so
+        </h1>
+        <p class="mt-5 text-lg leading-relaxed text-ink-muted">
+          {company.tradingName} connects households in Singapore with independent cleaning
+          vendors. We do not clean your home, and we do not employ the cleaners who do.
+          That distinction is not a technicality: it determines who you are contracting
+          with and who is responsible if something goes wrong.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <Section tone="canvas">
+    <div class="grid gap-12 lg:grid-cols-[1.2fr_1fr] lg:items-start">
+      <div class="prose-ht text-ink-muted">
+        <h2 class="text-2xl font-semibold text-ink sm:text-3xl">Who operates this site</h2>
+        <p>
+          {company.tradingName} is a trading name of <strong class="text-ink">{company.entityName}</strong>,
+          a Singapore-registered company that has been operating since {company.yearEstablished}.
+          The registered entity details and UEN are in the footer of every page on this
+          site, because you should not have to hunt for them.
+        </p>
+
+        <h2 class="text-2xl font-semibold text-ink sm:text-3xl">Why we built it this way</h2>
+        <p>
+          Buying home cleaning in Singapore is harder than it should be. Headline prices
+          are quoted without saying whether they are hourly or a flat rate. Services with
+          genuinely different scopes get sold interchangeably, so people book a deep clean
+          when they needed post-renovation cleaning and end up paying for two visits. And
+          the cheapest quotes often come with a compliance problem that lands on the
+          household rather than the vendor.
+        </p>
+        <p>
+          So this site does three things. It states the pricing basis before the number.
+          It tells you plainly when the service you are looking at is the wrong one and
+          links you to the right one. And it explains what is actually regulated in home
+          cleaning, including the parts where the answer is "less than you would assume".
+        </p>
+
+        <h2 class="text-2xl font-semibold text-ink sm:text-3xl">What we do not claim</h2>
+        <p>
+          We publish no ratings, review counts or vendor numbers, because we have not
+          genuinely collected them. When we have, we will say where they came from. There
+          are no "Singapore's No.1" claims here for the same reason: we cannot evidence
+          it, so we do not say it.
+        </p>
+        <p>
+          Prices on this site are indicative market ranges compiled from published
+          sources, stated before GST at {company.gstRatePercent}%. They are not
+          quotations. Your price comes from the vendor, after they understand your home.
+        </p>
+
+        <h2 class="text-2xl font-semibold text-ink sm:text-3xl">How the matching works</h2>
+        <p>
+          You send an enquiry. We pass it to vendors who cover your estate, offer the
+          service you asked for, and have cleared the checks set out on our
+          <a href={urls.vendorStandards()}>vendor standards</a> page. They quote you
+          directly. You compare, and you choose, or you choose nobody. There is no charge
+          to you and no obligation to book.
+        </p>
+      </div>
+
+      <aside class="space-y-5">
+        <div class="rounded-card border border-line bg-surface p-6">
+          <h2 class="font-semibold">Registered entity</h2>
+          <address class="mt-3 text-sm not-italic leading-relaxed text-ink-muted">
+            <strong class="font-semibold text-ink">{company.entityName}</strong><br />
+            trading as {company.tradingName}<br />
+            UEN {company.uen}<br />
+            <span class="mt-2 block">
+              {company.address.street} {company.address.unit}<br />
+              Singapore {company.address.postalCode}
+            </span>
+            <span class="mt-2 block">{company.phoneDisplay}</span>
+            <span class="block">{company.email}</span>
+          </address>
+          <p class="mt-4 border-t border-line pt-4 text-sm text-ink-muted">
+            {company.operatingHoursDisplay}
+          </p>
+        </div>
+
+        <div class="rounded-card border border-line bg-surface-sunk p-6">
+          <h2 class="font-semibold">Coverage</h2>
+          <p class="mt-2 text-sm leading-relaxed text-ink-muted">
+            {locations.length} residential towns across Singapore. Singapore only, and we
+            have no plans to change that.
+          </p>
+          <p class="mt-4 text-sm">
+            <a href={urls.areas()} class="font-semibold text-brand no-underline hover:underline">
+              Areas we cover &rarr;
+            </a>
+          </p>
+        </div>
+      </aside>
+    </div>
+  </Section>
+
+  <CtaBand
+    heading="Tell us what your home needs."
+    body="No charge to you, no obligation, and your details go only to the vendors matched to your request."
+  />
 </BaseLayout>

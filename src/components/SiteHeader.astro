@@ -8,7 +8,6 @@
  */
 import { company } from '../lib/data';
 import { urls } from '../lib/urls';
-import { phoneHref, phoneLabel, hasPhone } from '../lib/contact';
 
 const nav = [
   { label: 'Services', href: `${urls.home()}#services` },
@@ -17,8 +16,6 @@ const nav = [
   { label: 'Areas', href: urls.areas() },
   { label: 'About', href: urls.about() },
 ];
-
-const tel = phoneHref();
 ---
 
 <header class="sticky top-0 z-40 border-b border-line bg-canvas/95 backdrop-blur-sm">
@@ -39,15 +36,6 @@ const tel = phoneHref();
     </nav>
 
     <div class="hidden items-center gap-3 lg:flex">
-      {tel && (
-        <a
-          href={tel}
-          data-analytics="phone_click"
-          class="text-sm font-semibold text-ink no-underline hover:text-brand"
-        >
-          {phoneLabel()}
-        </a>
-      )}
       <a
         href={urls.contact()}
         class="rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-white no-underline transition-colors hover:bg-brand-dark"
@@ -90,11 +78,6 @@ const tel = phoneHref();
               Get a quote
             </a>
           </li>
-          {hasPhone() && (
-            <li class="pb-3 text-center text-sm text-ink-muted">
-              or call <a href={tel!} data-analytics="phone_click" class="font-semibold text-brand">{phoneLabel()}</a>
-            </li>
-          )}
         </ul>
       </nav>
     </details>

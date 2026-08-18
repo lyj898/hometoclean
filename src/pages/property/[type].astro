@@ -60,7 +60,6 @@ const stats = [
   path={path}
   batch={pt.batch}
   crumbs={[{ name: pt.name, path }]}
-  whatsapp={{ propertyType: pt.name }}
 >
   {/* ------------------------------------------------------------------ hero */}
   <section class="border-b border-line bg-surface">
@@ -166,6 +165,5 @@ const stats = [
   <CtaBand
     heading={`Get cleaning quotes for your ${pt.name}.`}
     body="Tell us the service and your town, and we will match you with vetted, insured vendors."
-    context={{ propertyType: pt.name }}
   />
 </BaseLayout>

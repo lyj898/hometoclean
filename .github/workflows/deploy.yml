@@ -1,0 +1,67 @@
+# Builds the Astro site and deploys it to GitHub Pages.
+#
+# Two things here are load-bearing and easy to lose:
+#
+#  - public/.nojekyll  Astro emits its hashed assets into `_astro/`. GitHub
+#                      Pages runs Jekyll by default, and Jekyll strips
+#                      directories beginning with an underscore. Without this
+#                      file every stylesheet 404s and the site renders unstyled.
+#  - public/CNAME      The custom domain. It must be in the published output,
+#                      not just the repo root, or Pages drops the domain on
+#                      each deploy.
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Let a running deploy finish rather than cancelling it mid-publish.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # Fails the build on broken data references, over-length titles or
+      # descriptions, and combos published without town-specific copy.
+      - name: Build
+        run: npm run build
+        env:
+          PUBLIC_GA4_ID: ${{ vars.PUBLIC_GA4_ID }}
+
+      # Link resolution, orphans, canonicals, schema prohibitions, word counts.
+      - name: Audit output
+        run: npm run audit
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

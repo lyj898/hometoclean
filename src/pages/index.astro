@@ -13,7 +13,6 @@ import FaqList from '../components/FaqList.astro';
 
 import { urls } from '../lib/urls';
 import { meta } from '../lib/seo';
-import { whatsappHref } from '../lib/contact';
 import {
   company,
   locations,
@@ -25,7 +24,6 @@ import {
 const path = urls.home();
 const services = publishedServices();
 const propertyTypes = publishedPropertyTypes();
-const wa = whatsappHref();
 
 const partTime = getService('part-time-cleaning');
 const deep = getService('deep-cleaning');
@@ -39,7 +37,7 @@ const steps = [
   {
     n: '01',
     title: 'Tell us what you need',
-    body: 'Your town, property size, service and how often. Takes about a minute, on this site or over WhatsApp.',
+    body: 'Your town, property size, service and how often. One short message, about a minute to write.',
   },
   {
     n: '02',
@@ -114,15 +112,6 @@ const homeFaqs = [
             class="inline-flex items-center justify-center rounded-lg bg-brand px-7 py-4 text-base font-semibold text-white no-underline transition-colors hover:bg-brand-dark"
           >
             Get matched with a cleaner
-          </a>
-          <a
-            href={wa ?? urls.contact()}
-            data-analytics="whatsapp_click"
-            rel={wa ? 'noopener' : undefined}
-            target={wa ? '_blank' : undefined}
-            class="inline-flex items-center justify-center rounded-lg bg-surface px-7 py-4 text-base font-semibold text-brand no-underline ring-1 ring-line-strong transition-colors hover:bg-brand-light"
-          >
-            Ask on WhatsApp
           </a>
         </div>
 
@@ -348,8 +337,8 @@ const homeFaqs = [
         Tell us about your home and we will find the right vendor for it.
       </h2>
       <p class="mx-auto mt-4 max-w-xl text-white/80">
-        One short form. No charge, no obligation, and your details only go to the vendors
-        matched to your request.
+        One short message. No charge, no obligation, and your details only go to the
+        vendors matched to your request.
       </p>
       <div class="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
         <a
@@ -357,15 +346,6 @@ const homeFaqs = [
           class="inline-flex items-center justify-center rounded-lg bg-white px-7 py-4 text-base font-semibold text-brand no-underline transition-colors hover:bg-brand-light"
         >
           Get a quote
-        </a>
-        <a
-          href={wa ?? urls.contact()}
-          data-analytics="whatsapp_click"
-          rel={wa ? 'noopener' : undefined}
-          target={wa ? '_blank' : undefined}
-          class="inline-flex items-center justify-center rounded-lg px-7 py-4 text-base font-semibold text-white no-underline ring-1 ring-white/35 transition-colors hover:bg-white/10"
-        >
-          Ask on WhatsApp
         </a>
       </div>
     </div>

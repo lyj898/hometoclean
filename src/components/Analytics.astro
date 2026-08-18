@@ -1,0 +1,48 @@
+---
+/**
+ * GA4 and conversion event tracking.
+ *
+ * Two named events, and only two:
+ *
+ *   form_start   first focus into the enquiry form, once per page view
+ *   form_submit  successful submission only, never on error
+ *
+ * Both are fired from LeadForm.astro. There is deliberately no generic
+ * `button_click`, and no whatsapp_click or phone_click: this site is form-only,
+ * so those events have no data path and an event that can never fire is worse
+ * than no event at all.
+ *
+ * The dataLayer push happens whether or not GA4 is configured, so the events
+ * are testable in a build with no measurement ID, and so a future GTM
+ * container would pick them up unchanged. The gtag.js network request is only
+ * made when PUBLIC_GA4_ID is set — without it the site ships no third-party
+ * JavaScript at all.
+ *
+ * No localStorage or sessionStorage is used anywhere.
+ */
+import { GA4_ID, hasAnalytics } from '../lib/env';
+---
+
+{hasAnalytics() && (
+  <script
+    is:inline
+    async
+    src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`}
+  />
+)}
+
+<script is:inline define:vars={{ GA4_ID }}>
+  // dataLayer first, so events fired before gtag.js finishes loading are queued
+  // rather than dropped.
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    window.dataLayer.push(arguments);
+  }
+  window.gtag = gtag;
+
+  if (GA4_ID) {
+    gtag('js', new Date());
+    gtag('config', GA4_ID);
+  }
+
+</script>

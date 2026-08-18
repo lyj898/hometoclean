@@ -231,8 +231,24 @@ else {
 }
 
 if (!existsSync(join(dist, 'robots.txt'))) err('robots.txt not built');
-if (!existsSync(join(dist, '_redirects'))) err('_redirects not copied to dist');
-if (!existsSync(join(dist, '_headers'))) err('_headers not copied to dist');
+
+// GitHub Pages specifics. Both are easy to lose and both break the live site
+// silently rather than loudly.
+if (!existsSync(join(dist, '.nojekyll'))) {
+  err('.nojekyll missing from dist — GitHub Pages runs Jekyll, which strips _astro/ and every stylesheet 404s');
+}
+if (!existsSync(join(dist, 'CNAME'))) {
+  err('CNAME missing from dist — GitHub Pages drops the custom domain on deploy without it');
+} else {
+  const domain = readFileSync(join(dist, 'CNAME'), 'utf8').trim();
+  if (domain !== 'hometoclean.com') err(`CNAME is "${domain}", expected hometoclean.com`);
+}
+
+// Contact is form-only: no WhatsApp or telephone links anywhere on the site.
+for (const p of pages.values()) {
+  if (/href="https:\/\/wa\.me\//.test(p.html)) err(`${p.route}: contains a wa.me link (contact is form-only)`);
+  if (/href="tel:/.test(p.html)) err(`${p.route}: contains a tel: link (contact is form-only)`);
+}
 
 // --- report -----------------------------------------------------------------
 for (const w of warnings) console.warn(`  warn  ${w}`);
