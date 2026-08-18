@@ -22,8 +22,13 @@ export const ORG_ID = `${ORIGIN}/#org`;
 type JsonLdNode = Record<string, unknown>;
 
 const isPlaceholder = (v: string): boolean => /^\[.*\]$/.test(v);
-/** Omit unresolved `[PLACEHOLDER]` values rather than publishing them. */
-const real = (v: string): string | undefined => (isPlaceholder(v) ? undefined : v);
+/**
+ * Omit unresolved `[PLACEHOLDER]` values AND empty strings rather than
+ * publishing them. Emitting `"telephone": ""` is worse than omitting the key:
+ * it asserts the organisation has a blank phone number.
+ */
+const real = (v: string): string | undefined =>
+  !v || !v.trim() || isPlaceholder(v) ? undefined : v;
 
 /** Drops undefined values so the emitted JSON-LD carries no empty keys. */
 const compact = (node: JsonLdNode): JsonLdNode =>
@@ -63,7 +68,16 @@ export function organizationNode(): JsonLdNode {
       : undefined,
     address: postalAddress,
     telephone: real(company.phone),
-    email: real(company.email),
+    // The inbox address is deliberately NOT published here. Contact is
+    // form-only, and an email in structured data on every page is a
+    // spam-harvesting target. Point at the form instead.
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'customer support',
+      url: `${ORIGIN}/contact/`,
+      areaServed: 'SG',
+      availableLanguage: 'English',
+    },
     areaServed: { '@type': 'Country', name: 'Singapore' },
   });
 }

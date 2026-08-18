@@ -122,6 +122,13 @@ for (const p of pages.values()) {
       if (JSON.stringify(parsed).includes('AggregateRating')) {
         err(`${p.route}: JSON-LD contains AggregateRating — no reviews have been collected`);
       }
+      // Empty-string properties assert a blank value rather than absence.
+      const blanks = Object.entries(nodes.find((n) => n['@type'] === 'Organization') ?? {})
+        .filter(([, v]) => v === '')
+        .map(([k]) => k);
+      if (blanks.length) {
+        err(`${p.route}: Organization node has empty-string ${blanks.join(', ')} — omit the key instead`);
+      }
       const orgs = types.filter((t) => t === 'Organization').length;
       if (orgs > 1) err(`${p.route}: ${orgs} Organization nodes; there must be exactly one`);
       // Nested pages need a breadcrumb.
