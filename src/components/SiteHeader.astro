@@ -1,0 +1,102 @@
+---
+/**
+ * Site header with a mobile nav toggle.
+ *
+ * The toggle is the only client-side JS on the page besides the form and
+ * analytics. It is a native <details> element, so it works with no JS at all,
+ * needs no hydration, and is keyboard accessible for free. No storage is used.
+ */
+import { company } from '../lib/data';
+import { urls } from '../lib/urls';
+import { phoneHref, phoneLabel, hasPhone } from '../lib/contact';
+
+const nav = [
+  { label: 'Services', href: `${urls.home()}#services` },
+  { label: 'Pricing', href: urls.pricing() },
+  { label: 'Vendor standards', href: urls.vendorStandards() },
+  { label: 'Areas', href: urls.areas() },
+  { label: 'About', href: urls.about() },
+];
+
+const tel = phoneHref();
+---
+
+<header class="sticky top-0 z-40 border-b border-line bg-canvas/95 backdrop-blur-sm">
+  <div class="wrap flex h-16 items-center justify-between gap-4">
+    <a href={urls.home()} class="flex items-baseline gap-1.5 no-underline">
+      <span class="text-lg font-bold tracking-tight text-ink">Home<span class="text-brand">To</span>Clean</span>
+    </a>
+
+    <nav aria-label="Primary" class="hidden items-center gap-7 lg:flex">
+      {nav.map((item) => (
+        <a
+          href={item.href}
+          class="text-sm font-medium text-ink-muted no-underline transition-colors hover:text-brand"
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="hidden items-center gap-3 lg:flex">
+      {tel && (
+        <a
+          href={tel}
+          data-analytics="phone_click"
+          class="text-sm font-semibold text-ink no-underline hover:text-brand"
+        >
+          {phoneLabel()}
+        </a>
+      )}
+      <a
+        href={urls.contact()}
+        class="rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-white no-underline transition-colors hover:bg-brand-dark"
+      >
+        Get a quote
+      </a>
+    </div>
+
+    {/* Native disclosure: no JS required, no hydration, keyboard accessible. */}
+    <details class="lg:hidden [&[open]_.i-open]:hidden [&[open]_.i-close]:block">
+      <summary
+        class="flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-lg ring-1 ring-line-strong [&::-webkit-details-marker]:hidden"
+        aria-label="Toggle navigation menu"
+      >
+        <svg class="i-open" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round">
+          <path d="M3 6h14M3 10h14M3 14h14" />
+        </svg>
+        <svg class="i-close hidden" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round">
+          <path d="M5 5l10 10M15 5L5 15" />
+        </svg>
+      </summary>
+
+      <nav
+        aria-label="Mobile"
+        class="absolute inset-x-0 top-16 border-b border-line bg-canvas shadow-sm"
+      >
+        <ul class="wrap flex flex-col py-2">
+          {nav.map((item) => (
+            <li class="border-b border-line last:border-0">
+              <a href={item.href} class="block py-3.5 font-medium text-ink no-underline">
+                {item.label}
+              </a>
+            </li>
+          ))}
+          <li class="py-3">
+            <a
+              href={urls.contact()}
+              class="block rounded-lg bg-brand px-4 py-3 text-center font-semibold text-white no-underline"
+            >
+              Get a quote
+            </a>
+          </li>
+          {hasPhone() && (
+            <li class="pb-3 text-center text-sm text-ink-muted">
+              or call <a href={tel!} data-analytics="phone_click" class="font-semibold text-brand">{phoneLabel()}</a>
+            </li>
+          )}
+        </ul>
+      </nav>
+    </details>
+  </div>
+</header>

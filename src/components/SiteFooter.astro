@@ -1,0 +1,104 @@
+---
+/**
+ * Site footer. Carries the full NAP and the registered entity name and UEN,
+ * which is a requirement, not a nicety.
+ *
+ * Placeholder contact values are rendered as plain text rather than as links,
+ * so nothing here looks clickable before it works.
+ */
+import { company, services, propertyTypes, isBatchPublished } from '../lib/data';
+import { urls } from '../lib/urls';
+import { hasPhone, phoneHref, phoneLabel } from '../lib/contact';
+
+const year = new Date().getFullYear();
+const tel = phoneHref();
+
+const liveServices = services.filter((s) => isBatchPublished(s.batch));
+const liveProperties = propertyTypes.filter((p) => isBatchPublished(p.batch));
+
+const isPlaceholder = (v: string): boolean => /^\[.*\]$/.test(v);
+const addressLine = [company.address.street, company.address.unit]
+  .filter((v) => !isPlaceholder(v))
+  .join(' ');
+const postal = isPlaceholder(company.address.postalCode) ? '' : `Singapore ${company.address.postalCode}`;
+---
+
+<footer class="border-t border-line bg-surface-sunk">
+  <div class="wrap py-14">
+    <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+      <div>
+        <p class="text-base font-bold tracking-tight text-ink">
+          Home<span class="text-brand">To</span>Clean
+        </p>
+        <p class="mt-3 text-sm leading-relaxed text-ink-muted">
+          {company.businessModelStatement}
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-sm font-semibold text-ink">Services</h2>
+        <ul class="mt-3 space-y-2">
+          {liveServices.map((s) => (
+            <li>
+              <a href={urls.service(s.slug)} class="text-sm text-ink-muted no-underline hover:text-brand">
+                {s.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-sm font-semibold text-ink">By property size</h2>
+        <ul class="mt-3 space-y-2">
+          {liveProperties.map((p) => (
+            <li>
+              <a href={urls.propertyType(p.slug)} class="text-sm text-ink-muted no-underline hover:text-brand">
+                {p.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-sm font-semibold text-ink">Company</h2>
+        <ul class="mt-3 space-y-2">
+          <li><a href={urls.about()} class="text-sm text-ink-muted no-underline hover:text-brand">About</a></li>
+          <li><a href={urls.vendorStandards()} class="text-sm text-ink-muted no-underline hover:text-brand">Vendor standards</a></li>
+          <li><a href={urls.pricing()} class="text-sm text-ink-muted no-underline hover:text-brand">Pricing</a></li>
+          <li><a href={urls.areas()} class="text-sm text-ink-muted no-underline hover:text-brand">Areas we cover</a></li>
+          <li><a href={urls.contact()} class="text-sm text-ink-muted no-underline hover:text-brand">Contact</a></li>
+          <li><a href={urls.privacy()} class="text-sm text-ink-muted no-underline hover:text-brand">Privacy policy</a></li>
+          <li><a href={urls.terms()} class="text-sm text-ink-muted no-underline hover:text-brand">Terms of service</a></li>
+        </ul>
+      </div>
+    </div>
+
+    {/* Registered entity details. Required in the footer. */}
+    <div class="mt-12 border-t border-line pt-8">
+      <address class="text-sm not-italic leading-relaxed text-ink-muted">
+        <strong class="font-semibold text-ink">{company.entityName}</strong>
+        <span> trading as {company.tradingName}</span><br />
+        <span>UEN: {company.uen}</span><br />
+        {addressLine && <>{addressLine}<br /></>}
+        {postal && <>{postal}<br /></>}
+        {hasPhone() ? (
+          <a href={tel!} data-analytics="phone_click" class="font-medium text-brand no-underline">
+            {phoneLabel()}
+          </a>
+        ) : (
+          <span>{company.phoneDisplay}</span>
+        )}
+        <br />
+        <span>{company.operatingHoursDisplay}</span>
+      </address>
+
+      <p class="mt-6 text-2xs leading-relaxed text-ink-faint">
+        &copy; {year} {company.entityName}. Established {company.yearEstablished}.
+        Prices shown on this site are indicative market ranges in Singapore dollars
+        and are not quotations.
+      </p>
+    </div>
+  </div>
+</footer>

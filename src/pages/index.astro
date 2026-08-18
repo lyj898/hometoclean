@@ -1,17 +1,373 @@
 ---
+/**
+ * Homepage.
+ *
+ * No images. The hero is typographic and the only "figure" is a real price
+ * table built from the data, which means zero layout shift, an immediate LCP
+ * text paint, and nothing to preload. A stock photo of a cleaner would also
+ * imply we employ one, which we do not.
+ */
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import FaqList from '../components/FaqList.astro';
+
 import { urls } from '../lib/urls';
 import { meta } from '../lib/seo';
+import { whatsappHref } from '../lib/contact';
+import {
+  company,
+  locations,
+  publishedServices,
+  publishedPropertyTypes,
+  getService,
+} from '../lib/data';
 
 const path = urls.home();
+const services = publishedServices();
+const propertyTypes = publishedPropertyTypes();
+const wa = whatsappHref();
+
+const partTime = getService('part-time-cleaning');
+const deep = getService('deep-cleaning');
+
 const { title, description } = meta(
   'Home Cleaning Services Singapore | HomeToClean',
-  'Get matched with vetted, insured cleaning vendors across Singapore. Transparent SGD pricing by property size. Part-time, deep and post-renovation cleaning.',
+  'Get matched with vetted, insured cleaning vendors across Singapore. Clear price ranges by property size. Part-time, deep and post-renovation cleaning.',
 );
+
+const steps = [
+  {
+    n: '01',
+    title: 'Tell us what you need',
+    body: 'Your town, property size, service and how often. Takes about a minute, on this site or over WhatsApp.',
+  },
+  {
+    n: '02',
+    title: 'We match you to checked vendors',
+    body: 'We pass your request to vendors who cover your estate and have cleared our checks on insurance, work-pass compliance and business registration.',
+  },
+  {
+    n: '03',
+    title: 'You compare and decide',
+    body: 'Quotes come back to you directly. You choose, or you choose nobody. There is no charge to you for being matched.',
+  },
+];
+
+// The three checks that actually matter for domestic cleaning in Singapore.
+// Deliberately not "NEA licensed": cleaning of domestic premises is excluded
+// cleaning work under the Environmental Public Health (Excluded Cleaning Work)
+// Notification 2014, so that badge means something different from what most
+// buyers assume. See /vendor-standards/.
+const checks = [
+  {
+    title: 'Insurance that covers your home',
+    body: 'Public liability for damage to your property, and Work Injury Compensation cover, which is mandatory for employees doing manual work.',
+  },
+  {
+    title: 'Legal right to work',
+    body: 'The cheapest quotes in this market often come from people who cannot lawfully accept the job. The penalties reach the household, not only the worker.',
+  },
+  {
+    title: 'A real registered business',
+    body: 'An ACRA-registered entity you can look up, that invoices properly and can be held to what it agreed.',
+  },
+];
+
+const homeFaqs = [
+  {
+    q: 'Do you employ the cleaners yourselves?',
+    a: 'No. HomeToClean is a matching service. We connect you with independent cleaning vendors who have cleared our checks, and your agreement for the work is with the vendor you choose, not with us.',
+  },
+  {
+    q: 'What does it cost to be matched?',
+    a: 'Nothing. You pay the vendor for the cleaning if you decide to book. There is no fee to you for the introduction and no obligation to accept any quote.',
+  },
+  partTime.faqs[0]!,
+  deep.faqs[0]!,
+  {
+    q: 'How quickly can someone come?',
+    a: 'It depends on your town and the service. Recurring part-time slots in central estates often start within a week. Deep cleaning and post-renovation work need more lead time, and the weeks before Chinese New Year are the hardest period of the year to book at short notice.',
+  },
+];
 ---
 
 <BaseLayout title={title} description={description} path={path} batch={0}>
-  <h1>Home Cleaning Services Singapore</h1>
-  <p>Get matched with vetted, insured cleaning vendors across Singapore. Transparent SGD pricing by property size. Part-time, deep and post-renovation cleaning.</p>
-  <p><em>Phase 2 placeholder. Content lands in Phase 3 and 4.</em></p>
+  {/* ------------------------------------------------------------------ hero */}
+  <section class="border-b border-line bg-surface">
+    <div class="wrap py-16 sm:py-24">
+      <div class="max-w-3xl">
+        <p class="text-sm font-semibold uppercase tracking-widest text-brand">
+          Singapore &middot; Since {company.yearEstablished}
+        </p>
+        <h1 class="mt-4 text-4xl font-semibold sm:text-5xl lg:text-6xl">
+          Home cleaning, matched to a vendor who is actually allowed to do it.
+        </h1>
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-ink-muted">
+          HomeToClean is a matching service, not a cleaning company. Tell us what your
+          home needs and we put you in front of vetted, insured cleaning vendors who
+          cover your estate. You compare, you decide.
+        </p>
+
+        <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+          <a
+            href={urls.contact()}
+            class="inline-flex items-center justify-center rounded-lg bg-brand px-7 py-4 text-base font-semibold text-white no-underline transition-colors hover:bg-brand-dark"
+          >
+            Get matched with a cleaner
+          </a>
+          <a
+            href={wa ?? urls.contact()}
+            data-analytics="whatsapp_click"
+            rel={wa ? 'noopener' : undefined}
+            target={wa ? '_blank' : undefined}
+            class="inline-flex items-center justify-center rounded-lg bg-surface px-7 py-4 text-base font-semibold text-brand no-underline ring-1 ring-line-strong transition-colors hover:bg-brand-light"
+          >
+            Ask on WhatsApp
+          </a>
+        </div>
+
+        <p class="mt-5 text-sm text-ink-muted">No charge to you. No obligation to book.</p>
+      </div>
+    </div>
+
+    {/* --------------------------------------------------------- trust bar */}
+    <div class="border-t border-line bg-canvas">
+      <div class="wrap grid gap-x-8 gap-y-5 py-6 sm:grid-cols-3">
+        <div class="flex items-baseline gap-3">
+          <span class="text-2xl font-semibold text-brand">{company.yearEstablished}</span>
+          <span class="text-sm text-ink-muted">Operating as a Singapore business since</span>
+        </div>
+        <div class="text-sm text-ink-muted">
+          <span class="font-semibold text-ink">{company.entityName}</span><br />
+          UEN {company.uen}
+        </div>
+        <div class="text-sm text-ink-muted">
+          <span class="font-semibold text-ink">Insured, work-pass checked vendors</span><br />
+          <a href={urls.vendorStandards()} class="text-brand no-underline hover:underline">
+            See exactly what we check
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* -------------------------------------------------------------- services */}
+  <Section id="services" tone="canvas">
+    <div class="max-w-2xl">
+      <h2 class="text-3xl font-semibold sm:text-4xl">What do you need done?</h2>
+      <p class="mt-4 text-ink-muted">
+        Most people book the wrong service and pay for it. The difference that matters is
+        whether the work is billed by the hour or as a flat rate for the whole home.
+      </p>
+    </div>
+
+    {/* Real gaps with a border per card. A gap-px/background-colour grid would
+        show bare background in the empty cells left by an odd card count. */}
+    <ul class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {services.map((service) => (
+        <li>
+          <a
+            href={urls.service(service.slug)}
+            class="flex h-full flex-col rounded-card bg-surface p-6 no-underline ring-1 ring-line transition-colors hover:bg-brand-light hover:ring-brand/30"
+          >
+            <h3 class="text-lg font-semibold text-ink">{service.name}</h3>
+            <p class="mt-2 flex-1 text-sm leading-relaxed text-ink-muted">
+              {service.shortDescription}
+            </p>
+            <p class="mt-4 text-sm font-semibold text-brand">
+              {service.priceRangeSGD.min !== null && service.priceRangeSGD.max !== null
+                ? `S$${service.priceRangeSGD.min}–${service.priceRangeSGD.max} ${service.priceRangeSGD.unit}`
+                : 'Quoted on request'}
+            </p>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </Section>
+
+  {/* --------------------------------------------------------------- pricing */}
+  <Section tone="surface">
+    <div class="max-w-2xl">
+      <h2 class="text-3xl font-semibold sm:text-4xl">What it should cost</h2>
+      <p class="mt-4 text-ink-muted">
+        Indicative market ranges, before GST at {company.gstRatePercent}%. Cleaning prices
+        key off property size far more than off which town you live in, so this is the
+        table worth reading first.
+      </p>
+    </div>
+
+    <div class="mt-10 overflow-x-auto">
+      <table class="w-full min-w-[38rem] border-collapse text-left text-sm">
+        <caption class="sr-only">
+          Indicative cleaning prices in Singapore dollars by property type, before GST
+        </caption>
+        <thead>
+          <tr class="border-b border-line-strong">
+            <th scope="col" class="py-3 pr-4 font-semibold">Property type</th>
+            <th scope="col" class="py-3 pr-4 font-semibold">Floor area</th>
+            <th scope="col" class="py-3 pr-4 font-semibold">
+              Routine clean
+              <span class="block text-2xs font-normal text-ink-faint">hourly, 3h minimum</span>
+            </th>
+            <th scope="col" class="py-3 font-semibold">
+              Deep clean
+              <span class="block text-2xs font-normal text-ink-faint">flat rate</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-line">
+          {propertyTypes.map((p) => (
+            <tr>
+              <th scope="row" class="py-3.5 pr-4 font-medium">
+                <a href={urls.propertyType(p.slug)} class="text-brand no-underline hover:underline">
+                  {p.name}
+                </a>
+              </th>
+              <td class="py-3.5 pr-4 text-ink-muted">
+                {p.floorAreaSqft.min}&ndash;{p.floorAreaSqft.max} sqft
+              </td>
+              <td class="py-3.5 pr-4 text-ink-muted">
+                {p.regularCleanHours.min}&ndash;{p.regularCleanHours.max} hours
+              </td>
+              <td class="py-3.5 text-ink-muted">
+                {p.deepCleanFlatRateSGD !== null
+                  ? `S$${p.deepCleanFlatRateSGD.min}–${p.deepCleanFlatRateSGD.max}`
+                  : 'Site visit'}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-8 rounded-card border border-sand-deep/40 bg-sand/40 p-5">
+      <p class="text-sm leading-relaxed text-ink">
+        <strong class="font-semibold">Why a very cheap quote should worry you.</strong>{' '}
+        A full-time cleaner in the licensed sector has a basic wage floor of S$2,080 a
+        month under the Progressive Wage Model, and that is before employer CPF,
+        insurance, transport and supplies. A quote that cannot cover those costs is
+        usually being met somewhere else, and the risk tends to land on your household.{' '}
+        <a href={urls.vendorStandards()} class="font-semibold text-brand no-underline hover:underline">
+          How we check vendors
+        </a>.
+      </p>
+    </div>
+
+    <p class="mt-6 text-sm">
+      <a href={urls.pricing()} class="font-semibold text-brand no-underline hover:underline">
+        Full pricing guide, service by service &rarr;
+      </a>
+    </p>
+  </Section>
+
+  {/* ---------------------------------------------------------- how it works */}
+  <Section tone="canvas">
+    <div class="max-w-2xl">
+      <h2 class="text-3xl font-semibold sm:text-4xl">How the matching works</h2>
+    </div>
+
+    <ol class="mt-10 grid gap-8 sm:grid-cols-3">
+      {steps.map((step) => (
+        <li class="border-t-2 border-brand pt-5">
+          <p class="text-sm font-semibold tabular-nums text-brand">{step.n}</p>
+          <h3 class="mt-2 text-lg font-semibold">{step.title}</h3>
+          <p class="mt-2 text-sm leading-relaxed text-ink-muted">{step.body}</p>
+        </li>
+      ))}
+    </ol>
+  </Section>
+
+  {/* -------------------------------------------------------- vendor checks */}
+  <Section tone="sunk">
+    <div class="grid gap-12 lg:grid-cols-[1fr_1.15fr]">
+      <div>
+        <h2 class="text-3xl font-semibold sm:text-4xl">What we check before we match</h2>
+        <p class="mt-4 text-ink-muted">
+          Home cleaning in Singapore is less regulated than most people assume. Cleaning
+          of domestic premises is excluded from the NEA cleaning business licence regime,
+          which means the badge many companies lead with does not cover the work being
+          done inside your flat.
+        </p>
+        <p class="mt-4 text-ink-muted">So we check the things that do apply.</p>
+        <p class="mt-6">
+          <a href={urls.vendorStandards()} class="font-semibold text-brand no-underline hover:underline">
+            Read our full vendor standards &rarr;
+          </a>
+        </p>
+      </div>
+
+      <ul class="space-y-4">
+        {checks.map((check) => (
+          <li class="rounded-card bg-surface p-6 ring-1 ring-line">
+            <h3 class="font-semibold text-ink">{check.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-ink-muted">{check.body}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </Section>
+
+  {/* ----------------------------------------------------------------- areas */}
+  <Section tone="canvas">
+    <div class="max-w-2xl">
+      <h2 class="text-3xl font-semibold sm:text-4xl">Where we cover</h2>
+      <p class="mt-4 text-ink-muted">
+        {locations.length} residential towns across Singapore, from Tengah handovers to
+        Tiong Bahru conservation flats. What your home needs depends heavily on when your
+        estate was built.
+      </p>
+    </div>
+
+    <ul class="mt-8 flex flex-wrap gap-2">
+      {locations.map((town) => (
+        <li class="rounded-full bg-surface px-3.5 py-1.5 text-sm text-ink-muted ring-1 ring-line">
+          {town.name}
+        </li>
+      ))}
+    </ul>
+
+    <p class="mt-8 text-sm">
+      <a href={urls.areas()} class="font-semibold text-brand no-underline hover:underline">
+        See all areas we cover &rarr;
+      </a>
+    </p>
+  </Section>
+
+  {/* ------------------------------------------------------------------ faqs */}
+  <Section tone="surface" narrow>
+    <h2 class="text-3xl font-semibold sm:text-4xl">Common questions</h2>
+    <div class="mt-8">
+      <FaqList faqs={homeFaqs} />
+    </div>
+  </Section>
+
+  {/* -------------------------------------------------------------- final CTA */}
+  <section class="bg-brand text-white">
+    <div class="wrap py-16 text-center sm:py-20">
+      <h2 class="mx-auto max-w-2xl text-3xl font-semibold sm:text-4xl">
+        Tell us about your home and we will find the right vendor for it.
+      </h2>
+      <p class="mx-auto mt-4 max-w-xl text-white/80">
+        One short form. No charge, no obligation, and your details only go to the vendors
+        matched to your request.
+      </p>
+      <div class="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
+        <a
+          href={urls.contact()}
+          class="inline-flex items-center justify-center rounded-lg bg-white px-7 py-4 text-base font-semibold text-brand no-underline transition-colors hover:bg-brand-light"
+        >
+          Get a quote
+        </a>
+        <a
+          href={wa ?? urls.contact()}
+          data-analytics="whatsapp_click"
+          rel={wa ? 'noopener' : undefined}
+          target={wa ? '_blank' : undefined}
+          class="inline-flex items-center justify-center rounded-lg px-7 py-4 text-base font-semibold text-white no-underline ring-1 ring-white/35 transition-colors hover:bg-white/10"
+        >
+          Ask on WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
 </BaseLayout>

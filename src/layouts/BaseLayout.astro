@@ -1,11 +1,16 @@
 ---
 /**
  * Base layout. Owns <head>, the canonical link, and the single JSON-LD graph.
- *
- * Phase 2: structure and SEO plumbing only. Styling arrives in Phase 3.
  */
+import '../styles/global.css';
+
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import StickyMobileCTA from '../components/StickyMobileCTA.astro';
+
 import { company, isBatchPublished } from '../lib/data';
 import { canonical, urls, assertValidPath, type Path } from '../lib/urls';
+import type { WhatsAppContext } from '../lib/contact';
 import {
   graph,
   organizationNode,
@@ -29,6 +34,8 @@ interface Props {
   batch?: Batch;
   /** Force noindex regardless of batch. Used by the 404 page. */
   noindex?: boolean;
+  /** Page context carried into the sticky bar's WhatsApp message. */
+  whatsapp?: WhatsAppContext;
 }
 
 const {
@@ -39,6 +46,7 @@ const {
   schemaNodes = [],
   batch = 0,
   noindex = false,
+  whatsapp = {},
 } = Astro.props;
 
 assertValidPath(path);
@@ -55,8 +63,6 @@ const jsonLd = graph([
   ...(fullCrumbs.length ? [breadcrumbNode(fullCrumbs, path)] : []),
   ...schemaNodes,
 ]);
-
-const year = new Date().getFullYear();
 ---
 
 <!doctype html>
@@ -76,6 +82,10 @@ const year = new Date().getFullYear();
       ? <meta name="robots" content="index,follow,max-image-preview:large" />
       : <meta name="robots" content="noindex,follow" />}
 
+    {/* Declaring an icon stops the browser requesting /favicon.ico and 404ing. */}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#fbfaf8" />
+
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={company.tradingName} />
     <meta property="og:title" content={title} />
@@ -84,36 +94,31 @@ const year = new Date().getFullYear();
     <meta property="og:locale" content="en_SG" />
     <meta name="twitter:card" content="summary" />
 
-    <meta name="format-detection" content="telephone=no" />
-
     {/* set:html on a real <script> element: the JSON must not be HTML-escaped. */}
     <script type="application/ld+json" is:inline set:html={jsonLd} />
   </head>
 
-  <body>
-    <a href="#main">Skip to content</a>
+  <body class="pb-sticky-cta lg:pb-0">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-brand focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
+    >
+      Skip to content
+    </a>
 
-    <header>
-      <nav aria-label="Primary">
-        <a href={urls.home()}>{company.tradingName}</a>
-        <ul>
-          <li><a href={urls.pricing()}>Pricing</a></li>
-          <li><a href={urls.vendorStandards()}>Vendor Standards</a></li>
-          <li><a href={urls.areas()}>Areas</a></li>
-          <li><a href={urls.about()}>About</a></li>
-          <li><a href={urls.contact()}>Contact</a></li>
-        </ul>
-      </nav>
-    </header>
+    <SiteHeader />
 
     {fullCrumbs.length > 0 && (
-      <nav aria-label="Breadcrumb">
-        <ol>
+      <nav aria-label="Breadcrumb" class="border-b border-line bg-canvas">
+        <ol class="wrap flex flex-wrap items-center gap-x-2 gap-y-1 py-3 text-xs text-ink-muted">
           {fullCrumbs.map((c, i) => (
-            <li>
-              {i === fullCrumbs.length - 1
-                ? <span aria-current="page">{c.name}</span>
-                : <a href={c.path}>{c.name}</a>}
+            <li class="flex items-center gap-2">
+              {i > 0 && <span aria-hidden="true" class="text-ink-faint">/</span>}
+              {i === fullCrumbs.length - 1 ? (
+                <span aria-current="page" class="font-medium text-ink">{c.name}</span>
+              ) : (
+                <a href={c.path} class="no-underline hover:text-brand">{c.name}</a>
+              )}
             </li>
           ))}
         </ol>
@@ -124,20 +129,7 @@ const year = new Date().getFullYear();
       <slot />
     </main>
 
-    <footer>
-      <p>{company.businessModelStatement}</p>
-      <p>
-        <strong>{company.entityName}</strong> trading as {company.tradingName}<br />
-        UEN: {company.uen}<br />
-        {company.address.street} {company.address.unit}, Singapore {company.address.postalCode}<br />
-        Tel: <a href={`tel:${company.phone}`}>{company.phoneDisplay}</a><br />
-        {company.operatingHoursDisplay}
-      </p>
-      <ul>
-        <li><a href={urls.privacy()}>Privacy Policy</a></li>
-        <li><a href={urls.terms()}>Terms of Service</a></li>
-      </ul>
-      <p>&copy; {year} {company.entityName}. Established {company.yearEstablished}.</p>
-    </footer>
+    <SiteFooter />
+    <StickyMobileCTA context={whatsapp} />
   </body>
 </html>

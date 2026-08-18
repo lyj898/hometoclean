@@ -22,7 +22,15 @@ npm install
 npm run dev        # local dev server
 npm run validate   # data integrity checks (runs before every build)
 npm run build      # validate + astro check + astro build
+npm run audit      # checks dist against the acceptance criteria
+npm run verify     # build + audit
+npm run status     # what is published, and what is in the sitemap
+npm run publish 2  # take a batch live (see Publication batches)
 ```
+
+Lighthouse mobile on the homepage: **100 / 100 / 100 / 100**, CLS 0, LCP 1.3s.
+The site ships **zero JavaScript** — the mobile nav and FAQ accordions are native
+`<details>` elements, and there are no images, so there is nothing to shift.
 
 ---
 
@@ -30,9 +38,9 @@ npm run build      # validate + astro check + astro build
 
 | Phase | Scope | State |
 |---|---|---|
-| 1 | Data layer + types | **Complete — awaiting Gate 1 approval** |
-| 2 | Routing, SEO plumbing, schema | Not started |
-| 3 | Design system + homepage | Not started |
+| 1 | Data layer + types | Complete |
+| 2 | Routing, SEO plumbing, schema | Complete |
+| 3 | Design system + homepage | **Complete — awaiting Gate 3 approval** |
 | 4 | Service / location / property templates | Not started |
 | 5 | Conversion tracking + legal | Not started |
 

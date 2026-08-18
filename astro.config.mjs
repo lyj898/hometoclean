@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://hometoclean.com',
@@ -10,5 +11,10 @@ export default defineConfig({
   trailingSlash: 'always',
   build: {
     format: 'directory',
+    // Inline small stylesheets to avoid a render-blocking request on mobile.
+    inlineStylesheets: 'auto',
+  },
+  vite: {
+    plugins: [tailwindcss()],
   },
 });

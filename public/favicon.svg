@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="HomeToClean">
+  <rect width="32" height="32" rx="7" fill="#0d5750"/>
+  <path d="M7 16.5 16 8.5l9 8" fill="none" stroke="#fbfaf8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M10 16v8h12v-8" fill="none" stroke="#fbfaf8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,38 @@
+---
+/** Single button/link primitive. Renders <a>; there are no non-navigating buttons outside the form. */
+interface Props {
+  href: string;
+  variant?: 'primary' | 'secondary' | 'ghost';
+  size?: 'md' | 'lg';
+  class?: string;
+  'data-analytics'?: string;
+  rel?: string;
+  target?: string;
+}
+
+const {
+  href,
+  variant = 'primary',
+  size = 'md',
+  class: className = '',
+  ...rest
+} = Astro.props;
+
+const base =
+  'inline-flex items-center justify-center gap-2 rounded-lg font-semibold transition-colors duration-150 no-underline text-center';
+
+const variants = {
+  primary: 'bg-brand text-white hover:bg-brand-dark',
+  secondary: 'bg-surface text-brand ring-1 ring-line-strong hover:bg-brand-light',
+  ghost: 'text-brand hover:bg-brand-light',
+} as const;
+
+const sizes = {
+  md: 'px-4 py-2.5 text-sm',
+  lg: 'px-6 py-3.5 text-base',
+} as const;
+---
+
+<a href={href} class={`${base} ${variants[variant]} ${sizes[size]} ${className}`} {...rest}>
+  <slot />
+</a>
