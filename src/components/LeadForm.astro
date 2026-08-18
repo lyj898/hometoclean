@@ -156,7 +156,17 @@ const label = 'block text-sm font-medium text-ink';
       })
         .then(function (res) {
           if (!res.ok) throw new Error('HTTP ' + res.status);
-          // form_submit fires on success only. A failed POST is not a conversion.
+          return res.json();
+        })
+        .then(function (data) {
+          // FormSubmit answers 200 even when it refuses the submission - an
+          // unactivated form returns { success: "false" }. Checking res.ok
+          // alone would show a success message for a message nobody received,
+          // and would record a conversion that never happened.
+          var ok = data && (data.success === true || data.success === 'true');
+          if (!ok) throw new Error((data && data.message) || 'rejected');
+
+          // form_submit fires on genuine delivery only.
           track('form_submit', { page_path: window.location.pathname });
           form.reset();
           show('Your message is on its way!', true);

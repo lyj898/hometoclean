@@ -121,7 +121,10 @@ await evalX(`
   window.__posted = null;
   window.fetch = function (url, opts) {
     window.__posted = { url: String(url), body: opts && opts.body };
-    return Promise.resolve({ ok: true, status: 200, json: function(){ return Promise.resolve({}); } });
+    return Promise.resolve({
+      ok: true, status: 200,
+      json: function(){ return Promise.resolve({ success: 'true', message: 'ok' }); }
+    });
   };
   'stubbed'
 `);
@@ -193,6 +196,30 @@ check('payload carries a _subject', typeof payload._subject === 'string' && payl
 check('success message shown to the user',
   (await evalX(`document.querySelector('[data-lead-status]').textContent`)) ===
     'Your message is on its way!');
+
+// --- a 200 with success:false must NOT count as a conversion -----------------
+// This is exactly what FormSubmit returns for an unactivated form.
+await evalX(`
+  window.fetch = function () {
+    return Promise.resolve({
+      ok: true, status: 200,
+      json: function(){ return Promise.resolve({ success: 'false', message: 'This form needs Activation.' }); }
+    });
+  };
+  var f = document.querySelector('[data-lead-form]');
+  f.querySelector('[name="Name"]').value = 'Rejected Case';
+  f.querySelector('[name="Email"]').value = 'reject@example.com';
+  f.querySelector('[name="Message"]').value = 'should not count';
+  f.requestSubmit(); 'ok'
+`);
+await sleep(800);
+evs = await events();
+check('HTTP 200 with success:false is not counted as a conversion',
+  evs.filter((e) => e[1] === 'form_submit').length === 1,
+  'still 1 form_submit, not 2');
+check('rejected submission shows an error, not a success message',
+  (await evalX(`document.querySelector('[data-lead-status]').textContent`)) ===
+    'Sorry, that did not send. Please try again in a moment.');
 
 // --- event hygiene -----------------------------------------------------------
 const names = [...new Set(evs.map((e) => e[1]))];
