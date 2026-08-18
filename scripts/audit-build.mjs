@@ -257,6 +257,31 @@ for (const p of pages.values()) {
   if (/href="tel:/.test(p.html)) err(`${p.route}: contains a tel: link (contact is form-only)`);
 }
 
+// --- the destination inbox must not appear in rendered content ---------------
+// It is allowed in exactly one place: the FormSubmit endpoint the form POSTs to.
+// Anywhere else it is a spam-harvesting target.
+{
+  const endpoint = JSON.parse(
+    readFileSync(join(root, 'src', 'data', 'company.json'), 'utf8'),
+  ).formSubmit.endpoint;
+  const address = endpoint.split('/').pop();
+
+  if (address && address.includes('@')) {
+    for (const p of pages.values()) {
+      const hits = p.html.split(address).length - 1;
+      if (!hits) continue;
+      // Every occurrence must be part of the endpoint URL.
+      const allowed = p.html.split(endpoint).length - 1;
+      if (hits > allowed) {
+        err(`${p.route}: destination inbox address appears ${hits - allowed} time(s) outside the FormSubmit endpoint`);
+      }
+      if (allowed && p.route !== '/contact/') {
+        err(`${p.route}: FormSubmit endpoint should only be on /contact/`);
+      }
+    }
+  }
+}
+
 // --- report -----------------------------------------------------------------
 for (const w of warnings) console.warn(`  warn  ${w}`);
 for (const e of errors) console.error(`  ERROR ${e}`);

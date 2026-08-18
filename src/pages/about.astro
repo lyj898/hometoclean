@@ -102,8 +102,11 @@ const { title, description } = meta(
               {company.address.street} {company.address.unit}<br />
               Singapore {company.address.postalCode}
             </span>
-            <span class="mt-2 block">{company.phoneDisplay}</span>
-            <span class="block">{company.email}</span>
+            <span class="mt-2 block">
+              <a href={urls.contact()} class="font-medium text-brand no-underline">
+                Send us a message
+              </a>
+            </span>
           </address>
           <p class="mt-4 border-t border-line pt-4 text-sm text-ink-muted">
             {company.operatingHoursDisplay}

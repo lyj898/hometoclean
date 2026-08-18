@@ -14,7 +14,7 @@
   "phone": "",
   "phoneDisplay": "",
   "whatsappNumber": "",
-  "email": "lyj898@gmail.com",
+  "email": "",
   "operatingHours": [
     {
       "days": [
@@ -44,6 +44,6 @@
   "formSubmit": {
     "endpoint": "https://formsubmit.co/ajax/lyj898@gmail.com",
     "subject": "New enquiry - HomeToClean",
-    "note": "FormSubmit requires a one-time activation: the first submission emails a confirmation link to the destination address. After activating, replace the address in the endpoint with the hashed alias FormSubmit provides, so the inbox address is not exposed in page source."
+    "note": "FormSubmit requires a one-time activation: the first submission emails a confirmation link to the destination address. The destination address appears ONLY here and in the compiled form script - it is deliberately absent from every rendered page. After activating, replace the address with the hashed alias FormSubmit provides so it disappears from page source too."
   }
 }

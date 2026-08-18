@@ -180,8 +180,12 @@ const lastUpdated = 'August 2026';
       <p class="mt-1">{company.entityName}</p>
       <p>{company.address.street} {company.address.unit}</p>
       <p>Singapore {company.address.postalCode}</p>
-      <p class="mt-2">Email: {company.email}</p>
-      <p>Telephone: {company.phoneDisplay}</p>
+      <p class="mt-2">
+        Contact us through the
+        <a href={urls.contact()} class="text-brand underline underline-offset-2">enquiry form</a>,
+        marking your message for the attention of the Data Protection Officer. We do not
+        publish an inbox address on this site.
+      </p>
     </div>
 
     <h2>10. Changes to this policy</h2>
