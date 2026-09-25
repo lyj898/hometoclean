@@ -631,7 +631,7 @@
       "mattress-sofa-cleaning",
       "part-time-cleaning"
     ],
-    "locationEnabled": false,
+    "locationEnabled": true,
     "batch": 1,
     "process": [
       {
