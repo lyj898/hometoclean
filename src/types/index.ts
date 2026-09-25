@@ -81,6 +81,18 @@ export interface Service {
   faqs: Faq[];
   /** How the service runs, in order. Rendered as the process section. */
   process: ProcessStep[];
+  /**
+   * Optional contextual link out to a sister service. Set only where it is
+   * genuinely useful to the reader -- currently the two move-related cleans,
+   * which link to HomeToMoved. Not boilerplate: it renders in the article
+   * body, not the footer.
+   */
+  crossLink?: {
+    heading: string;
+    body: string;
+    anchorText: string;
+    url: string;
+  };
   relatedServiceSlugs: string[];
   /** Whether this service generates /cleaning/{service}/{town}/ pages. */
   locationEnabled: boolean;

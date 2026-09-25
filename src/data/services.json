@@ -331,7 +331,13 @@
         "title": "Inspect before you hand over the keys",
         "body": "Walk the unit yourself with the checklist. If something is short, it is fixed then, not after your deposit conversation has started."
       }
-    ]
+    ],
+    "crossLink": {
+      "heading": "Still need the move itself arranged?",
+      "body": "A move-out clean almost always happens on the same day as the move, and the two get booked separately far too often. We also run HomeToMoved, a free matching service that puts your move in front of movers already checked for ACRA registration, insurance and valid work passes.",
+      "anchorText": "Get matched with vetted movers",
+      "url": "https://hometomoved.com/"
+    }
   },
   {
     "slug": "move-in-cleaning",
@@ -435,7 +441,13 @@
         "title": "Protective film and handover labels off",
         "body": "New fittings and appliances arrive covered in film and stickers. Removing them cleanly is easier before adhesive has had months in Singapore heat to set."
       }
-    ]
+    ],
+    "crossLink": {
+      "heading": "Working out what the move will cost?",
+      "body": "Cleaning is usually the smaller half of a move-in budget. Our sister service HomeToMoved publishes what movers actually charge in Singapore, broken down by flat type and by what drives the price up, so you can tell a fair quote from a bad one.",
+      "anchorText": "See what moving costs in Singapore",
+      "url": "https://hometomoved.com/pricing/"
+    }
   },
   {
     "slug": "post-renovation-cleaning",
