@@ -229,11 +229,12 @@ Thirteen asymmetric adjacency pairs are warned about. These come from the suppli
 - Never claim we perform the service ourselves.
 - No `LocalBusiness` schema on location pages — there are no premises in those towns.
 - No `AggregateRating` until reviews have genuinely been collected.
-- Sibling-site links are allowed only where they already exist, and stay scoped:
-  `junktoclear.com.sg` from `/about/` (the origin story), and `hometomoved.com`
-  from the move-out and move-in service pages via the `crossLink` field in
-  `services.json`. No sitewide or footer cross-links. The brief originally
-  banned sibling links outright; the owner approved these specific ones on
-  28 Sep 2026.
+- Links to the owner's other sites are allowed without asking. The brief
+  originally banned them; the owner lifted that for all their repos on
+  28 Sep 2026 (the rule and domain list are in the user-level
+  `~/.claude/CLAUDE.md`). Place each link where it helps the reader of that
+  page rather than sitewide. Existing ones: `junktoclear.com.sg` from `/about/`,
+  and `hometomoved.com` from the move-out and move-in pages via the
+  `crossLink` field in `services.json`.
 - Do not create moving or relocation service pages. That is HomeToMoved's
   territory; link to it instead.
