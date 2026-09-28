@@ -4,15 +4,22 @@
  *
  * Cleaning pricing keys off property size more than location, so these pages
  * carry the numbers the location pages reference.
+ *
+ * The title, H1 and URL are deliberately unchanged from the version that put
+ * /property/hdb-2-room/ at position 3.9. The depth added below this hero is
+ * all type-specific: the previous copy was written per category, and the
+ * 3-room and 5-room pages shared 54% of their sentences.
  */
 import type { GetStaticPaths } from 'astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Section from '../../components/Section.astro';
+import FaqList from '../../components/FaqList.astro';
 import CtaBand from '../../components/CtaBand.astro';
 
 import { propertyTypes, publishedServices, locations, company } from '../../lib/data';
 import { urls } from '../../lib/urls';
 import { meta, fit } from '../../lib/seo';
+import { priceFor, sgdRange, unpricedLabel, fillPropertyTokens } from '../../lib/pricing';
 import type { PropertyType } from '../../types';
 
 export const getStaticPaths = (() =>
@@ -29,6 +36,14 @@ const { propertyType: pt } = Astro.props;
 
 const path = urls.propertyType(pt.slug);
 const services = publishedServices();
+const fill = (t: string) => fillPropertyTokens(t, pt);
+
+// Names are stored title-case ("Executive HDB", "Landed property") because they
+// open headings. Mid-sentence they need a lowercase first letter, and
+// "executive" needs "an". Lowercasing the whole name is wrong too: it produced
+// "4-room hdb".
+const inlineName = pt.name.charAt(0).toLowerCase() + pt.name.slice(1);
+const aName = `${/^[aeiou]/i.test(inlineName) ? 'an' : 'a'} ${inlineName}`;
 
 // Towns where this size is a dominant flat type. Data-driven, so a page for a
 // size nobody lives in simply shows nothing rather than inventing relevance.
@@ -37,7 +52,7 @@ const townsWithThisType = locations.filter((l) => l.dominantPropertyTypes.includ
 const { title, description } = meta(
   fit(`${pt.name} Cleaning Singapore | Hours & Cost`, 60),
   fit(
-    `Cleaning a ${pt.name} in Singapore: ${pt.floorAreaSqft.min}-${pt.floorAreaSqft.max} sqft, how many hours it takes, and what a deep clean costs in S$.`,
+    `Cleaning ${aName} in Singapore: ${pt.floorAreaSqft.min}-${pt.floorAreaSqft.max} sqft, how many hours it takes, and what a deep clean costs in S$.`,
     155,
   ),
 );
@@ -48,10 +63,19 @@ const stats = [
   { label: 'Deep clean time', value: `${pt.deepCleanHours.min}–${pt.deepCleanHours.max} hours`, sub: 'one visit' },
   {
     label: 'Deep clean cost',
-    value: pt.deepCleanFlatRateSGD ? `S$${pt.deepCleanFlatRateSGD.min}–${pt.deepCleanFlatRateSGD.max}` : 'Site visit',
-    sub: pt.deepCleanFlatRateSGD ? `flat rate, before GST` : 'quoted after inspection',
+    value: pt.deepCleanFlatRateSGD ? sgdRange(pt.deepCleanFlatRateSGD) : 'Site visit',
+    sub: pt.deepCleanFlatRateSGD ? 'flat rate, before GST' : 'quoted after inspection',
   },
 ];
+
+const facts = [
+  { label: 'Bedrooms', value: pt.bedrooms },
+  { label: 'Bathrooms', value: pt.bathrooms },
+  { label: 'Floor area', value: `${pt.floorAreaSqm.min}–${pt.floorAreaSqm.max} sqm` },
+];
+
+const costRows = services.map((s) => ({ service: s, price: priceFor(s, pt) }));
+const faqs = pt.faqs.map((f) => ({ q: fill(f.q), a: fill(f.a) }));
 ---
 
 <BaseLayout
@@ -65,7 +89,7 @@ const stats = [
   <section class="border-b border-line bg-surface">
     <div class="wrap py-12 sm:py-16">
       <h1 class="max-w-3xl text-3xl font-semibold sm:text-4xl lg:text-5xl">
-        Cleaning a {pt.name} in Singapore
+        Cleaning {aName} in Singapore
       </h1>
       <p class="mt-5 max-w-2xl text-lg leading-relaxed text-ink-muted">{pt.notes}</p>
 
@@ -81,58 +105,104 @@ const stats = [
     </div>
   </section>
 
-  {/* --------------------------------------------------- what changes at size */}
+  {/* ------------------------------------------------------------- the layout */}
   <Section tone="canvas">
-    <div class="grid gap-10 lg:grid-cols-[1fr_1fr]">
+    <div class="grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:items-start">
       <div>
-        <h2 class="text-2xl font-semibold sm:text-3xl">What changes at this size</h2>
-        <div class="prose-ht mt-4 text-ink-muted">
-          <p>
-            Bathroom count drives cleaning cost more reliably than floor area does. A
-            second bathroom adds descaling, grout and sanitaryware work that a larger
-            living area simply does not, which is why two homes of similar size can
-            quote differently.
-          </p>
-          <p>
-            {pt.category === 'hdb' &&
-              'HDB layouts are consistent enough that a vendor can quote a flat type sight unseen with reasonable accuracy. What they cannot see is the age of the finishes, and that is the variable that decides whether a deep clean runs to the low or the high end of the range.'}
-            {pt.category === 'condo' &&
-              'Condominiums carry more glass, more built-in joinery and usually a balcony, all of which take time that floor area alone does not predict. Management offices also frequently require vendors to register in advance and show insurance before they are allowed up, so booking lead time is longer than for an HDB flat.'}
-            {pt.category === 'landed' &&
-              'Landed homes are quoted after a site visit, not from a price list, and anyone offering a firm figure over the phone is guessing. Storeys, staircases, bathroom count, glazing and external areas all move the number independently of internal floor area.'}
-          </p>
-          <p>
-            Where the home sits in its life also matters. A newly handed-over unit needs
-            move-in or post-renovation cleaning rather than a deep clean, and paying a
-            flat deep-clean rate for a home with no accumulated build-up is poor value.
-          </p>
-        </div>
+        <h2 class="text-2xl font-semibold sm:text-3xl">What is in {aName}</h2>
+        <p class="mt-4 leading-relaxed text-ink-muted">{fill(pt.layoutSummary)}</p>
       </div>
+      <dl class="divide-y divide-line rounded-card border border-line bg-surface px-6">
+        {facts.map((f) => (
+          <div class="grid grid-cols-[7rem_1fr] gap-4 py-4">
+            <dt class="text-sm font-medium text-ink-faint">{f.label}</dt>
+            <dd class="text-sm font-semibold text-ink">{f.value}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </Section>
 
-      <div class="rounded-card border border-line bg-surface p-6">
-        <h3 class="font-semibold">How long each service takes in a {pt.name}</h3>
-        <dl class="mt-5 divide-y divide-line border-t border-line">
-          {services.map((s) => (
-            <div class="grid grid-cols-[1fr_auto] gap-4 py-3">
-              <dt class="text-sm font-medium">
-                <a href={urls.service(s.slug)} class="text-brand no-underline hover:underline">
-                  {s.name}
-                </a>
-                <span class="block text-2xs font-normal text-ink-faint">
-                  {s.priceRangeSGD.unit}
-                </span>
-              </dt>
-              <dd class="text-right text-sm text-ink-muted">
-                {s.typicalDurationByProperty[pt.slug]}
-              </dd>
-            </div>
+  {/* ------------------------------------------------------- where time goes */}
+  <Section tone="sunk">
+    <h2 class="text-2xl font-semibold sm:text-3xl">Where the cleaning time goes</h2>
+    <ol class="mt-8 grid gap-6 lg:grid-cols-3">
+      {pt.whereTimeGoes.map((item, i) => (
+        <li class="rounded-card border border-line bg-surface p-6">
+          <p class="text-sm font-semibold tabular-nums text-brand">{String(i + 1).padStart(2, '0')}</p>
+          <h3 class="mt-2 font-semibold">{fill(item.title)}</h3>
+          <p class="mt-2 text-sm leading-relaxed text-ink-muted">{fill(item.body)}</p>
+        </li>
+      ))}
+    </ol>
+  </Section>
+
+  {/* ------------------------------------------------------ cost by service */}
+  <Section tone="canvas">
+    <h2 class="text-2xl font-semibold sm:text-3xl">What each service costs for {aName}</h2>
+    <div class="mt-8 overflow-x-auto">
+      <table class="w-full min-w-[36rem] border-collapse text-left text-sm">
+        <caption class="sr-only">
+          Typical time and cost of each cleaning service for {aName}, before GST
+        </caption>
+        <thead>
+          <tr class="border-b border-line-strong">
+            <th scope="col" class="py-3 pr-4 font-semibold">Service</th>
+            <th scope="col" class="py-3 pr-4 font-semibold">Typical cost</th>
+            <th scope="col" class="py-3 font-semibold">Typical time</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-line">
+          {costRows.map(({ service: s, price }) => (
+            <tr>
+              <th scope="row" class="py-3.5 pr-4 align-top font-medium">
+                <a href={urls.service(s.slug)} class="text-brand no-underline hover:underline">{s.name}</a>
+              </th>
+              {/* Cost before time: on a phone the third column is off-screen until
+                  swiped, and the price is what people come to this page for. */}
+              <td class="py-3.5 pr-4 align-top">
+                {price ? (
+                  <>
+                    <span class="font-medium text-ink whitespace-nowrap">{sgdRange(price)}</span>
+                    <span class="block text-2xs text-ink-faint">{price.basis}</span>
+                  </>
+                ) : (
+                  <span class="text-ink-muted">{unpricedLabel(pt)}</span>
+                )}
+              </td>
+              <td class="py-3.5 align-top text-ink-muted">{s.typicalDurationByProperty[pt.slug]}</td>
+            </tr>
           ))}
-        </dl>
-        <p class="mt-5 text-2xs text-ink-faint">
-          Indicative only, before GST at {company.gstRatePercent}%. Condition and finish
-          age move these more than layout does.
-        </p>
-      </div>
+        </tbody>
+      </table>
+    </div>
+    <p class="mt-5 text-2xs leading-relaxed text-ink-faint">
+      Indicative market ranges before GST at {company.gstRatePercent}%, not quotes. A
+      figure appears only where {aName} price was actually researched; the rest are
+      quoted by the vendor once they know the home.
+    </p>
+  </Section>
+
+  {/* ---------------------------------------------------------- before booking */}
+  <Section tone="surface" narrow>
+    <h2 class="text-2xl font-semibold sm:text-3xl">Before you book</h2>
+    <ul class="mt-6 space-y-4">
+      {pt.bookingTips.map((tip) => (
+        <li class="flex gap-3 leading-relaxed text-ink-muted">
+          <svg class="mt-1.5 shrink-0 text-brand" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M13.5 4.5 6.5 12 2.5 8.2" />
+          </svg>
+          <span>{fill(tip)}</span>
+        </li>
+      ))}
+    </ul>
+  </Section>
+
+  {/* ------------------------------------------------------------------ faqs */}
+  <Section tone="canvas" narrow>
+    <h2 class="text-2xl font-semibold sm:text-3xl">{pt.name} cleaning questions</h2>
+    <div class="mt-8">
+      <FaqList faqs={faqs} />
     </div>
   </Section>
 
@@ -141,7 +211,7 @@ const stats = [
     <Section tone="sunk">
       <div class="max-w-2xl">
         <h2 class="text-2xl font-semibold sm:text-3xl">
-          Where {pt.name.toLowerCase()} homes are common
+          Where {inlineName} homes are common
         </h2>
         <p class="mt-4 text-ink-muted">
           Towns where this is one of the dominant property types.
@@ -163,7 +233,7 @@ const stats = [
   )}
 
   <CtaBand
-    heading={`Get cleaning quotes for your ${pt.name}.`}
+    heading={`Get cleaning quotes for your ${inlineName}.`}
     body="Tell us the service and your town, and we will match you with vetted, insured vendors."
   />
 </BaseLayout>

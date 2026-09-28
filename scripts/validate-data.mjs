@@ -142,6 +142,72 @@ for (const p of propertyTypes) {
   }
 }
 
+// --- property-type copy -------------------------------------------------------
+// These pages once shared 54% of their sentences across types. Each type now
+// carries its own copy; missing pieces are errors so the cluster cannot slide
+// back to category-level boilerplate.
+const PROPERTY_TOKENS = new Set(['floorArea', 'routineHours', 'deepHours', 'deepPrice', 'sessionPrice']);
+for (const p of propertyTypes) {
+  const id = `propertyType "${p.slug}"`;
+  for (const k of ['bedrooms', 'bathrooms', 'layoutSummary']) {
+    if (typeof p[k] !== 'string' || !p[k].trim()) err(`${id}: ${k} is missing or empty`);
+  }
+  if (!Array.isArray(p.whereTimeGoes) || p.whereTimeGoes.length < 2) err(`${id}: needs at least 2 whereTimeGoes items`);
+  for (const x of p.whereTimeGoes ?? []) {
+    if (!x.title?.trim() || !x.body?.trim()) err(`${id}: whereTimeGoes item missing title or body`);
+  }
+  if (!Array.isArray(p.bookingTips) || p.bookingTips.length < 2) err(`${id}: needs at least 2 bookingTips`);
+  if (!Array.isArray(p.faqs) || p.faqs.length < 3) err(`${id}: needs at least 3 faqs`);
+
+  // Tokens must be known, and must resolve for this type. The build would also
+  // throw, but failing here names the field.
+  const texts = [
+    p.layoutSummary,
+    ...(p.whereTimeGoes ?? []).flatMap((x) => [x.title, x.body]),
+    ...(p.bookingTips ?? []),
+    ...(p.faqs ?? []).flatMap((f) => [f.q, f.a]),
+  ].filter(Boolean);
+  for (const t of texts) {
+    for (const [, tok] of t.matchAll(/\{(\w+)\}/g)) {
+      if (!PROPERTY_TOKENS.has(tok)) err(`${id}: unknown token {${tok}}`);
+      if (tok === 'deepPrice' && !p.deepCleanFlatRateSGD) err(`${id}: uses {deepPrice} but has no deepCleanFlatRateSGD`);
+      if (tok === 'sessionPrice' && p.category === 'landed') {
+        err(`${id}: uses {sessionPrice}, which is not derived for landed homes (crew size unknown)`);
+      }
+    }
+  }
+}
+
+// --- per-type service prices -------------------------------------------------
+for (const s of services) {
+  if (!s.priceByProperty) continue;
+  const id = `service "${s.slug}"`;
+  if (s.pricingModel === 'hourly' || s.pricingModel === 'per_item') {
+    err(`${id}: priceByProperty makes no sense for pricingModel "${s.pricingModel}"`);
+  }
+  for (const [slug, r] of Object.entries(s.priceByProperty)) {
+    if (!propSlugs.has(slug)) err(`${id}: priceByProperty key "${slug}" is not a property type`);
+    if (typeof r?.min !== 'number' || typeof r?.max !== 'number' || r.min <= 0) {
+      err(`${id}: priceByProperty.${slug} must have positive numeric min and max`);
+    } else if (r.min > r.max) {
+      err(`${id}: priceByProperty.${slug} min ${r.min} exceeds max ${r.max}`);
+    }
+  }
+}
+// Deep-clean prices are published twice (property pages and the homepage /
+// pricing tables). They must never disagree.
+const deep = services.find((s) => s.slug === 'deep-cleaning');
+if (deep?.priceByProperty) {
+  for (const p of propertyTypes) {
+    const a = deep.priceByProperty[p.slug];
+    const b = p.deepCleanFlatRateSGD;
+    const same = (!a && !b) || (a && b && a.min === b.min && a.max === b.max);
+    if (!same) {
+      err(`deep-cleaning priceByProperty.${p.slug} (${a ? `${a.min}-${a.max}` : 'none'}) disagrees with propertyTypes deepCleanFlatRateSGD (${b ? `${b.min}-${b.max}` : 'none'})`);
+    }
+  }
+}
+
 // --- combos -----------------------------------------------------------------
 const locationEnabled = services.filter((s) => s.locationEnabled).map((s) => s.slug);
 const expected = locationEnabled.length * locations.length;

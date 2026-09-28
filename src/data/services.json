@@ -223,7 +223,41 @@
         "title": "Walk it before they leave",
         "body": "Check the specific things you cared about while the team is still there. Everything is easy to put right in the moment and awkward the next day."
       }
-    ]
+    ],
+    "priceByProperty": {
+      "hdb-2-room": {
+        "min": 280,
+        "max": 400
+      },
+      "hdb-3-room": {
+        "min": 320,
+        "max": 450
+      },
+      "hdb-4-room": {
+        "min": 380,
+        "max": 550
+      },
+      "hdb-5-room": {
+        "min": 450,
+        "max": 650
+      },
+      "hdb-executive": {
+        "min": 550,
+        "max": 750
+      },
+      "condo-1-2-bed": {
+        "min": 320,
+        "max": 500
+      },
+      "condo-3-bed-plus": {
+        "min": 500,
+        "max": 850
+      },
+      "landed": {
+        "min": 800,
+        "max": 1600
+      }
+    }
   },
   {
     "slug": "move-out-cleaning",
@@ -337,6 +371,24 @@
       "body": "A move-out clean almost always happens on the same day as the move, and the two get booked separately far too often. We also run HomeToMoved, a free matching service that puts your move in front of movers already checked for ACRA registration, insurance and valid work passes.",
       "anchorText": "Get matched with vetted movers",
       "url": "https://hometomoved.com/"
+    },
+    "priceByProperty": {
+      "hdb-2-room": {
+        "min": 290,
+        "max": 380
+      },
+      "hdb-3-room": {
+        "min": 290,
+        "max": 380
+      },
+      "hdb-4-room": {
+        "min": 380,
+        "max": 550
+      },
+      "hdb-5-room": {
+        "min": 450,
+        "max": 650
+      }
     }
   },
   {
@@ -447,6 +499,24 @@
       "body": "Cleaning is usually the smaller half of a move-in budget. Our sister service HomeToMoved publishes what movers actually charge in Singapore, broken down by flat type and by what drives the price up, so you can tell a fair quote from a bad one.",
       "anchorText": "See what moving costs in Singapore",
       "url": "https://hometomoved.com/pricing/"
+    },
+    "priceByProperty": {
+      "hdb-2-room": {
+        "min": 250,
+        "max": 350
+      },
+      "hdb-3-room": {
+        "min": 250,
+        "max": 350
+      },
+      "hdb-4-room": {
+        "min": 380,
+        "max": 600
+      },
+      "hdb-5-room": {
+        "min": 380,
+        "max": 600
+      }
     }
   },
   {
@@ -559,7 +629,13 @@
         "title": "Final detail pass",
         "body": "Surfaces, glass and fittings wiped down once the air has cleared. Expect a little residual dust over the following week regardless; that is the nature of the work, not a defect."
       }
-    ]
+    ],
+    "priceByProperty": {
+      "hdb-4-room": {
+        "min": 400,
+        "max": 550
+      }
+    }
   },
   {
     "slug": "spring-cleaning",
@@ -662,7 +738,21 @@
         "title": "Guest-facing areas detailed last",
         "body": "Living and dining areas, display surfaces and the entrance finished at the end so they are at their best when people arrive."
       }
-    ]
+    ],
+    "priceByProperty": {
+      "hdb-3-room": {
+        "min": 260,
+        "max": 350
+      },
+      "hdb-4-room": {
+        "min": 320,
+        "max": 450
+      },
+      "hdb-5-room": {
+        "min": 380,
+        "max": 550
+      }
+    }
   },
   {
     "slug": "mattress-sofa-cleaning",

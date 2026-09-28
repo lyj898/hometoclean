@@ -145,7 +145,7 @@ for (const p of pages.values()) {
 // --- word counts ------------------------------------------------------------
 // Minimum body copy per page type. A page that is too thin to be useful should
 // not be published, and "too thin" needs to be measured, not eyeballed.
-const MIN_WORDS = { service: 800, location: 500, property: 300 };
+const MIN_WORDS = { service: 800, location: 500, property: 700 };
 
 const bodyWords = (html) => {
   const main = (html.match(/<main[^>]*>([\s\S]*?)<\/main>/) ?? [])[1] ?? '';
@@ -174,6 +174,50 @@ for (const p of pages.values()) {
   const n = bodyWords(p.html);
   const min = MIN_WORDS[kind];
   if (n < min) err(`${p.route}: ${kind} page has ${n} words of body copy (min ${min})`);
+}
+
+// --- property pages must not be one page with the noun swapped ---------------
+// On 25 Sep 2026 the 3-room and 5-room pages shared 54% of their sentences.
+// Sentences are compared after replacing each page's own type name with a
+// placeholder, so a sentence that differs only by "3-room" vs "5-room" counts
+// as shared: that is exactly the swap test.
+{
+  const pts = JSON.parse(readFileSync(join(root, 'src', 'data', 'propertyTypes.json'), 'utf8'));
+  const MAX_SHARED = 0.2;
+  const sentencesOf = (route) => {
+    const pt = pts.find((x) => route === `/property/${x.slug}/`);
+    let t = ((pages.get(route).html.match(/<main[^>]*>([\s\S]*?)<\/main>/) ?? [])[1] ?? '')
+      .replace(/<script[\s\S]*?<\/script>/g, ' ')
+      .replace(/<[^>]+>/g, ' ')
+      .replace(/&[a-z]+;|&#\d+;/gi, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+    if (pt) {
+      const inline = pt.name.charAt(0).toLowerCase() + pt.name.slice(1);
+      for (const form of [pt.name, inline, pt.name.toLowerCase()]) t = t.split(form).join('{TYPE}');
+    }
+    return new Set(
+      t.split(/(?<=[.!?])\s+/).map((x) => x.trim()).filter((x) => x.split(/\s+/).length > 6),
+    );
+  };
+  const routes = [...pages.keys()].filter((r) => /^\/property\/[^/]+\/$/.test(r)).sort();
+  const sets = new Map(routes.map((r) => [r, sentencesOf(r)]));
+  let worst = { ratio: 0, a: '', b: '' };
+  for (let i = 0; i < routes.length; i++) {
+    for (let j = i + 1; j < routes.length; j++) {
+      const a = sets.get(routes[i]);
+      const b = sets.get(routes[j]);
+      const shared = [...a].filter((x) => b.has(x)).length;
+      const ratio = shared / Math.min(a.size, b.size);
+      if (ratio > worst.ratio) worst = { ratio, a: routes[i], b: routes[j] };
+      if (ratio > MAX_SHARED) {
+        err(`${routes[i]} and ${routes[j]} share ${Math.round(ratio * 100)}% of their sentences (max ${MAX_SHARED * 100}%)`);
+      }
+    }
+  }
+  if (routes.length > 1) {
+    console.log(`property pages: most-similar pair ${worst.a} / ${worst.b} at ${Math.round(worst.ratio * 100)}% shared`);
+  }
 }
 
 // --- internal links ---------------------------------------------------------
