@@ -81,8 +81,10 @@ With no `PUBLIC_GA4_ID` set, no analytics script is emitted at all. It is set as
 a **repository variable** (Settings → Secrets and variables → Actions →
 Variables), not a secret: the measurement ID is public in page source by design.
 
-Verified live (18 Aug 2026): `page_view` and `form_start` reach GA4.
-`generate_lead` is not yet verified live.
+Verified live: `page_view` and `form_start` reach GA4 (18 Aug 2026), and so does
+`generate_lead`, from a real test enquiry on 2 Oct 2026. For that enquiry GA4's
+enhanced measurement added a second `form_start` of its own but sent no
+`form_submit`, so `form_start` counts run about double.
 
 **When testing the form, scope any fetch stub to `formsubmit.co`.** GA4's
 transport also uses `fetch`, so a blanket stub swallows analytics hits and makes
