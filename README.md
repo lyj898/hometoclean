@@ -61,23 +61,35 @@ inbox address stops appearing in page source where scrapers can read it.
 ## Analytics
 
 GA4 via `PUBLIC_GA4_ID`. Two events, both fired from the form: `form_start`
-(first field focus, once per page view) and `form_submit` (successful POST
-only). There is no generic `button_click`, and no `whatsapp_click` or
-`phone_click` — this site has no such channels, and an event that can never fire
-is worse than no event.
+(first field focus, once per page view) and `generate_lead` (once per enquiry,
+only after FormSubmit confirms delivery). There is no generic `button_click`, and
+no `whatsapp_click` or `phone_click` — this site has no such channels, and an
+event that can never fire is worse than no event.
+
+**The site never sends `form_submit`.** GA4's enhanced measurement sends an
+event of that name itself, on every submit attempt, so it cannot separate
+delivered enquiries from failed ones. Until 2 Oct 2026 this site's own success
+event was also called `form_submit`, so in reports before that date the two
+cannot be told apart. This is the JTC family standard
+(`../jtc-family/PORTFOLIO.md`).
+
+The email subject names the page the visitor was reading before they opened
+/contact/, e.g. `New enquiry - HomeToClean - /property/hdb-5-room/`, or
+`/contact/` itself when they arrived there directly.
 
 With no `PUBLIC_GA4_ID` set, no analytics script is emitted at all. It is set as
 a **repository variable** (Settings → Secrets and variables → Actions →
 Variables), not a secret: the measurement ID is public in page source by design.
 
-Verified live: `page_view`, `form_start` and `form_submit` all reach GA4.
+Verified live (18 Aug 2026): `page_view` and `form_start` reach GA4.
+`generate_lead` is not yet verified live.
 
 **When testing the form, scope any fetch stub to `formsubmit.co`.** GA4's
 transport also uses `fetch`, so a blanket stub swallows analytics hits and makes
-it look as though `form_submit` never reached Google.
+it look as though `generate_lead` never reached Google.
 
-`form_submit` still has to be marked as a **key event** in GA4 (Admin → Events)
-before it counts as a conversion. That is a console setting, not a code change.
+`generate_lead` must be the **only key event** in GA4 (Admin → Events), starred
+once it has fired. That is a console setting, not a code change.
 
 Lighthouse mobile on the homepage: **100 / 100 / 100 / 100**, CLS 0, LCP 1.3s.
 The site ships **zero JavaScript** — the mobile nav and FAQ accordions are native

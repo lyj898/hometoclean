@@ -104,7 +104,13 @@ await send('Page.enable');
 await send('Runtime.enable');
 await send('Network.enable');
 await send('Network.setBlockedURLs', { urls: ['*googletagmanager.com*'] });
-await send('Page.navigate', { url: `http://localhost:${SITE_PORT}/contact/` });
+// Arrive from a property page, as the first real enquiry did, so the subject
+// check below has a referring page to name.
+const FROM_PAGE = '/property/hdb-5-room/';
+await send('Page.navigate', {
+  url: `http://localhost:${SITE_PORT}/contact/`,
+  referrer: `http://localhost:${SITE_PORT}${FROM_PAGE}`,
+});
 await sleep(1400);
 
 console.log('\nVerifying the enquiry form on /contact/:\n');
@@ -120,7 +126,7 @@ check('GA4 config command queued', (config ?? '').includes(GA4_ID), `config → 
 //
 // Intercept ONLY formsubmit.co. GA4's own transport uses fetch, so a blanket
 // stub silently swallows analytics hits and makes it look as though
-// form_submit never reached Google. That produced a convincing false negative
+// generate_lead never reached Google. That produced a convincing false negative
 // once; do not "simplify" this back to overriding every request.
 await evalX(`
   window.__posted = null;
@@ -154,8 +160,8 @@ await sleep(300);
 check('incomplete form is rejected with a message',
   (await evalX(`document.querySelector('[data-lead-status]').textContent`)) ===
     'Please add your name, a valid email, and a message.');
-check('no form_submit fired on a rejected submit',
-  (await events()).filter((e) => e[1] === 'form_submit').length === 0);
+check('no generate_lead fired on a rejected submit',
+  (await events()).filter((e) => e[1] === 'generate_lead').length === 0);
 
 // --- honeypot ----------------------------------------------------------------
 await evalX(`
@@ -169,7 +175,7 @@ await evalX(`
 await sleep(300);
 check('honeypot submission is silently discarded',
   (await evalX('window.__posted')) === null &&
-    (await events()).filter((e) => e[1] === 'form_submit').length === 0,
+    (await events()).filter((e) => e[1] === 'generate_lead').length === 0,
   'nothing posted, no conversion recorded');
 
 // --- successful submit -------------------------------------------------------
@@ -185,8 +191,8 @@ await evalX(`
 await sleep(900);
 
 evs = await events();
-check('form_submit fires after a successful POST',
-  evs.filter((e) => e[1] === 'form_submit').length === 1);
+check('generate_lead fires after a successful POST',
+  evs.filter((e) => e[1] === 'generate_lead').length === 1);
 
 const posted = JSON.parse((await evalX('JSON.stringify(window.__posted)')) ?? 'null');
 check('posts to the FormSubmit endpoint',
@@ -197,8 +203,10 @@ check('payload carries the ourkampung field set',
   payload.Name === 'Test Person' && payload.Email === 'test@example.com' &&
     payload.Mobile === '91234567' && typeof payload.Message === 'string',
   `fields: ${Object.keys(payload).join(', ')}`);
-check('payload carries a _subject', typeof payload._subject === 'string' && payload._subject.length > 0,
-  payload._subject);
+const SUBJECT = JSON.parse(readFileSync('src/data/company.json', 'utf8')).formSubmit.subject;
+check('subject names the site and the page the enquiry came from',
+  payload._subject === `${SUBJECT} - ${FROM_PAGE}`, payload._subject);
+check('payload records the page the enquiry came from', payload.Page === FROM_PAGE, payload.Page);
 
 check('form is replaced by the success panel',
   (await evalX(`document.querySelector('[data-lead-form]').hidden`)) === true &&
@@ -234,8 +242,8 @@ await evalX(`
 await sleep(800);
 evs = await events();
 check('HTTP 200 with success:false is not counted as a conversion',
-  evs.filter((e) => e[1] === 'form_submit').length === 1,
-  'still 1 form_submit, not 2');
+  evs.filter((e) => e[1] === 'generate_lead').length === 1,
+  'still 1 generate_lead, not 2');
 check('rejected submission shows an error, not a success message',
   (await evalX(`document.querySelector('[data-lead-status]').textContent`)) ===
     'Sorry, that did not send. Please try again in a moment.');
@@ -246,8 +254,11 @@ check('rejected submission leaves the form on screen',
 // --- event hygiene -----------------------------------------------------------
 const names = [...new Set(evs.map((e) => e[1]))];
 check('no generic button_click event', !names.includes('button_click'), `events: ${names.join(', ')}`);
-check('only form_start and form_submit are emitted',
-  names.every((n) => n === 'form_start' || n === 'form_submit'));
+check('only form_start and generate_lead are emitted',
+  names.every((n) => n === 'form_start' || n === 'generate_lead'), `events: ${names.join(', ')}`);
+// GA4's enhanced measurement sends its own form_submit on every attempt. If
+// the site sent one too, the two would be indistinguishable in reports.
+check('the site never sends form_submit itself', !names.includes('form_submit'));
 
 // --- form-only contact -------------------------------------------------------
 const links = JSON.parse(await evalX(`

@@ -13,6 +13,7 @@
  * inbox address stops appearing in page source where scrapers can read it.
  */
 import { FORM_ENDPOINT, FORM_SUBJECT, hasFormEndpoint } from '../lib/contact';
+import { company } from '../lib/data';
 import { urls } from '../lib/urls';
 
 const field =
@@ -80,8 +81,9 @@ const label = 'block text-sm font-medium text-ink';
   <p data-lead-status role="status" aria-live="polite" class="hidden text-sm font-medium"></p>
 
   <p class="text-2xs leading-relaxed text-ink-faint">
-    We usually reply within one working day. By sending this message you agree that we
-    may contact you about your enquiry and pass your details to the cleaning vendors
+    We usually reply within one working day. Your message goes to the team behind
+    {company.entityBrand}, who run HomeToClean. By sending it you agree that we may
+    contact you about your enquiry and pass your details to the cleaning vendors
     matched to it, so they can quote you. See our
     <a href={urls.privacy()} class="underline underline-offset-2">Privacy Policy</a>.
   </p>
@@ -135,6 +137,21 @@ const label = 'block text-sm font-medium text-ink';
     var success = document.querySelector('[data-lead-success]');
     var again = success && success.querySelector('[data-lead-again]');
     var started = false;
+
+    // The page the enquiry came from, for the email subject. The form only
+    // lives on /contact/, so the useful page is the one the visitor was reading
+    // before they got here, when that was on this site.
+    var fromPage = (function () {
+      try {
+        var ref = new URL(document.referrer);
+        if (ref.origin === window.location.origin && ref.pathname !== window.location.pathname) {
+          return ref.pathname;
+        }
+      } catch (e) {
+        // No referrer: they arrived on /contact/ directly.
+      }
+      return window.location.pathname;
+    })();
 
     function showSuccess() {
       form.hidden = true;
@@ -209,12 +226,12 @@ const label = 'block text-sm font-medium text-ink';
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
-          _subject: FORM_SUBJECT,
+          _subject: FORM_SUBJECT + ' - ' + fromPage,
           Name: name,
           Email: email,
           Mobile: mobile || '-',
           Message: msg,
-          Page: window.location.pathname,
+          Page: fromPage,
         }),
       })
         .then(function (res) {
@@ -229,8 +246,11 @@ const label = 'block text-sm font-medium text-ink';
           var ok = data && (data.success === true || data.success === 'true');
           if (!ok) throw new Error((data && data.message) || 'rejected');
 
-          // form_submit fires on genuine delivery only.
-          track('form_submit', { page_path: window.location.pathname });
+          // generate_lead fires once per enquiry, on confirmed delivery only.
+          // Not form_submit: GA4's enhanced measurement sends an event of that
+          // name itself, on every attempt, so a count of it would mix delivered
+          // enquiries with failed ones.
+          track('generate_lead');
           form.reset();
           submit.disabled = false;
           if (status) status.classList.add('hidden');
