@@ -6,11 +6,11 @@
  * (Name, Email, Mobile optional, Message), a `_honey` honeypot, and an AJAX
  * POST to FormSubmit with a `_subject` in the payload.
  *
- * FormSubmit needs a one-time activation. The first submission sends a
- * confirmation link to the destination inbox; until that link is clicked,
- * nothing is delivered. After activating, swap the address in
- * company.formSubmit.endpoint for the hashed alias FormSubmit provides, so the
- * inbox address stops appearing in page source where scrapers can read it.
+ * It posts to FormSubmit's hashed alias for the family inbox, so no email
+ * address appears in page source where scrapers can read it. The first
+ * submission from a new domain may be refused with a request for a one-time
+ * activation; the confirmation link goes to the inbox, and nothing is
+ * delivered until it is clicked.
  */
 import { FORM_ENDPOINT, FORM_SUBJECT, hasFormEndpoint } from '../lib/contact';
 import { company } from '../lib/data';

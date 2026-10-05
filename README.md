@@ -52,11 +52,13 @@ appears.
 The form mirrors ourkampung.com: Name, Email, Mobile (optional), Message, plus a
 `_honey` honeypot, posted as JSON to FormSubmit.
 
-**FormSubmit needs a one-time activation.** The first real submission sends a
-confirmation link to the destination inbox; nothing is delivered until that link
-is clicked. Once activated, replace the address in
-`company.formSubmit.endpoint` with the hashed alias FormSubmit provides, so the
-inbox address stops appearing in page source where scrapers can read it.
+**The form posts to FormSubmit's hashed alias, never a raw inbox address.** Since
+5 Oct 2026 `company.formSubmit.endpoint` uses the family alias that OurKampung
+uses too; it delivers to the owner's inbox. No email address appears in page
+source, and the audit fails the build if one does. FormSubmit may ask for a
+one-time activation the first time the alias is used from a new domain: that
+submission is refused, and nothing is delivered until the confirmation link
+emailed to the inbox is clicked.
 
 ## Analytics
 

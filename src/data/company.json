@@ -41,9 +41,9 @@
   "businessModelStatement": "HomeToClean is a matching service. We connect households in Singapore with vetted, independent cleaning vendors. We do not carry out cleaning work ourselves.",
   "contactModel": "form-only",
   "formSubmit": {
-    "endpoint": "https://formsubmit.co/ajax/lyj898@gmail.com",
+    "endpoint": "https://formsubmit.co/ajax/1aacc4903352135bb0fa38c3987d3abd",
     "subject": "New enquiry - HomeToClean",
-    "note": "FormSubmit requires a one-time activation: the first submission emails a confirmation link to the destination address. The destination address appears ONLY here and in the compiled form script - it is deliberately absent from every rendered page. After activating, replace the address with the hashed alias FormSubmit provides so it disappears from page source too."
+    "note": "FormSubmit's hashed alias for the family inbox, the same one OurKampung uses, so no email address appears in page source. The first submission from a new domain may be refused with a request for a one-time activation; the confirmation link goes to the inbox."
   },
   "entityUrl": "https://junktoclear.com.sg",
   "entityBrand": "Junk to Clear",

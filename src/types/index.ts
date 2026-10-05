@@ -202,7 +202,7 @@ export interface Address {
 }
 
 export interface FormSubmitConfig {
-  /** FormSubmit AJAX endpoint. Swap the address for the hashed alias once activated. */
+  /** FormSubmit AJAX endpoint on the hashed alias, never a raw inbox address. The audit enforces it. */
   endpoint: string;
   /** Subject line of the notification email. */
   subject: string;

@@ -324,27 +324,25 @@ for (const p of pages.values()) {
   }
 }
 
-// --- the destination inbox must not appear in rendered content ---------------
-// It is allowed in exactly one place: the FormSubmit endpoint the form POSTs to.
-// Anywhere else it is a spam-harvesting target.
+// --- no email address in rendered content -------------------------------------
+// The form posts to FormSubmit's hashed alias, never a raw inbox address, so no
+// page has any reason to contain an email address. One that does is a target
+// for spam harvesters. The form's placeholder is the only exception.
 {
   const endpoint = JSON.parse(
     readFileSync(join(root, 'src', 'data', 'company.json'), 'utf8'),
   ).formSubmit.endpoint;
-  const address = endpoint.split('/').pop();
+  if (endpoint.includes('@')) {
+    err('company.json: the FormSubmit endpoint is a raw inbox address; use FormSubmit\'s hashed alias');
+  }
 
-  if (address && address.includes('@')) {
-    for (const p of pages.values()) {
-      const hits = p.html.split(address).length - 1;
-      if (!hits) continue;
-      // Every occurrence must be part of the endpoint URL.
-      const allowed = p.html.split(endpoint).length - 1;
-      if (hits > allowed) {
-        err(`${p.route}: destination inbox address appears ${hits - allowed} time(s) outside the FormSubmit endpoint`);
-      }
-      if (allowed && p.route !== '/contact/') {
-        err(`${p.route}: FormSubmit endpoint should only be on /contact/`);
-      }
+  const PLACEHOLDERS = new Set(['you@email.com']);
+  for (const p of pages.values()) {
+    for (const [address] of p.html.matchAll(/[\w.%+-]+@[\w-]+(?:\.[\w-]+)*\.[a-z]{2,}/gi)) {
+      if (!PLACEHOLDERS.has(address)) err(`${p.route}: contains an email address (${address})`);
+    }
+    if (p.html.includes(endpoint) && p.route !== '/contact/') {
+      err(`${p.route}: FormSubmit endpoint should only be on /contact/`);
     }
   }
 }

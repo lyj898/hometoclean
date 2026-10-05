@@ -195,6 +195,8 @@ check('generate_lead fires after a successful POST',
 const posted = JSON.parse((await evalX('JSON.stringify(window.__posted)')) ?? 'null');
 check('posts to the FormSubmit endpoint',
   !!posted && posted.url.includes('formsubmit.co'), posted?.url);
+check('posts to the hashed alias, not an inbox address',
+  !!posted && !posted.url.includes('@'));
 
 const payload = posted ? JSON.parse(posted.body) : {};
 check('payload carries the ourkampung field set',
