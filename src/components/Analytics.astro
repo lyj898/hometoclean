@@ -2,16 +2,16 @@
 /**
  * GA4 and conversion event tracking.
  *
- * Two named events, and only two:
+ * One named event, and only one:
  *
- *   form_start     first focus into the enquiry form, once per page view
  *   generate_lead  confirmed delivery only, never on error; the one key event
  *
- * Not form_submit: GA4's enhanced measurement sends an event of that name
- * itself on every submit attempt, so it cannot tell a delivered enquiry from a
- * failed one.
+ * Not form_start or form_submit: GA4's enhanced measurement sends both itself.
+ * Its form_submit fires on every attempt, so it cannot tell a delivered
+ * enquiry from a failed one, and a second form_start from the site would only
+ * double the count.
  *
- * Both are fired from LeadForm.astro. There is deliberately no generic
+ * It is fired from LeadForm.astro. There is deliberately no generic
  * `button_click`, and no whatsapp_click or phone_click: this site is form-only,
  * so those events have no data path and an event that can never fire is worse
  * than no event at all.

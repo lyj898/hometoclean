@@ -1,4 +1,4 @@
-// Verifies the enquiry form and its two conversion events actually work, in a
+// Verifies the enquiry form and its one conversion event actually work, in a
 // real browser, against a real build. Not "the code looks right" — it drives
 // the page and reads window.dataLayer.
 //
@@ -8,8 +8,9 @@
 // and never sends a real email.
 //
 // Note on focus: element.focus() does NOT dispatch focusin in headless Chrome,
-// because document.hasFocus() is false. The form_start check therefore uses a
-// real CDP mouse click. Using .focus() here produces a false failure.
+// because document.hasFocus() is false. The check that focusing a field sends
+// no form_start therefore uses a real CDP mouse click; with .focus() it would
+// pass without testing anything.
 
 import { createServer } from 'node:http';
 import { spawn, execSync } from 'node:child_process';
@@ -142,17 +143,14 @@ await evalX(`
   'stubbed'
 `);
 
-// --- form_start (real click; .focus() would not dispatch focusin headless) ---
+// --- no form_start of the site's own (real clicks; see the note on focus) ---
+// GA4's enhanced measurement sends form_start itself, so a copy from the
+// site would double the count.
 await clickOn('#cf-name');
-let evs = await events();
-const start = evs.filter((e) => e[1] === 'form_start');
-check('form_start fires on first field focus', start.length === 1,
-  `page_path=${start[0]?.[2]?.page_path}`);
-
 await clickOn('#cf-email');
-evs = await events();
-check('form_start fires once per page view, not per focus',
-  evs.filter((e) => e[1] === 'form_start').length === 1);
+let evs = await events();
+check('focusing the form sends no form_start of its own',
+  evs.filter((e) => e[1] === 'form_start').length === 0);
 
 // --- validation must block an incomplete submit ------------------------------
 await evalX(`document.querySelector('[data-lead-form]').requestSubmit(); 'ok'`);
@@ -247,6 +245,10 @@ check('HTTP 200 with success:false is not counted as a conversion',
 check('rejected submission shows an error, not a success message',
   (await evalX(`document.querySelector('[data-lead-status]').textContent`)) ===
     'Sorry, that did not send. Please try again in a moment.');
+check('a failed send keeps what the visitor typed',
+  JSON.parse(await evalX(`JSON.stringify(['Name', 'Email', 'Message'].map(function (n) {
+    return document.querySelector('[data-lead-form] [name="' + n + '"]').value; }))`)).join('|') ===
+    'Rejected Case|reject@example.com|should not count');
 check('rejected submission leaves the form on screen',
   (await evalX(`document.querySelector('[data-lead-form]').hidden`)) === false &&
     (await evalX(`document.querySelector('[data-lead-success]').hidden`)) === true);
@@ -254,8 +256,8 @@ check('rejected submission leaves the form on screen',
 // --- event hygiene -----------------------------------------------------------
 const names = [...new Set(evs.map((e) => e[1]))];
 check('no generic button_click event', !names.includes('button_click'), `events: ${names.join(', ')}`);
-check('only form_start and generate_lead are emitted',
-  names.every((n) => n === 'form_start' || n === 'generate_lead'), `events: ${names.join(', ')}`);
+check('only generate_lead is emitted',
+  names.every((n) => n === 'generate_lead'), `events: ${names.join(', ')}`);
 // GA4's enhanced measurement sends its own form_submit on every attempt. If
 // the site sent one too, the two would be indistinguishable in reports.
 check('the site never sends form_submit itself', !names.includes('form_submit'));

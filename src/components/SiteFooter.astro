@@ -82,7 +82,14 @@ const address = addressLines();
         <span>{company.operatingHoursDisplay}</span>
       </address>
 
-      <p class="mt-6 text-2xs leading-relaxed text-ink-faint">
+      {/* The one sitewide link to another family site, by the family's own
+          rule. nofollow: it is for readers, not rankings. */}
+      <p class="mt-6 text-sm text-ink-muted">
+        Part of
+        <a href={company.family.url} rel="nofollow" class="font-medium text-ink-muted underline underline-offset-2 hover:text-brand">{company.family.name}</a>
+      </p>
+
+      <p class="mt-3 text-2xs leading-relaxed text-ink-faint">
         &copy; {year} <EntityName />. Established {company.yearEstablished}.
         Prices shown on this site are indicative market ranges in Singapore dollars
         and are not quotations.

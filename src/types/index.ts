@@ -216,6 +216,13 @@ export interface Company {
   entityUrl: string;
   /** Customer-facing brand the entity trades under for its disposal work. */
   entityBrand: string;
+  /**
+   * The family of sites this one belongs to. Its home page is linked from the
+   * footer of every page, nofollow because it is for readers, not rankings; its
+   * sites page is linked from /about/. Never noreferrer: that would hide the
+   * visit's source from the family's GA4.
+   */
+  family: { name: string; url: string; sitesUrl: string };
   tradingName: string;
   /** Empty until supplied. Every render site omits it while blank — see hasUen(). */
   uen: string;

@@ -136,7 +136,6 @@ const label = 'block text-sm font-medium text-ink';
     var submit = form.querySelector('[data-lead-submit]');
     var success = document.querySelector('[data-lead-success]');
     var again = success && success.querySelector('[data-lead-again]');
-    var started = false;
 
     // The page the enquiry came from, for the email subject. The form only
     // lives on /contact/, so the useful page is the one the visitor was reading
@@ -168,7 +167,6 @@ const label = 'block text-sm font-medium text-ink';
       again.addEventListener('click', function () {
         success.hidden = true;
         form.hidden = false;
-        started = false;
         form.scrollIntoView({ block: 'start', behavior: 'smooth' });
         var first = form.querySelector('[name="Name"]');
         if (first) first.focus({ preventScroll: true });
@@ -186,14 +184,8 @@ const label = 'block text-sm font-medium text-ink';
       status.style.color = ok ? 'var(--color-positive)' : 'var(--color-warning)';
     }
 
-    // form_start: first focus into any field, once per page view. Held in a
-    // closure variable - this site uses no localStorage or sessionStorage.
-    form.addEventListener('focusin', function () {
-      if (started) return;
-      started = true;
-      track('form_start', { page_path: window.location.pathname });
-    });
-
+    // No form_start or form_submit from here. GA4's enhanced measurement sends
+    // both itself, so a copy from this script would double the count.
     form.addEventListener('submit', function (event) {
       event.preventDefault();
 

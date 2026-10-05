@@ -46,5 +46,10 @@
     "note": "FormSubmit requires a one-time activation: the first submission emails a confirmation link to the destination address. The destination address appears ONLY here and in the compiled form script - it is deliberately absent from every rendered page. After activating, replace the address with the hashed alias FormSubmit provides so it disappears from page source too."
   },
   "entityUrl": "https://junktoclear.com.sg",
-  "entityBrand": "Junk to Clear"
+  "entityBrand": "Junk to Clear",
+  "family": {
+    "name": "OurKampung",
+    "url": "https://ourkampung.com/",
+    "sitesUrl": "https://ourkampung.com/our-sites/"
+  }
 }

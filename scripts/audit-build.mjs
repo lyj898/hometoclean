@@ -301,6 +301,29 @@ for (const p of pages.values()) {
   if (/href="tel:/.test(p.html)) err(`${p.route}: contains a tel: link (contact is form-only)`);
 }
 
+// --- family links --------------------------------------------------------------
+// Every page carries the footer's "Part of OurKampung" link, nofollow: a JTC
+// family rule, because the link is for readers, not rankings. No link anywhere
+// may carry noreferrer, which hides the visit's source from the receiving
+// site's GA4.
+{
+  const { family } = JSON.parse(readFileSync(join(root, 'src', 'data', 'company.json'), 'utf8'));
+  for (const p of pages.values()) {
+    const anchors = p.html.match(/<a\b[^>]*>/g) ?? [];
+    const footerLink = anchors.find((a) => a.includes(`href="${family.url}"`));
+    if (!footerLink) err(`${p.route}: no footer link to ${family.url}`);
+    else if (!/\brel="[^"]*\bnofollow\b/.test(footerLink)) {
+      err(`${p.route}: the footer link to ${family.url} must be rel="nofollow"`);
+    }
+    if (anchors.some((a) => /\brel="[^"]*\bnoreferrer\b/.test(a))) {
+      err(`${p.route}: a link carries rel="noreferrer", which hides the visit from the receiving site's GA4`);
+    }
+  }
+  if (!pages.get('/about/')?.html.includes(`href="${family.sitesUrl}"`)) {
+    err(`/about/: no link to ${family.sitesUrl}`);
+  }
+}
+
 // --- the destination inbox must not appear in rendered content ---------------
 // It is allowed in exactly one place: the FormSubmit endpoint the form POSTs to.
 // Anywhere else it is a spam-harvesting target.

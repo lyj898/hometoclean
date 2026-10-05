@@ -60,18 +60,18 @@ inbox address stops appearing in page source where scrapers can read it.
 
 ## Analytics
 
-GA4 via `PUBLIC_GA4_ID`. Two events, both fired from the form: `form_start`
-(first field focus, once per page view) and `generate_lead` (once per enquiry,
-only after FormSubmit confirms delivery). There is no generic `button_click`, and
-no `whatsapp_click` or `phone_click` — this site has no such channels, and an
-event that can never fire is worse than no event.
+GA4 via `PUBLIC_GA4_ID`. One event, fired from the form: `generate_lead` (once
+per enquiry, only after FormSubmit confirms delivery). There is no generic
+`button_click`, and no `whatsapp_click` or `phone_click` — this site has no such
+channels, and an event that can never fire is worse than no event.
 
-**The site never sends `form_submit`.** GA4's enhanced measurement sends an
-event of that name itself, on every submit attempt, so it cannot separate
-delivered enquiries from failed ones. Until 2 Oct 2026 this site's own success
-event was also called `form_submit`, so in reports before that date the two
-cannot be told apart. This is the JTC family standard
-(`../jtc-family/PORTFOLIO.md`).
+**The site never sends `form_start` or `form_submit`.** GA4's enhanced
+measurement sends both itself. Its `form_submit` fires on every submit attempt,
+so it cannot separate delivered enquiries from failed ones; a `form_start` from
+the site as well only doubled that count. Until 2 Oct 2026 this site's own
+success event was also called `form_submit`, so in reports before that date the
+two cannot be told apart. It also sent its own `form_start` until 5 Oct 2026.
+This is the JTC family standard (`../jtc-family/PORTFOLIO.md`).
 
 The email subject names the page the visitor was reading before they opened
 /contact/, e.g. `New enquiry - HomeToClean - /property/hdb-5-room/`, or
@@ -84,7 +84,7 @@ Variables), not a secret: the measurement ID is public in page source by design.
 Verified live: `page_view` and `form_start` reach GA4 (18 Aug 2026), and so does
 `generate_lead`, from a real test enquiry on 2 Oct 2026. For that enquiry GA4's
 enhanced measurement added a second `form_start` of its own but sent no
-`form_submit`, so `form_start` counts run about double.
+`form_submit`, which is why the site stopped sending its own `form_start`.
 
 **When testing the form, scope any fetch stub to `formsubmit.co`.** GA4's
 transport also uses `fetch`, so a blanket stub swallows analytics hits and makes
@@ -250,5 +250,11 @@ Thirteen asymmetric adjacency pairs are warned about. These come from the suppli
   page rather than sitewide. Existing ones: `junktoclear.com.sg` from `/about/`,
   and `hometomoved.com` from the move-out and move-in pages via the
   `crossLink` field in `services.json`.
+- The one sitewide exception is the footer's "Part of OurKampung" link, a JTC
+  family rule from 5 Oct 2026 (`../jtc-family/briefs/family-revamp.md`). It is
+  `rel="nofollow"` because it is for readers, not rankings. `/about/` also
+  links OurKampung's `/our-sites/` page in its text. No link anywhere may carry
+  `noreferrer`, which would hide the visit's source from the receiving site's
+  GA4. The audit enforces both.
 - Do not create moving or relocation service pages. That is HomeToMoved's
   territory; link to it instead.
