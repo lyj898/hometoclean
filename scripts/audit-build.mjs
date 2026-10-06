@@ -131,6 +131,15 @@ for (const p of pages.values()) {
       }
       const orgs = types.filter((t) => t === 'Organization').length;
       if (orgs > 1) err(`${p.route}: ${orgs} Organization nodes; there must be exactly one`);
+      // The family names no company (6 Oct 2026): the Organization is the brand,
+      // a child of OurKampung, with nothing borrowed from SKAP or Junk to Clear.
+      const org = nodes.find((n) => n['@type'] === 'Organization') ?? {};
+      for (const key of ['legalName', 'foundingDate', 'identifier', 'address', 'sameAs']) {
+        if (key in org) err(`${p.route}: Organization has ${key}; the family names no company`);
+      }
+      if (org.parentOrganization?.name !== 'OurKampung') {
+        err(`${p.route}: Organization's parentOrganization must be OurKampung`);
+      }
       // Nested pages need a breadcrumb.
       const depth = p.route.split('/').filter(Boolean).length;
       if (depth >= 1 && !isErrorPage && !types.includes('BreadcrumbList')) {
@@ -321,6 +330,23 @@ for (const p of pages.values()) {
   }
   if (!pages.get('/about/')?.html.includes(`href="${family.sitesUrl}"`)) {
     err(`/about/: no link to ${family.sitesUrl}`);
+  }
+}
+
+// --- independence (6 Oct 2026) ------------------------------------------------
+// The OurKampung family names no company. Nothing belonging to SKAP or Junk to
+// Clear (its name, a founding year, "trading as") may reach a page. Junk to
+// Clear is a separate company the family refers disposal, clearance and
+// renovation jobs to; this site has no page where that is the reader's next
+// step, so it links it nowhere (jtc-family/briefs/independence.md, rule 6).
+{
+  const BORROWED = /SKAP|Waste Management|trading (?:as|name)|team behind Junk to Clear|(?:established|since) 2009/i;
+  for (const p of pages.values()) {
+    const hit = p.html.match(BORROWED);
+    if (hit) err(`${p.route}: contains "${hit[0]}"; the family names no company`);
+    if (/href="https?:\/\/(?:www\.)?junktoclear\.com\.sg/i.test(p.html)) {
+      err(`${p.route}: links Junk to Clear, but no page on this site has disposal as the next step`);
+    }
   }
 }
 

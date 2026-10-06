@@ -10,7 +10,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Section from '../components/Section.astro';
 import FaqList from '../components/FaqList.astro';
-import EntityName from '../components/EntityName.astro';
 
 import { urls } from '../lib/urls';
 import { meta } from '../lib/seo';
@@ -96,7 +95,7 @@ const homeFaqs = [
     <div class="wrap py-16 sm:py-24">
       <div class="max-w-3xl">
         <p class="text-sm font-semibold uppercase tracking-widest text-brand">
-          Singapore &middot; Since {company.yearEstablished}
+          Singapore &middot; Run by the {company.family.name} team
         </p>
         <h1 class="mt-4 text-4xl font-semibold sm:text-5xl lg:text-6xl">
           Home cleaning, matched to a vendor who is actually allowed to do it.
@@ -122,14 +121,10 @@ const homeFaqs = [
 
     {/* --------------------------------------------------------- trust bar */}
     <div class="border-t border-line bg-canvas">
-      <div class="wrap grid gap-x-8 gap-y-5 py-6 sm:grid-cols-3">
-        <div class="flex items-baseline gap-3">
-          <span class="text-2xl font-semibold text-brand">{company.yearEstablished}</span>
-          <span class="text-sm text-ink-muted">Operating as a Singapore business since</span>
-        </div>
+      <div class="wrap grid gap-x-8 gap-y-5 py-6 sm:grid-cols-2">
         <div class="text-sm text-ink-muted">
-          <span class="font-semibold"><EntityName /></span><br />
-          Singapore-registered company
+          <span class="font-semibold text-ink">Run by the {company.family.name} team</span><br />
+          Part of a family of independent Singapore home sites
         </div>
         <div class="text-sm text-ink-muted">
           <span class="font-semibold text-ink">Insured, work-pass checked vendors</span><br />

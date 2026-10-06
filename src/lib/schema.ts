@@ -39,38 +39,21 @@ const compact = (node: JsonLdNode): JsonLdNode =>
  * every page so the @id is always resolvable.
  */
 export function organizationNode(): JsonLdNode {
-  const { address } = company;
-  const street = real(address.street);
-  const postalCode = real(address.postalCode);
-
-  const postalAddress =
-    street || postalCode
-      ? compact({
-          '@type': 'PostalAddress',
-          streetAddress: [street, real(address.unit)].filter(Boolean).join(' ') || undefined,
-          postalCode,
-          addressLocality: address.locality,
-          addressCountry: address.country,
-        })
-      : undefined;
-
+  // The family names no company (6 Oct 2026), so the Organization is the site's
+  // own brand: no legalName, foundingDate, UEN, address or sameAs. Its parent
+  // is the family's mother site.
   return compact({
     '@type': 'Organization',
     '@id': ORG_ID,
-    name: company.entityName,
-    alternateName: company.tradingName,
+    name: company.brandName,
     url: `${ORIGIN}/`,
-    foundingDate: String(company.yearEstablished),
     description: company.businessModelStatement,
-    // UEN is the Singapore company registration number.
-    identifier: real(company.uen)
-      ? { '@type': 'PropertyValue', name: 'UEN', value: company.uen }
-      : undefined,
-    address: postalAddress,
     telephone: real(company.phone),
-    // The operating entity's own website. sameAs is how schema.org associates
-    // one organisation with its other web presence.
-    sameAs: real(company.entityUrl) ? [company.entityUrl] : undefined,
+    parentOrganization: {
+      '@type': 'Organization',
+      name: company.family.name,
+      url: company.family.url,
+    },
     // The inbox address is deliberately NOT published here. Contact is
     // form-only, and an email in structured data on every page is a
     // spam-harvesting target. Point at the form instead.
@@ -155,7 +138,7 @@ export function webSiteNode(): JsonLdNode {
     '@type': 'WebSite',
     '@id': `${ORIGIN}/#website`,
     url: `${ORIGIN}/`,
-    name: company.tradingName,
+    name: company.brandName,
     publisher: { '@id': ORG_ID },
     inLanguage: 'en-SG',
   };

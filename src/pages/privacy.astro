@@ -6,14 +6,15 @@
  * actually matters for a matching service and is the one most sites in this
  * market gloss over.
  *
- * Placeholders for the DPO contact are rendered visibly rather than hidden, so
- * an unresolved one cannot quietly reach production.
+ * Who we are: the OurKampung team. The family names no company (6 Oct 2026),
+ * so there is no registered name, UEN or address here.
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { urls } from '../lib/urls';
 import { meta } from '../lib/seo';
-import { company, hasUen, hasAddress, addressLines } from '../lib/data';
-import EntityName from '../components/EntityName.astro';
+import { company } from '../lib/data';
+
+const team = `the ${company.family.name} team`;
 
 const path = urls.privacy();
 
@@ -22,7 +23,7 @@ const { title, description } = meta(
   'How HomeToClean collects, uses and discloses personal data under Singapore PDPA, including disclosure to the vendor partners we match you with.',
 );
 
-const lastUpdated = 'August 2026';
+const lastUpdated = 'October 2026';
 ---
 
 <BaseLayout
@@ -36,8 +37,8 @@ const lastUpdated = 'August 2026';
     <div class="wrap-narrow py-12 sm:py-16">
       <h1 class="text-3xl font-semibold sm:text-4xl">Privacy Policy</h1>
       <p class="mt-4 text-ink-muted">
-        How <EntityName />, trading as {company.tradingName}, handles your personal
-        data under the Singapore Personal Data Protection Act 2012 (PDPA).
+        How {company.brandName}, run by {team}, handles your personal data under
+        the Singapore Personal Data Protection Act 2012 (PDPA).
       </p>
       <p class="mt-2 text-sm text-ink-faint">Last updated: {lastUpdated}</p>
     </div>
@@ -57,12 +58,11 @@ const lastUpdated = 'August 2026';
 
     <h2>1. Who we are</h2>
     <p>
-      This site is operated by <strong><EntityName /></strong>{hasUen() ? ` (UEN ${company.uen})` : ''},
-      trading as {company.tradingName}. In this policy, "we", "us" and "our" refer to that
-      company.
+      This site is run by <strong>{team}</strong>, which runs a family of independent
+      Singapore home sites. In this policy, "we", "us" and "our" refer to {team}.
     </p>
     <p>
-      {company.tradingName} is a matching service. We introduce households in Singapore to
+      {company.brandName} is a matching service. We introduce households in Singapore to
       independent cleaning vendors. We do not carry out cleaning work, and we do not
       employ the cleaners who attend your home.
     </p>
@@ -102,9 +102,9 @@ const lastUpdated = 'August 2026';
 
     <h2>4. Disclosure to vendor partners</h2>
     <p>
-      This is the disclosure that matters most, so we state it plainly. When you submit an
-      enquiry and give consent, we disclose the following to the cleaning vendors matched
-      to your request:
+      This is the disclosure that matters most, so we state it plainly. Your enquiry comes
+      to {team} first. When you submit it and give consent, we disclose the following to
+      the cleaning vendors matched to your request:
     </p>
     <ul>
       <li>Your name, mobile number and email address</li>
@@ -116,6 +116,11 @@ const lastUpdated = 'August 2026';
       passed to more than one vendor, so that you can compare. We do not sell personal
       data to anyone, and we do not pass your details to advertisers, data brokers or
       unrelated businesses.
+    </p>
+    <p>
+      If your job also involves disposal, clearance or renovation work, the partner we pass
+      it to for that part may be Junk to Clear, a renovation and disposal company we refer
+      jobs to.
     </p>
     <p>
       Once a vendor receives your details, that vendor is a separate organisation with its
@@ -178,8 +183,7 @@ const lastUpdated = 'August 2026';
     <p>Questions, access or correction requests, and consent withdrawals go to:</p>
     <div class="rounded-card border border-line bg-surface p-5 text-sm not-prose">
       <p class="font-semibold text-ink">Data Protection Officer</p>
-      <p class="mt-1"><EntityName /></p>
-      {hasAddress() && addressLines().map((line) => <p>{line}</p>)}
+      <p class="mt-1">{team.charAt(0).toUpperCase() + team.slice(1)}</p>
       <p class="mt-2">
         Contact us through the
         <a href={urls.contact()} class="text-brand underline underline-offset-2">enquiry form</a>,

@@ -1,6 +1,9 @@
 # hometoclean.com
 
-Lead generation site for **HomeToClean**, the trading name of **SKAP Waste Management Pte Ltd** (est. 2009).
+Lead generation site for **HomeToClean**, run by **the OurKampung team** as part
+of the OurKampung family of independent Singapore home sites. Since 6 Oct 2026 the
+family names no company: no registered name, UEN, address or founding year
+(`../jtc-family/briefs/independence.md`).
 
 HomeToClean is a **matching service**. It connects households in Singapore with vetted, independent cleaning vendors. It does not carry out cleaning work. Copy must never say "our cleaners" or "our team will arrive" — say "matched with vetted cleaners". This is a legal accuracy requirement, not a style preference.
 
@@ -73,7 +76,7 @@ so it cannot separate delivered enquiries from failed ones; a `form_start` from
 the site as well only doubled that count. Until 2 Oct 2026 this site's own
 success event was also called `form_submit`, so in reports before that date the
 two cannot be told apart. It also sent its own `form_start` until 5 Oct 2026.
-This is the JTC family standard (`../jtc-family/PORTFOLIO.md`).
+This is the OurKampung family standard (`../jtc-family/PORTFOLIO.md`).
 
 The email subject names the page the visitor was reading before they opened
 /contact/, e.g. `New enquiry - HomeToClean - /property/hdb-5-room/`, or
@@ -168,13 +171,13 @@ The generator **preserves existing entries**, so hand-edits to `batch` or `publi
 
 ### `company.json`
 
-Entity name, address, hours, year established, and the FormSubmit endpoint.
+Brand name, the family whose team runs the site (`family`: OurKampung), hours, and
+the FormSubmit endpoint. There is no entity name, UEN, address or founding year:
+the family names no company, and the audit fails the build if one reaches a page.
 
 Several fields are **deliberately empty** and every render site omits them while
-they are: `uen`, `email`, `phone`, `phoneDisplay`, `whatsappNumber`. Setting one
-publishes it everywhere at once — `hasUen()` in `src/lib/data.ts` is the pattern.
-Address fields still carry `[PLACEHOLDER]` values, and the validator warns about
-each, so they cannot quietly reach production.
+they are: `email`, `phone`, `phoneDisplay`, `whatsappNumber`. The site is
+form-only, and the family shows no contact details.
 
 ---
 
@@ -227,7 +230,7 @@ Append to `propertyTypes.json`, then add a matching `typicalDurationByProperty` 
 
 **Errors** (fail the build): unknown slug references, duplicate slugs, missing per-property durations, price ranges inverted or inconsistent with their stated confidence, combos out of sync with services × locations, invalid enum values.
 
-**Warnings** (do not fail the build): asymmetric adjacency, `housingProfile` outside 60–100 words or never naming its own town, unresolved `company.json` placeholders, services with fewer than three FAQs.
+**Warnings** (do not fail the build): asymmetric adjacency, `housingProfile` outside 60–100 words or never naming its own town, services with fewer than three FAQs.
 
 ### Known warnings
 
@@ -249,10 +252,15 @@ Thirteen asymmetric adjacency pairs are warned about. These come from the suppli
   originally banned them; the owner lifted that for all their repos on
   28 Sep 2026 (the rule and domain list are in the user-level
   `~/.claude/CLAUDE.md`). Place each link where it helps the reader of that
-  page rather than sitewide. Existing ones: `junktoclear.com.sg` from `/about/`,
-  and `hometomoved.com` from the move-out and move-in pages via the
-  `crossLink` field in `services.json`.
-- The one sitewide exception is the footer's "Part of OurKampung" link, a JTC
+  page rather than sitewide. Existing ones: `hometomoved.com` from the move-out
+  and move-in pages via the `crossLink` field in `services.json`.
+- **Junk to Clear is not one of the owner's sites.** It's a separate company the
+  family refers disposal, clearance and renovation jobs to, with no referral fees.
+  Never call it ours, a sister or the same team. Link it only where one of those
+  jobs is the reader's next step. No page on this site is, so it is linked
+  nowhere, and the audit fails the build on a link to it. Its one mention is the
+  privacy policy, as a possible partner.
+- The one sitewide exception is the footer's "Part of OurKampung" link, a
   family rule from 5 Oct 2026 (`../jtc-family/briefs/family-revamp.md`). It is
   `rel="nofollow"` because it is for readers, not rankings. `/about/` also
   links OurKampung's `/our-sites/` page in its text. No link anywhere may carry

@@ -1,16 +1,6 @@
 {
-  "entityName": "SKAP Waste Management Pte Ltd",
-  "tradingName": "HomeToClean",
-  "uen": "",
-  "yearEstablished": 2009,
+  "brandName": "HomeToClean",
   "siteUrl": "https://hometoclean.com",
-  "address": {
-    "street": "",
-    "unit": "",
-    "postalCode": "",
-    "locality": "Singapore",
-    "country": "SG"
-  },
   "phone": "",
   "phoneDisplay": "",
   "whatsappNumber": "",
@@ -45,8 +35,6 @@
     "subject": "New enquiry - HomeToClean",
     "note": "FormSubmit's hashed alias for the family inbox, the same one OurKampung uses, so no email address appears in page source. The first submission from a new domain may be refused with a request for a one-time activation; the confirmation link goes to the inbox."
   },
-  "entityUrl": "https://junktoclear.com.sg",
-  "entityBrand": "Junk to Clear",
   "family": {
     "name": "OurKampung",
     "url": "https://ourkampung.com/",

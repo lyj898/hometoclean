@@ -261,7 +261,6 @@ const placeholders = Object.entries(company)
 if (placeholders.length) {
   err(`company.json: placeholder values must be emptied, not left bracketed: ${placeholders.join(', ')}`);
 }
-if (!company.entityUrl) warn('company.json: entityUrl unset; entity name will render unlinked');
 
 // --- enum / literal-union conformance ---------------------------------------
 // The TS types narrow these to unions. JSON cannot express that, so the

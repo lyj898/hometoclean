@@ -27,30 +27,6 @@ export const company = companyRaw as unknown as Company;
 
 const publishedBatches = new Set<Batch>(siteRaw.publishedBatches as Batch[]);
 
-/**
- * Whether the registered UEN is available to display. Empty or an unresolved
- * `[PLACEHOLDER]` means every render site omits it rather than printing a
- * broken-looking literal. Set company.uen to publish it everywhere at once.
- */
-export const hasUen = (): boolean =>
-  Boolean(company.uen) && company.uen.trim().length > 0 && !/^\[.*\]$/.test(company.uen);
-
-const filled = (v: string): boolean =>
-  Boolean(v) && v.trim().length > 0 && !/^\[.*\]$/.test(v);
-
-/** Whether a postal address is available to display. */
-export const hasAddress = (): boolean =>
-  filled(company.address.street) || filled(company.address.postalCode);
-
-/** Address lines to render, already stripped of blanks. */
-export const addressLines = (): string[] => {
-  const street = [company.address.street, company.address.unit].filter(filled).join(' ');
-  const postal = filled(company.address.postalCode)
-    ? `Singapore ${company.address.postalCode}`
-    : '';
-  return [street, postal].filter(Boolean);
-};
-
 /** Whether a batch is live. Controls page generation and sitemap inclusion. */
 export const isBatchPublished = (batch: Batch): boolean => publishedBatches.has(batch);
 

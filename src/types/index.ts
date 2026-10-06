@@ -191,16 +191,6 @@ export interface OperatingHours {
   closes: string;
 }
 
-export interface Address {
-  /** Empty until supplied. Render sites omit the address while blank. */
-  street: string;
-  unit: string;
-  postalCode: string;
-  locality: string;
-  /** ISO 3166-1 alpha-2. */
-  country: string;
-}
-
 export interface FormSubmitConfig {
   /** FormSubmit AJAX endpoint on the hashed alias, never a raw inbox address. The audit enforces it. */
   endpoint: string;
@@ -209,27 +199,23 @@ export interface FormSubmitConfig {
   note: string;
 }
 
+/**
+ * The site and who runs it. Since 6 Oct 2026 the OurKampung family names no
+ * company: no registered entity, UEN, address, founding year or person. The
+ * site is run by "the {family.name} team" (jtc-family/briefs/independence.md).
+ */
 export interface Company {
-  /** Registered entity. Must appear in the footer. */
-  entityName: string;
-  /** The operating entity's own website. Linked from /about/ only. */
-  entityUrl: string;
-  /** Customer-facing brand the entity trades under for its disposal work. */
-  entityBrand: string;
+  /** The site's own brand. Also the Organization name in structured data. */
+  brandName: string;
   /**
-   * The family of sites this one belongs to. Its home page is linked from the
-   * footer of every page, nofollow because it is for readers, not rankings; its
-   * sites page is linked from /about/. Never noreferrer: that would hide the
-   * visit's source from the family's GA4.
+   * The family of sites this one belongs to. Its team runs the site. Its home
+   * page is linked from the footer of every page, nofollow because it is for
+   * readers, not rankings; its sites page is linked from /about/. Never
+   * noreferrer: that would hide the visit's source from the family's GA4.
    */
   family: { name: string; url: string; sitesUrl: string };
-  tradingName: string;
-  /** Empty until supplied. Every render site omits it while blank — see hasUen(). */
-  uen: string;
-  yearEstablished: number;
   /** Absolute origin, no trailing slash. Used for canonicals and JSON-LD @id. */
   siteUrl: string;
-  address: Address;
   /** Empty: this site is form-only, with no telephone channel. */
   phone: string;
   phoneDisplay: string;

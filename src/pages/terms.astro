@@ -10,17 +10,19 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { urls } from '../lib/urls';
 import { meta } from '../lib/seo';
-import { company, hasUen, hasAddress, addressLines } from '../lib/data';
-import EntityName from '../components/EntityName.astro';
+import { company } from '../lib/data';
 
 const path = urls.terms();
+
+// The family names no company (6 Oct 2026): the site is run by its team.
+const team = `the ${company.family.name} team`;
 
 const { title, description } = meta(
   'Terms of Service | HomeToClean',
   'Terms governing use of hometoclean.com. HomeToClean is a matching service and is not the provider of the cleaning services arranged through this site.',
 );
 
-const lastUpdated = 'August 2026';
+const lastUpdated = 'October 2026';
 ---
 
 <BaseLayout
@@ -34,8 +36,7 @@ const lastUpdated = 'August 2026';
     <div class="wrap-narrow py-12 sm:py-16">
       <h1 class="text-3xl font-semibold sm:text-4xl">Terms of Service</h1>
       <p class="mt-4 text-ink-muted">
-        These terms govern your use of hometoclean.com, operated by <EntityName />{hasUen() ? ` (UEN ${company.uen})` : ''},
-        trading as {company.tradingName}.
+        These terms govern your use of hometoclean.com, which is run by {team}.
       </p>
       <p class="mt-2 text-sm text-ink-faint">Last updated: {lastUpdated}</p>
     </div>
@@ -44,7 +45,7 @@ const lastUpdated = 'August 2026';
   <div class="wrap-narrow prose-ht py-12 text-ink-muted sm:py-16">
     <div class="rounded-card border border-brand/25 bg-brand-light/50 p-5 text-ink">
       <p class="text-sm leading-relaxed">
-        <strong class="font-semibold">The short version.</strong> {company.tradingName} is
+        <strong class="font-semibold">The short version.</strong> {company.brandName} is
         a matching service. We introduce you to independent cleaning vendors. We do not
         clean your home, we do not employ the cleaners, and the agreement for the cleaning
         work is between you and the vendor you choose.
@@ -59,7 +60,7 @@ const lastUpdated = 'August 2026';
 
     <h2>2. What we do, and what we do not do</h2>
     <p>
-      {company.tradingName} is a <strong>matching service</strong>. We introduce households
+      {company.brandName} is a <strong>matching service</strong>. We introduce households
       in Singapore to independent third-party cleaning vendors.
     </p>
     <p>We do not:</p>
@@ -71,7 +72,7 @@ const lastUpdated = 'August 2026';
     </ul>
     <p>
       When you accept a vendor's quote, you enter into a contract directly with that
-      vendor. {company.tradingName} is not a party to it. Questions about scope, timing,
+      vendor. {company.brandName} is not a party to it. Questions about scope, timing,
       payment, rescheduling, damage or workmanship are matters between you and the vendor.
     </p>
 
@@ -132,7 +133,7 @@ const lastUpdated = 'August 2026';
     <h2>8. Intellectual property</h2>
     <p>
       The content of this site, including the text, pricing guidance and design, belongs to
-      <EntityName /> unless otherwise stated. You may read and share it for personal,
+      {team} unless otherwise stated. You may read and share it for personal,
       non-commercial use. You may not reproduce it commercially without our written
       permission.
     </p>
@@ -176,10 +177,8 @@ const lastUpdated = 'August 2026';
 
     <h2>13. Contact</h2>
     <div class="rounded-card border border-line bg-surface p-5 text-sm not-prose">
-      <p class="font-semibold"><EntityName /></p>
-      <p class="mt-1">trading as {company.tradingName}</p>
-      {hasUen() && <p>UEN {company.uen}</p>}
-      {hasAddress() && addressLines().map((line) => <p>{line}</p>)}
+      <p class="font-semibold">{company.brandName}</p>
+      <p class="mt-1">Run by {team}</p>
       <p class="mt-2">
         Contact us through the
         <a href={urls.contact()} class="text-brand underline underline-offset-2">enquiry form</a>,
